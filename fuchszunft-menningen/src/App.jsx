@@ -89,27 +89,31 @@ const Navigation = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen }) => {
 
 // --- Komponente: Countdown ---
 const Countdown = () => {
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  // Ziel: Schmotziger Dunschdig 2026 (12.02.2026, 06:00 Uhr)
+  const targetDate = new Date('2026-02-12T06:00:00').getTime();
+  
+  // Berechnung sofort beim ersten Render
+  const calculateTimeLeft = () => {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    if (distance < 0) {
+      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    }
+
+    return {
+      days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+      minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+      seconds: Math.floor((distance % (1000 * 60)) / 1000),
+    };
+  };
+
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft);
 
   useEffect(() => {
-    // Ziel: Schmotziger Dunschdig 2026 (12.02.2026, 06:00 Uhr)
-    const targetDate = new Date('2026-02-12T06:00:00').getTime();
-
     const interval = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
-
-      if (distance < 0) {
-        clearInterval(interval);
-        return;
-      }
-
-      setTimeLeft({
-        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-        seconds: Math.floor((distance % (1000 * 60)) / 1000),
-      });
+      setTimeLeft(calculateTimeLeft());
     }, 1000);
 
     return () => clearInterval(interval);
