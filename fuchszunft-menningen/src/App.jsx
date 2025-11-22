@@ -829,6 +829,7 @@ const App = () => {
           </p>
         </div>
       </footer>
+      <Analytics />
     </div>
   );
 };
