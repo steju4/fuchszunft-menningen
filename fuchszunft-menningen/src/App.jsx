@@ -120,7 +120,7 @@ const Countdown = () => {
   }, []);
 
   return (
-    <div className="bg-stone-900/80 backdrop-blur-md text-white p-6 rounded-xl border border-orange-500/30 shadow-2xl max-w-2xl mx-auto mt-8">
+    <div className="bg-stone-900/80 backdrop-blur-md text-white p-6 rounded-xl border border-orange-500/30 shadow-2xl max-w-2xl mx-auto mt-8 mb-12">
       <h3 className="text-center text-orange-400 uppercase tracking-widest text-sm mb-4 font-bold">Countdown zum Schmotzigen 2026</h3>
       <div className="flex justify-center gap-4 md:gap-8 text-center">
         {[
@@ -181,12 +181,19 @@ const HomeSection = ({ setActiveTab }) => (
           </button>
         </div>
 
-        <Countdown />
+        <div className="hidden md:block">
+          <Countdown />
+        </div>
       </div>
     </div>
 
+    {/* Mobile Countdown */}
+    <div className="md:hidden bg-stone-900 py-0.5">
+      <Countdown />
+    </div>
+
     {/* Teaser Grid */}
-    <div className="container mx-auto px-4 py-16 -mt-20 relative z-20">
+    <div className="container mx-auto px-4 py-16 mt-8 md:-mt-20 relative z-10 md:z-20">
       <div className="grid md:grid-cols-3 gap-8">
         {[
           { title: 'Historie', text: 'Erfahre mehr über die Gründung 1957 und unsere Wurzeln im Gremlich-Schloss.', link: 'geschichte', color: 'bg-green-800' },
