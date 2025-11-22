@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Calendar, MapPin, Music, Info, ChevronRight, Facebook, Mail, Phone, FileText, Download, Clock, Home, Users, BookOpen } from 'lucide-react';
+import { Menu, X, Calendar, MapPin, Music, Info, ChevronRight, Facebook, Mail, Phone, FileText, Download, Clock, Home, Users, BookOpen, House } from 'lucide-react';
 
 // --- Komponente: Navigation ---
 const Navigation = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen }) => {
   const navItems = [
     { id: 'home', label: 'Startseite', icon: Home },
-    { id: 'aktuelles', label: 'Fahrplan 2026', icon: Calendar },
+    { id: 'news', label: 'Aktuelles', icon: FileText },
+    { id: 'termine', label: 'Termine', icon: Calendar },
     { id: 'figuren', label: 'Zunftfiguren', icon: Users },
     { id: 'geschichte', label: 'Geschichte & Dorf', icon: BookOpen },
-    { id: 'zunftstube', label: 'Zunftstube', icon: Music },
+    { id: 'zunftstube', label: 'Zunftstube', icon: House },
     { id: 'kontakt', label: 'Kontakt', icon: Mail },
   ];
 
@@ -116,7 +117,7 @@ const Countdown = () => {
 
   return (
     <div className="bg-stone-900/80 backdrop-blur-md text-white p-6 rounded-xl border border-orange-500/30 shadow-2xl max-w-2xl mx-auto mt-8">
-      <h3 className="text-center text-orange-400 uppercase tracking-widest text-sm mb-4 font-bold">Countdown zum Wecken 2026</h3>
+      <h3 className="text-center text-orange-400 uppercase tracking-widest text-sm mb-4 font-bold">Countdown zum Schmotzigen 2026</h3>
       <div className="flex justify-center gap-4 md:gap-8 text-center">
         {[
           { label: 'Tage', value: timeLeft.days },
@@ -162,10 +163,16 @@ const HomeSection = ({ setActiveTab }) => (
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
           <button 
-            onClick={() => setActiveTab('aktuelles')}
+            onClick={() => setActiveTab('news')}
             className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all transform hover:scale-105 shadow-lg flex items-center justify-center gap-2 border border-orange-500"
           >
-            <Calendar size={20} /> Zum Narrenfahrplan
+            <FileText size={20} /> Aktuelle Neuigkeiten
+          </button>
+          <button 
+            onClick={() => setActiveTab('termine')}
+            className="bg-white/10 hover:bg-white/20 backdrop-blur border border-white/30 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all flex items-center justify-center gap-2"
+          >
+            <Calendar size={20} /> Termine 2026
           </button>
           <button 
             onClick={() => setActiveTab('figuren')}
@@ -185,7 +192,7 @@ const HomeSection = ({ setActiveTab }) => (
         {[
           { title: 'Historie', text: 'Erfahre mehr über die Gründung 1957 und unsere Wurzeln im Gremlich-Schloss.', link: 'geschichte', color: 'bg-green-800' },
           { title: 'Mitglied werden', text: 'Lust auf Fasnet? Wir suchen immer neue Füchse und Gausmates!', link: 'kontakt', color: 'bg-orange-700' },
-          { title: 'Zunftstube', text: 'Unser Wohnzimmer. Jeden 2. Montag für alle geöffnet.', link: 'zunftstube', color: 'bg-stone-800' },
+          { title: 'Zunftstube', text: 'Unser Haupttreffpunkt. Etwa jeden 2. Montag für alle geöffnet.', link: 'zunftstube', color: 'bg-stone-800' },
         ].map((card, idx) => (
           <div 
             key={idx} 
@@ -202,6 +209,215 @@ const HomeSection = ({ setActiveTab }) => (
     </div>
   </div>
 );
+
+const NewsSection = ({ selectedArticle, setSelectedArticle }) => {
+  const newsArticles = [
+    {
+      id: 1,
+      title: "Erfolgreicher Saisonauftakt 2026",
+      date: "15. November 2025",
+      category: "Fasnet",
+      preview: "Die Vorbereitungen für die Fasnet 2026 laufen auf Hochtouren. Alle Häser sind gereinigt und die ersten Proben haben begonnen...",
+      content: `
+        Die Fuchszunft Menningen ist bereit für eine großartige Fasnet 2026! 
+        
+        In den letzten Wochen haben alle Mitglieder fleißig an der Vorbereitung gearbeitet. Die traditionellen Häser wurden sorgfältig gereinigt und auf Schäden überprüft. Besonders die echten Fuchsfelle unserer Hauptfiguren benötigen intensive Pflege.
+        
+        **Erste Proben erfolgreich**
+        
+        Bereits am vergangenen Wochenende fanden die ersten Proben in der Zunftstube statt. Die kleinen Füchse zeigten dabei wieder ihre beeindruckende Begeisterung und lernten schnell die traditionellen Bewegungen.
+        
+        **Neue Mitglieder willkommen**
+        
+        Wir freuen uns besonders über drei neue Mitglieder, die in dieser Saison erstmals mit uns auf die Straße gehen werden. Sie werden die Reihen der Gausmates verstärken.
+      `,
+      image: null,
+      author: "Zunftvorstand"
+    },
+    {
+      id: 2,
+      title: "Zunftstube erstrahlt in neuem Glanz",
+      date: "3. November 2025",
+      category: "Zunftstube",
+      preview: "Nach wochenlangen Renovierungsarbeiten ist unsere beliebte Zunftstube wieder in vollem Betrieb. Die Küche wurde modernisiert...",
+      content: `
+        Unsere Zunftstube ist wieder bereit für die kommende Saison! Nach umfangreichen Renovierungsarbeiten erstrahlt sie in neuem Glanz.
+        
+        **Was wurde erneuert?**
+        
+        - Komplette Modernisierung der Küche mit neuen Geräten
+        - Frischer Anstrich in den traditionellen Zunftfarben
+        - Neue Beleuchtung im Hauptraum
+        - Restaurierung der historischen Zunftbilder
+        
+        **Wiedereröffnung gefeiert**
+        
+        Am 2. November wurde die renovierte Zunftstube mit einem gemütlichen Dämmerschoppen wiedereröffnet. Über 40 Mitglieder und Freunde der Zunft feierten gemeinsam bis in die späten Abendstunden.
+        
+        **Öffnungszeiten**
+        
+        Ab sofort ist die Zunftstube wieder jeden zweiten Montag für alle geöffnet. Der nächste Termin ist der 18. November um 19:00 Uhr.
+      `,
+      image: null,
+      author: "Hausmeister Team"
+    },
+    {
+      id: 3,
+      title: "Nachwuchs gesucht: Kleine Füchse aufgepasst!",
+      date: "20. Oktober 2025",
+      category: "Nachwuchs",
+      preview: "Für die kommende Saison suchen wir wieder Kinder zwischen 7 und 9 Jahren, die Lust haben, als kleine Füchse mit uns zu ziehen...",
+      content: `
+        Die kleinen Füchse sind der ganze Stolz unserer Zunft! Für die Fasnet 2026 suchen wir wieder begeisterte Kinder.
+        
+        **Voraussetzungen:**
+        
+        - Alter zwischen 7 und 9 Jahren
+        - Wohnort in Menningen oder Umgebung
+        - Lust auf Fasnet und Gemeinschaft
+        - Keine Scheu vor vielen Menschen
+        
+        **Was erwartet die Kinder?**
+        
+        - Ein wunderschönes, handgefertigtes Miniatur-Fuchshäs
+        - Teilnahme an allen großen Umzügen
+        - Gemeinschaftsgefühl in der Gruppe
+        - Unvergessliche Fasnetserlebnisse
+        
+        **Proben und Vorbereitung**
+        
+        Die Proben finden samstags von 14:00 bis 16:00 Uhr in der Zunftstube statt. Dabei lernen die Kinder nicht nur die traditionellen Bewegungen, sondern auch die Geschichte unserer Zunft kennen.
+        
+        **Interesse?**
+        
+        Eltern können sich gerne bei unserem Zunftpräsidenten Winfried Stengele melden. Ein unverbindliches Schnuppertraining ist jederzeit möglich!
+      `,
+      image: null,
+      author: "Nachwuchsbetreuung"
+    }
+  ];
+
+  if (selectedArticle) {
+    const article = newsArticles.find(a => a.id === selectedArticle);
+    if (!article) return null;
+
+    return (
+      <div className="container mx-auto px-4 py-12 max-w-4xl animate-fadeIn">
+        <button 
+          onClick={() => setSelectedArticle(null)}
+          className="mb-8 flex items-center gap-2 text-orange-600 hover:text-orange-800 font-medium transition-colors"
+        >
+          ← Zurück zu den Neuigkeiten
+        </button>
+        
+        <article className="bg-white rounded-2xl shadow-xl border border-stone-200 overflow-hidden">
+          {article.image && (
+            <img 
+              src={article.image} 
+              alt={article.title}
+              className="w-full h-64 object-cover"
+            />
+          )}
+          
+          <div className="p-8">
+            <div className="flex items-center gap-4 mb-4 text-sm text-stone-500">
+              <span className="bg-orange-100 text-orange-700 px-3 py-1 rounded-full font-medium">
+                {article.category}
+              </span>
+              <span>{article.date}</span>
+              <span>•</span>
+              <span>{article.author}</span>
+            </div>
+            
+            <h1 className="text-4xl font-bold text-stone-800 mb-6 leading-tight">
+              {article.title}
+            </h1>
+            
+            <div className="prose prose-lg prose-stone max-w-none">
+              {article.content.split('\n').map((paragraph, idx) => {
+                if (paragraph.trim().startsWith('**') && paragraph.trim().endsWith('**')) {
+                  return (
+                    <h3 key={idx} className="text-xl font-bold text-stone-800 mt-8 mb-4">
+                      {paragraph.trim().slice(2, -2)}
+                    </h3>
+                  );
+                }
+                if (paragraph.trim().startsWith('- ')) {
+                  return (
+                    <li key={idx} className="ml-4 text-stone-600 leading-relaxed">
+                      {paragraph.trim().slice(2)}
+                    </li>
+                  );
+                }
+                if (paragraph.trim()) {
+                  return (
+                    <p key={idx} className="text-stone-600 leading-relaxed mb-4">
+                      {paragraph.trim()}
+                    </p>
+                  );
+                }
+                return null;
+              })}
+            </div>
+          </div>
+        </article>
+      </div>
+    );
+  }
+
+  return (
+    <div className="container mx-auto px-4 py-12 animate-fadeIn">
+      <div className="text-center mb-16">
+        <h2 className="text-4xl font-bold text-stone-800 mb-4">Aktuelles aus der Zunft</h2>
+        <p className="text-stone-600 max-w-2xl mx-auto">
+          Hier erfahren Sie alle Neuigkeiten rund um die Fuchszunft Menningen - von Fasnetvorbereitungen bis zu Veranstaltungen in der Zunftstube.
+        </p>
+      </div>
+
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        {newsArticles.map((article) => (
+          <article 
+            key={article.id}
+            onClick={() => setSelectedArticle(article.id)}
+            className="bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden cursor-pointer transform hover:-translate-y-2 transition-all duration-300 group"
+          >
+            {article.image && (
+              <img 
+                src={article.image} 
+                alt={article.title}
+                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+            )}
+            
+            <div className="p-6">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs font-medium">
+                  {article.category}
+                </span>
+                <span className="text-xs text-stone-500">{article.date}</span>
+              </div>
+              
+              <h3 className="text-xl font-bold text-stone-800 mb-3 group-hover:text-orange-600 transition-colors leading-tight">
+                {article.title}
+              </h3>
+              
+              <p className="text-stone-600 text-sm leading-relaxed mb-4">
+                {article.preview}
+              </p>
+              
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-stone-500">{article.author}</span>
+                <span className="text-orange-600 text-sm font-medium group-hover:text-orange-800 transition-colors">
+                  Weiterlesen →
+                </span>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const AktuellesSection = () => {
   // Logik: 
@@ -223,8 +439,8 @@ const AktuellesSection = () => {
   return (
     <div className="container mx-auto px-4 py-12 max-w-4xl animate-fadeIn">
       <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-stone-800 mb-4">Narrenfahrplan 2026</h2>
-        <p className="text-stone-600 text-lg">Die wichtigsten Termine der kommenden Saison.</p>
+        <h2 className="text-4xl font-bold text-stone-800 mb-4">Termine 2026</h2>
+        <p className="text-stone-600 text-lg">Die wichtigsten Termine auf einen Blick.</p>
       </div>
 
       <div className="relative border-l-4 border-stone-200 ml-4 md:ml-8 space-y-8">
@@ -267,7 +483,7 @@ const AktuellesSection = () => {
       <div className="mt-12 text-center bg-stone-100 p-8 rounded-xl">
         <h3 className="font-bold text-stone-800 mb-2">Nichts mehr verpassen?</h3>
         <button className="text-orange-600 font-bold hover:underline flex items-center justify-center gap-2 mx-auto transition-colors hover:text-orange-800">
-          <Download size={18} /> Fahrplan als PDF herunterladen (Placeholder)
+          <Download size={18} /> Termine als PDF herunterladen (Placeholder)
         </button>
       </div>
     </div>
@@ -276,12 +492,76 @@ const AktuellesSection = () => {
 
 const FigurenSection = () => {
   const figuren = [
-    { name: 'Menninger Fuchs', year: '1956', desc: 'Die Hauptfigur mit Holzmaske und echtem Fuchsfell. Immer in Bewegung, listig und schlau.', emoji: '🦊', color: 'bg-orange-100 border-orange-200' },
-    { name: 'Schwarzer Fuchs', year: 'Einzelfigur', desc: 'Führt die Fuchsgruppe an und sorgt für Ordnung beim Umzug.', emoji: '🖤', color: 'bg-stone-200 border-stone-300' },
-    { name: 'Gausmates', year: '1996', desc: 'Stellt die historischen Hirten dar. Ein Häs für die älteren Mitglieder, oft mit Stecken ausgestattet.', emoji: '🌾', color: 'bg-green-100 border-green-200' },
-    { name: 'Kleine Füchse', year: '-', desc: 'Der ganze Stolz der Zunft: Kinder von 7-9 Jahren im Miniatur-Fuchshäs.', emoji: '🐾', color: 'bg-orange-50 border-orange-100' },
-    { name: 'Zunftpräsidium', year: '-', desc: 'Präsident und Zunftmeister in edlen Gewändern, angelehnt an die Ritter von Gremlich.', emoji: '🎩', color: 'bg-blue-50 border-blue-100' },
-    { name: 'Narrenbüttel', year: '1960', desc: 'Springt in Achterbögen voran und macht den Weg frei.', emoji: '🔔', color: 'bg-yellow-50 border-yellow-100' },
+    { 
+      name: 'Die Menninger Füchse', 
+      year: '1957', 
+      desc: 'Die erste und namensgebende Figur der Zunft. Das aufwändig gestaltete Häs mit echtem Fuchsfell erfordert sorgfältige Pflege. Die Füchse sind ständig in Bewegung - laufend und juckend begeistern sie die Zuschauer.', 
+      emoji: '🦊', 
+      color: 'bg-orange-100 border-orange-200' 
+    },
+    { 
+      name: 'Der Schwarze Fuchs', 
+      year: 'Einzelfigur', 
+      desc: 'Vervollständigt die Gruppe der Füchse als Einzelfigur. Seine Aufgabe ist es, bei Umzügen die ganze Schar zusammenzuhalten und für einen erfolgreichen Auftritt zu sorgen.', 
+      emoji: '🖤', 
+      color: 'bg-stone-200 border-stone-300' 
+    },
+    { 
+      name: 'Die kleinen Füchse', 
+      year: '-', 
+      desc: 'Eine der schönsten Erfindungen der Zunft. Drei bis fünf Kinder im Alter von 7-9 Jahren tragen die Miniatur-Ausführung des Fuchshäses und erregen überall großes Aufsehen.', 
+      emoji: '🐾', 
+      color: 'bg-orange-50 border-orange-100' 
+    },
+    { 
+      name: 'Die Gausmates', 
+      year: '1996/97', 
+      desc: 'Stellen die früher ansässigen Viehhütefamilien dar, die Vieh und Gänse im Wald hüteten. Das von Jürgen Hohl gestaltete Häs ist der Kleidung armer Hüterfamilien nachempfunden, aber fasnächtlich verfremdet.', 
+      emoji: '🪿', 
+      color: 'bg-green-100 border-green-200' 
+    },
+    { 
+      name: 'Das Zunftpräsidium', 
+      year: '-', 
+      desc: 'Zunftpräsident mit seinen beiden Zunftmeistern führt die Fuchszunft an. Das Häs ist der Kleidung der Reichsritter von Gremlich nachempfunden, aber fasnächtlich verfremdet.', 
+      emoji: '👑', 
+      color: 'bg-blue-50 border-blue-100' 
+    },
+    { 
+      name: 'Der Zeremonienmeister', 
+      year: '-', 
+      desc: 'Führt direkt hinter dem Präsidium die große Schar der Füchse an. Trägt das gleiche Häs wie das Präsidium, nur in blau. Als Zunftschreiber sorgt er für Recht und Ordnung.', 
+      emoji: '📜', 
+      color: 'bg-blue-100 border-blue-200' 
+    },
+    { 
+      name: 'Der Narrenbüttel', 
+      year: '1960', 
+      desc: 'Wurde zum ersten großen Auftritt in Ludwigshafen geschaffen. Springt in großen Achterbögen vorneweg und macht den Weg für die nachfolgende Zunft frei.', 
+      emoji: '🔔', 
+      color: 'bg-yellow-50 border-yellow-100' 
+    },
+    { 
+      name: 'Der Standartenträger', 
+      year: '1959', 
+      desc: 'Trägt die aufwändig geschaffene Zunft-Standarte, die einst das Aushängeschild der Fuchszunft war und heute das offizielle Zunftschild darstellt.', 
+      emoji: '🏴', 
+      color: 'bg-purple-50 border-purple-100' 
+    },
+    { 
+      name: 'Die Fahnengruppe', 
+      year: '1966', 
+      desc: 'Zum Narrentag in Meßkirch geschaffen und in der Stadthalle geweiht. Fahnenträger mit zwei Begleitern in historischen Gewändern, fasnächtlich angepasst.', 
+      emoji: '🚩', 
+      color: 'bg-red-50 border-red-100' 
+    },
+    { 
+      name: 'Der Narrenpolizei', 
+      year: 'vor 1957', 
+      desc: 'Die einzige Figur, die schon vor der Zunftgründung existierte. Heute wichtige Person der Dorffasnet. Seit 1985 in der Zunft mit angepasstem, schönen Häs.', 
+      emoji: '👮', 
+      color: 'bg-gray-50 border-gray-100' 
+    },
   ];
 
   return (
@@ -293,7 +573,37 @@ const FigurenSection = () => {
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {/* Bilder der Zunftfiguren - nebeneinander auf Desktop */}
+      <div className="mb-16 grid lg:grid-cols-2 gap-8 items-start">
+        <div className="flex justify-center">
+          <div className="bg-white rounded-2xl shadow-xl border border-stone-200 overflow-hidden max-w-fit">
+            <img 
+              src="/unnamed.gif" 
+              alt="Füchse und Gausmates der Fuchszunft Menningen" 
+              className="max-h-80 w-auto object-contain block"
+            />
+            <div className="px-4 py-6 text-center min-w-0">
+              <h3 className="text-lg font-bold text-stone-800 mb-2 leading-tight">Unsere Zunftfiguren</h3>
+              <p className="text-sm text-stone-600 leading-snug">Menninger Füchse und Gausmates</p>
+            </div>
+          </div>
+        </div>
+        
+        <div className="bg-white rounded-2xl shadow-xl border border-stone-200 overflow-hidden">
+          <div className="h-80 overflow-hidden">
+            <img 
+              src="/1057c88a-73d0-40a5-bcf8-f60b018cdd56.webp" 
+              alt="Zunftpräsidium mit den kleinen Füchsen" 
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="p-6 text-center">
+            <h3 className="text-lg font-bold text-stone-800 mb-2 leading-tight">Präsidium mit unseren kleinen Füchsen</h3>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
         {figuren.map((figur, idx) => (
           <div key={idx} className={`p-6 rounded-xl border-2 ${figur.color} hover:shadow-xl transition-all duration-300 group bg-white/50`}>
             <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">{figur.emoji}</div>
@@ -328,6 +638,25 @@ const GeschichteSection = () => (
         <p className="mt-4">
           Am <strong>10. Januar 1957</strong> war es soweit: Im Gasthaus "Bahnhof" wurde die Zunft offiziell gegründet. 
           Der Name "Grafschaft Fuchsbühl zu Menningen" ist eine Hommage an die früher hier ansässigen Ritter von Gremlich.
+        </p>
+      </div>
+
+      {/* Zunftlied Sektion */}
+      <div className="bg-orange-50 p-8 rounded-2xl border border-orange-200 mb-12 shadow-sm">
+        <h3 className="text-2xl font-bold text-orange-700 mb-6 flex items-center gap-2 justify-center">
+          <Music size={24} /> Das Menninger Zunftlied
+        </h3>
+        <div className="flex justify-center mb-6">
+          <div className="bg-white rounded-xl shadow-lg border border-orange-200 overflow-hidden max-w-2xl">
+            <img 
+              src="/unnamed (1).gif" 
+              alt="Das Menninger Zunftlied" 
+              className="w-full h-auto object-cover"
+            />
+          </div>
+        </div>
+        <p className="text-center text-stone-600 italic">
+          Unser traditionelles Zunftlied
         </p>
       </div>
 
@@ -371,18 +700,14 @@ const ZunftstubeSection = () => (
     </div>
     
     <div className="container mx-auto px-4 py-16 max-w-5xl -mt-10 relative z-20">
-      <div className="grid md:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
         <div className="bg-white p-6 rounded-xl shadow-lg border-t-4 border-orange-500 hover:transform hover:-translate-y-1 transition-transform">
           <h3 className="font-bold text-xl mb-2 text-stone-800">Öffnungszeiten</h3>
-          <p className="text-stone-600">Jeden 2. Montag ist die Stube für die Bevölkerung geöffnet. Stammtisch, Dämmerschoppen und gemütliches Beisammensein.</p>
+          <p className="text-stone-600">Etwa jeden 2. Montag ist die Stube für die Bevölkerung geöffnet. Stammtisch, Dämmerschoppen und gemütliches Beisammensein.</p>
         </div>
         <div className="bg-white p-6 rounded-xl shadow-lg border-t-4 border-green-600 hover:transform hover:-translate-y-1 transition-transform">
           <h3 className="font-bold text-xl mb-2 text-stone-800">Ausstattung</h3>
           <p className="text-stone-600">Voll ausgestattete Küche, Bewirtungsraum für Versammlungen und ein Archiv für unsere historischen Zunftunterlagen.</p>
-        </div>
-        <div className="bg-white p-6 rounded-xl shadow-lg border-t-4 border-stone-600 hover:transform hover:-translate-y-1 transition-transform">
-          <h3 className="font-bold text-xl mb-2 text-stone-800">Vermietung</h3>
-          <p className="text-stone-600">Ein beliebter Treffpunkt für Geburtstage und Familienfeste in Menningen. Anfragen bitte direkt an den Vorstand.</p>
         </div>
       </div>
     </div>
@@ -446,15 +771,20 @@ const KontaktSection = () => (
 const App = () => {
   const [activeTab, setActiveTab] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [selectedArticle, setSelectedArticle] = useState(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    if (activeTab !== 'news') {
+      setSelectedArticle(null);
+    }
   }, [activeTab]);
 
   const renderContent = () => {
     switch (activeTab) {
       case 'home': return <HomeSection setActiveTab={setActiveTab} />;
-      case 'aktuelles': return <AktuellesSection />;
+      case 'news': return <NewsSection selectedArticle={selectedArticle} setSelectedArticle={setSelectedArticle} />;
+      case 'termine': return <AktuellesSection />;
       case 'figuren': return <FigurenSection />;
       case 'geschichte': return <GeschichteSection />;
       case 'zunftstube': return <ZunftstubeSection />;
