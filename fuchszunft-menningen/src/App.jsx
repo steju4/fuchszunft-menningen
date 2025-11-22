@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Calendar, MapPin, Music, Info, ChevronRight, Facebook, Mail, Phone, FileText, Download, Clock, Home, Users, BookOpen, House } from 'lucide-react';
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/react"
 
 // --- Komponente: Navigation ---
 const Navigation = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen }) => {
