@@ -145,12 +145,7 @@ const HomeSection = ({ setActiveTab }) => (
   <div className="animate-fadeIn">
     {/* Hero */}
     <div className="relative h-[600px] flex items-center justify-center overflow-hidden bg-stone-900">
-      {/* HINWEIS ZUM HINTERGRUNDBILD:
-          Aktuell lädt hier ein Platzhalterbild. Wenn du ein eigenes Bild hast (z.B. 'hero.jpg'),
-          lege es in den 'public'-Ordner deines Projekts und ändere die URL unten in:
-          bg-[url('/hero.jpg')]
-      */}
-      <div className="absolute inset-0 opacity-50 bg-[url('https://placehold.co/1920x1080/2a2a2a/FFFFFF/png?text=Hintergrundbild+hier+einfuegen')] bg-cover bg-center transition-transform duration-[20s] hover:scale-105" />
+      <div className="absolute inset-0 opacity-50 bg-[url('/Gesamt.jpg')] bg-cover bg-[center_bottom_40%] transition-transform duration-[20s] hover:scale-105" />
       <div className="absolute inset-0 bg-gradient-to-t from-stone-900 via-transparent to-stone-900/60" />
       
       <div className="relative z-10 text-center px-4 max-w-4xl">
@@ -160,7 +155,7 @@ const HomeSection = ({ setActiveTab }) => (
         <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-lg leading-tight">
           Fuchs - Narro!
         </h1>
-        <p className="text-xl text-stone-200 mb-8 max-w-2xl mx-auto leading-relaxed font-light">
+        <p className="text-xl text-stone-200 mb-8 max-w-2xl mx-auto leading-relaxed font-bold">
           Herzlich Willkommen bei der <strong>Grafschaft Fuchsbühl</strong> zu Menningen.
           Wir freuen uns auf eine glückselige Fasnet im Ablachtal!
         </p>
