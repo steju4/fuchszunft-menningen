@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Calendar, MapPin, Music, Info, ChevronRight, Facebook, Mail, Phone, FileText, Download, Clock, Home, Users, BookOpen, House } from 'lucide-react';
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/react"
-import jsPDF from 'jspdf';
-import { createEvents } from 'ics';
 
 // --- Komponente: Navigation ---
 const Navigation = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen }) => {
@@ -446,7 +444,8 @@ const AktuellesSection = () => {
     { datum: '17.02.', jahr: '2026', zeit: '19:00', wtag: 'DI', titel: 'Fasnetsverbrennung', ort: 'Zunftstube', highlight: false },
   ];
 
-  const exportToPDF = () => {
+  const exportToPDF = async () => {
+    const jsPDF = (await import('jspdf')).default;
     const doc = new jsPDF();
     
     // Header
@@ -512,7 +511,8 @@ const AktuellesSection = () => {
     doc.save('Fasnet-Termine-2026.pdf');
   };
 
-  const exportToCalendar = () => {
+  const exportToCalendar = async () => {
+    const { createEvents } = await import('ics');
     const events = termine.map((termin) => {
       // Datum parsen
       const [tag, monat] = termin.datum.split('.');
