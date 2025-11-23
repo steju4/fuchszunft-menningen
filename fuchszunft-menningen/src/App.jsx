@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Calendar, MapPin, Music, Info, ChevronRight, Facebook, Mail, Phone, FileText, Download, Clock, Home, Users, BookOpen, House } from 'lucide-react';
 import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/react"
 import jsPDF from 'jspdf';
 import { createEvents } from 'ics';
 
@@ -989,6 +990,7 @@ const App = () => {
         </div>
       </footer>
       <Analytics />
+      <SpeedInsights />
     </div>
   );
 };
