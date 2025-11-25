@@ -3,7 +3,7 @@ import { Menu, X, Calendar, MapPin, Music, Info, ChevronRight, Mail, Phone, File
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/react"
 
-// Custom Instagram Icon (da in neueren Lucide-Versionen deprecated)
+// Custom Instagram Icon
 const Instagram = ({ size = 24, className }) => (
   <svg 
     xmlns="http://www.w3.org/2000/svg" 
@@ -288,40 +288,6 @@ const NewsSection = ({ selectedArticle, setSelectedArticle }) => {
       `,
       image: null,
       author: "Hausmeister Team"
-    },
-    {
-      id: 3,
-      title: "Nachwuchs gesucht: Kleine Füchse aufgepasst!",
-      date: "20. Oktober 2025",
-      category: "Nachwuchs",
-      preview: "Für die kommende Saison suchen wir wieder Kinder zwischen 7 und 9 Jahren, die Lust haben, als kleine Füchse mit uns zu ziehen...",
-      content: `
-        Die kleinen Füchse sind der ganze Stolz unserer Zunft! Für die Fasnet 2026 suchen wir wieder begeisterte Kinder.
-        
-        **Voraussetzungen:**
-        
-        - Alter zwischen 7 und 9 Jahren
-        - Wohnort in Menningen oder Umgebung
-        - Lust auf Fasnet und Gemeinschaft
-        - Keine Scheu vor vielen Menschen
-        
-        **Was erwartet die Kinder?**
-        
-        - Ein wunderschönes, handgefertigtes Miniatur-Fuchshäs
-        - Teilnahme an allen großen Umzügen
-        - Gemeinschaftsgefühl in der Gruppe
-        - Unvergessliche Fasnetserlebnisse
-        
-        **Proben und Vorbereitung**
-        
-        Die Proben finden samstags von 14:00 bis 16:00 Uhr in der Zunftstube statt. Dabei lernen die Kinder nicht nur die traditionellen Bewegungen, sondern auch die Geschichte unserer Zunft kennen.
-        
-        **Interesse?**
-        
-        Eltern können sich gerne bei unserem Zunftpräsidenten Winfried Stengele melden. Ein unverbindliches Schnuppertraining ist jederzeit möglich!
-      `,
-      image: null,
-      author: "Nachwuchsbetreuung"
     }
   ];
 
@@ -398,7 +364,7 @@ const NewsSection = ({ selectedArticle, setSelectedArticle }) => {
       <div className="text-center mb-16">
         <h2 className="text-4xl font-bold text-stone-800 mb-4">Aktuelles aus der Zunft</h2>
         <p className="text-stone-600 max-w-2xl mx-auto mb-6">
-          Hier erfahren Sie alle Neuigkeiten rund um die Fuchszunft Menningen - von Fasnetvorbereitungen bis zu Veranstaltungen in der Zunftstube.
+          Hier erfahrt Ihr alle Neuigkeiten rund um die Fuchszunft Menningen - von Fasnetvorbereitungen bis zu Veranstaltungen in der Zunftstube.
         </p>
         
         <a 
@@ -463,15 +429,14 @@ const AktuellesSection = () => {
   // Rosenmontag = 16.02.
   // Fasnetsdienstag = 17.02.
   const termine = [
-    { datum: '06.01.', jahr: '2026', zeit: '11:00', wtag: 'DI', titel: 'Dreikönigshock & Versammlung', ort: 'Gemeindesaal', highlight: false },
+    { datum: '06.01.', jahr: '2026', zeit: '11:00', wtag: 'DI', titel: 'Dreikönigshock & Versammlung', ort: 'Zunftstube', highlight: false },
     { datum: '30.01.', jahr: '2026', zeit: 'Abends', wtag: 'FR', titel: 'Nachtumzug Bichtlingen', ort: 'Bichtlingen', highlight: true },
-    { datum: '01.02.', jahr: '2026', zeit: 'Tagsüber', wtag: 'SO', titel: 'Umzug Bichtlingen', ort: 'Bichtlingen (mit Biberbahn)', highlight: false },
+    { datum: '01.02.', jahr: '2026', zeit: 'Tagsüber', wtag: 'SO', titel: 'Umzug Bichtlingen', ort: 'Bichtlingen', highlight: false, desc: 'Anfahrt mit Biberbahn' },
     { datum: '08.02.', jahr: '2026', zeit: 'Tagsüber', wtag: 'SO', titel: 'Narrentreffen Oberkirch', ort: 'Oberkirch', highlight: true },
-    { datum: '12.02.', jahr: '2026', zeit: '06:00', wtag: 'DO', titel: 'Schmotziger Dunschdig', ort: 'Ganzes Dorf', highlight: true, desc: 'Wecken, Befreiung KiGa, Narrenbaumstellen (14 Uhr), Hemdglonker (19 Uhr)' },
+    { datum: '12.02.', jahr: '2026', zeit: '06:00', wtag: 'DO', titel: 'Schmotziger Dunschdig', ort: 'Menningen', highlight: true, desc: 'Wecken, Befreiung KiGa, Narrenbaumstellen (14 Uhr), Kinderfasnet im Gemeindesaal, Hemdglonker (19 Uhr)' },
     { datum: '14.02.', jahr: '2026', zeit: '19:33', wtag: 'SA', titel: 'Bürgerball', ort: 'Gemeindesaal', highlight: true, desc: 'Großes Programm der Menninger Vereine' },
-    { datum: '16.02.', jahr: '2026', zeit: '13:30', wtag: 'MO', titel: 'Rosenmontagsumzug', ort: 'Meßkirch', highlight: false },
     { datum: '17.02.', jahr: '2026', zeit: 'Tagsüber', wtag: 'DI', titel: 'Umzug Krauchenwies', ort: 'Krauchenwies', highlight: false },
-    { datum: '17.02.', jahr: '2026', zeit: '19:00', wtag: 'DI', titel: 'Fasnetsverbrennung', ort: 'Zunftstube', highlight: false },
+    { datum: '17.02.', jahr: '2026', zeit: '19:00', wtag: 'DI', titel: 'Fasnetsverbrennen', ort: 'Zunftstube', highlight: false },
   ];
 
   const exportToPDF = async () => {
@@ -482,7 +447,7 @@ const AktuellesSection = () => {
     doc.setFontSize(20);
     doc.text('Fuchszunft Menningen e.V.', 20, 20);
     doc.setFontSize(16);
-    doc.text('Narrenfahrplan 2026', 20, 35);
+    doc.text('Narrenfahrplan/Termine 2026', 20, 35);
     doc.setFontSize(10);
     doc.text('Die wichtigsten Termine der Fasnet 2026', 20, 45);
     
