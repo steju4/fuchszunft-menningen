@@ -1,7 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Calendar, MapPin, Music, Info, ChevronRight, Facebook, Mail, Phone, FileText, Download, Clock, Home, Users, BookOpen, House } from 'lucide-react';
+import { Menu, X, Calendar, MapPin, Music, Info, ChevronRight, Mail, Phone, FileText, Download, Clock, Home, Users, BookOpen, House } from 'lucide-react';
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/react"
+
+// Custom Instagram Icon (da in neueren Lucide-Versionen deprecated)
+const Instagram = ({ size = 24, className }) => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    width={size} 
+    height={size} 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round" 
+    className={className}
+  >
+    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+  </svg>
+);
 
 // --- Komponente: Navigation ---
 const Navigation = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen }) => {
@@ -199,7 +219,7 @@ const HomeSection = ({ setActiveTab }) => (
       <div className="grid md:grid-cols-3 gap-8">
         {[
           { title: 'Historie', text: 'Erfahre mehr über die Gründung 1957 und unsere Wurzeln im Gremlich-Schloss.', link: 'geschichte', color: 'bg-green-800' },
-          { title: 'Mitglied werden', text: 'Lust auf Fasnet? Wir suchen immer neue Füchse und Gausmates!', link: 'kontakt', color: 'bg-orange-700' },
+          { title: 'Kontakt & Infos', text: 'Haben Sie Fragen zur Zunft oder unseren Veranstaltungen? Hier finden Sie alle Ansprechpartner.', link: 'kontakt', color: 'bg-orange-700' },
           { title: 'Zunftstube', text: 'Unser Haupttreffpunkt. Etwa jeden 2. Montag für alle geöffnet.', link: 'zunftstube', color: 'bg-stone-800' },
         ].map((card, idx) => (
           <div 
@@ -377,9 +397,19 @@ const NewsSection = ({ selectedArticle, setSelectedArticle }) => {
     <div className="container mx-auto px-4 py-12 animate-fadeIn">
       <div className="text-center mb-16">
         <h2 className="text-4xl font-bold text-stone-800 mb-4">Aktuelles aus der Zunft</h2>
-        <p className="text-stone-600 max-w-2xl mx-auto">
+        <p className="text-stone-600 max-w-2xl mx-auto mb-6">
           Hier erfahren Sie alle Neuigkeiten rund um die Fuchszunft Menningen - von Fasnetvorbereitungen bis zu Veranstaltungen in der Zunftstube.
         </p>
+        
+        <a 
+          href="https://www.instagram.com/fuchszunft_menningen/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-full font-bold shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-all"
+        >
+          <Instagram size={20} />
+          Folge uns auch auf Instagram für aktuelle Infos!
+        </a>
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -795,16 +825,24 @@ const GeschichteSection = () => (
       
       <div className="bg-stone-50 p-8 rounded-2xl border border-stone-200 mb-12 shadow-sm">
         <h3 className="text-2xl font-bold text-orange-700 mb-4 flex items-center gap-2">
-          <Info size={24} /> Die Gründung 1957
+          <Info size={24} /> Entstehung und Gründung
         </h3>
-        <p>
-          Mitte der 50er Jahre suchte man nach einer festen Struktur für die Menninger Fasnet. 
-          Der Bahnhofswirt <strong>Karl Hänsler</strong> hatte die zündende Idee: Inspiriert vom Flurnamen "Fuchsbühl" 
-          und den schlauen Tieren, entwarf er heimlich das Urmodell der Fuchsmaske.
+        <p className="mb-4">
+          Mitte der 50er-Jahre suchte man nach einer Möglichkeit, die Menninger Fasnet auf feste Beine zu stellen. 
+          Es fehlte vor allem eine feste Fasnachtsgestalt als Identifikationsfigur.
         </p>
-        <p className="mt-4">
-          Am <strong>10. Januar 1957</strong> war es soweit: Im Gasthaus "Bahnhof" wurde die Zunft offiziell gegründet. 
-          Der Name "Grafschaft Fuchsbühl zu Menningen" ist eine Hommage an die früher hier ansässigen Ritter von Gremlich.
+        <p className="mb-4">
+          Der damalige Bahnhofswirt <strong>Karl Hänsler</strong> hatte die zündende Idee: Inspiriert vom Flurnamen "Fuchsbühl" 
+          und den dort lebenden schlauen Tieren, entwarf er heimlich das Urmodell der Fuchsmaske. 
+          Der Maskenschnitzer Erwin Kleiner aus Meßkirch fertigte daraufhin die erste Holzmaske.
+        </p>
+        <p className="mb-4">
+          <strong>Der erste Auftritt:</strong> Beim Bürgerball am 22. Januar 1956 traten überraschend die ersten beiden Menninger Füchse auf 
+          (Karl Hänsler und Adolf Seifritz) und wurden mit großer Begeisterung gefeiert.
+        </p>
+        <p>
+          Am <strong>10. Januar 1957</strong> war es dann soweit: Im Gasthaus "Bahnhof" wurde die Zunft offiziell gegründet. 
+          Aufgrund der früher hier ansässigen Ritterschaft der Gremlich erhielt die Zunft den Namen "Grafschaft Fuchsbühl zu Menningen".
         </p>
       </div>
 
@@ -860,21 +898,36 @@ const ZunftstubeSection = () => (
         <Music size={48} className="mx-auto text-orange-500 mb-6" />
         <h2 className="text-4xl font-bold mb-6">Die Zunftstube</h2>
         <p className="text-xl text-stone-300 leading-relaxed">
-          Seit 1985 unser ganzer Stolz. Ein Ort der Begegnung, der Kameradschaft und natürlich der Fasnet. 
-          Hier werden Pläne geschmiedet, Feste gefeiert und Traditionen gelebt.
+          Seit 1985 unser ganzer Stolz. Ein Ort der Begegnung, der Kameradschaft und natürlich der Fasnet.
         </p>
       </div>
     </div>
     
     <div className="container mx-auto px-4 py-16 max-w-5xl -mt-10 relative z-20">
-      <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+      <div className="bg-white p-8 rounded-xl shadow-xl mb-12">
+        <h3 className="text-2xl font-bold text-stone-800 mb-4">Ein eigenes Heim für die Zunft</h3>
+        <p className="text-stone-600 mb-4 leading-relaxed">
+          Im Jahr 1985 ging für die Fuchszunft ein lang gehegter Wunsch in Erfüllung. Nach zweijähriger Planungs- und Bauzeit konnte die Zunftstube eingeweiht werden. 
+          Seither hat man Räumlichkeiten zur Aufbewahrung der Häser und Utensilien sowie ein Archiv für die Zunftunterlagen.
+        </p>
+        <p className="text-stone-600 leading-relaxed">
+          Durch unsere Zunftstube ist die Kameradschaft und der Zusammenhalt gewachsen. Sie ist längst eine Stätte der Begegnung geworden 
+          und als Bestandteil des örtlichen Lebens nicht mehr wegzudenken – sei es bei Stammtischrunden, der Fasnetseröffnung oder Familienfesten.
+        </p>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
         <div className="bg-white p-6 rounded-xl shadow-lg border-t-4 border-orange-500 hover:transform hover:-translate-y-1 transition-transform">
           <h3 className="font-bold text-xl mb-2 text-stone-800">Öffnungszeiten</h3>
-          <p className="text-stone-600">Etwa jeden 2. Montag ist die Stube für die Bevölkerung geöffnet. Stammtisch, Dämmerschoppen und gemütliches Beisammensein.</p>
+          <p className="text-stone-600">
+            Die Zunftstube ist als Schank-Gaststätte angemeldet und etwa jeden zweiten Montagabend für die Bevölkerung geöffnet.
+          </p>
         </div>
         <div className="bg-white p-6 rounded-xl shadow-lg border-t-4 border-green-600 hover:transform hover:-translate-y-1 transition-transform">
           <h3 className="font-bold text-xl mb-2 text-stone-800">Ausstattung</h3>
-          <p className="text-stone-600">Voll ausgestattete Küche, Bewirtungsraum für Versammlungen und ein Archiv für unsere historischen Zunftunterlagen.</p>
+          <p className="text-stone-600">
+            Kleine Küche, WC-Anlagen und ein Bewirtungsraum für Versammlungen, Sitzungen und kleine Feste.
+          </p>
         </div>
       </div>
     </div>
@@ -934,6 +987,72 @@ const KontaktSection = () => (
   </div>
 );
 
+const ImpressumSection = () => (
+  <div className="container mx-auto px-4 py-12 max-w-4xl animate-fadeIn">
+    <h2 className="text-4xl font-bold text-stone-800 mb-8">Impressum</h2>
+    <div className="bg-white p-8 rounded-xl shadow-sm border border-stone-200 text-stone-700 space-y-6">
+      <div>
+        <h3 className="text-xl font-bold text-stone-900 mb-2">Angaben gemäß § 5 TMG</h3>
+        <p>
+          Grafschaft Fuchsbühl zu Menningen e.V.<br />
+          Brunnenäcker 9<br />
+          88605 Meßkirch-Menningen
+        </p>
+      </div>
+
+      <div>
+        <h3 className="text-xl font-bold text-stone-900 mb-2">Vertreten durch</h3>
+        <p>
+          1. Vorstand: Winfried Stengele<br />
+          2. Vorstand: [Bitte Namen ergänzen]<br />
+        </p>
+      </div>
+
+      <div>
+        <h3 className="text-xl font-bold text-stone-900 mb-2">Kontakt</h3>
+        <p>
+          Telefon: 0162 / 3029546<br />
+          E-Mail: Fuchszunft-Menningen@t-online.de
+        </p>
+      </div>
+
+      <div>
+        <h3 className="text-xl font-bold text-stone-900 mb-2">Registereintrag</h3>
+        <p>
+          Eintragung im Vereinsregister.<br />
+          Registergericht: [Bitte Amtsgericht ergänzen]<br />
+          Registernummer: [Bitte VR-Nummer ergänzen]
+        </p>
+      </div>
+
+      <div>
+        <h3 className="text-xl font-bold text-stone-900 mb-2">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h3>
+        <p>
+          Winfried Stengele<br />
+          Brunnenäcker 9<br />
+          88605 Meßkirch-Menningen
+        </p>
+      </div>
+      
+      <div className="pt-6 border-t border-stone-200">
+        <h3 className="text-xl font-bold text-stone-900 mb-2">Haftungsausschluss (Disclaimer)</h3>
+        <p className="mb-4"><strong>Haftung für Inhalte</strong><br/>Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
+        <p className="mb-4"><strong>Haftung für Links</strong><br/>Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
+        <p><strong>Urheberrecht</strong><br/>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
+      </div>
+    </div>
+  </div>
+);
+
+const DatenschutzSection = () => (
+  <div className="container mx-auto px-4 py-12 max-w-4xl animate-fadeIn">
+    <h2 className="text-4xl font-bold text-stone-800 mb-8">Datenschutzerklärung</h2>
+    <div className="bg-white p-8 rounded-xl shadow-sm border border-stone-200 text-stone-700">
+      <p>Hier bitte den Text der Datenschutzerklärung einfügen.</p>
+    </div>
+  </div>
+);
+
 // --- Haupt-App Komponente ---
 const App = () => {
   const [activeTab, setActiveTab] = useState('home');
@@ -956,6 +1075,8 @@ const App = () => {
       case 'geschichte': return <GeschichteSection />;
       case 'zunftstube': return <ZunftstubeSection />;
       case 'kontakt': return <KontaktSection />;
+      case 'impressum': return <ImpressumSection />;
+      case 'datenschutz': return <DatenschutzSection />;
       default: return <HomeSection setActiveTab={setActiveTab} />;
     }
   };
@@ -976,7 +1097,7 @@ const App = () => {
       <footer className="bg-stone-900 text-stone-400 py-12 border-t border-orange-900">
         <div className="container mx-auto px-4 text-center">
           <div className="flex justify-center gap-6 mb-8">
-            <a href="#" className="bg-stone-800 p-3 rounded-full hover:bg-orange-600 hover:text-white transition-all"><Facebook size={24} /></a>
+            <a href="https://www.instagram.com/fuchszunft_menningen/" target="_blank" rel="noopener noreferrer" className="bg-stone-800 p-3 rounded-full hover:bg-orange-600 hover:text-white transition-all"><Instagram size={24} /></a>
             <a href="mailto:Fuchszunft-Menningen@t-online.de" className="bg-stone-800 p-3 rounded-full hover:bg-orange-600 hover:text-white transition-all"><Mail size={24} /></a>
           </div>
           <div className="flex flex-wrap justify-center gap-6 text-sm mb-8 uppercase tracking-wider font-medium">
