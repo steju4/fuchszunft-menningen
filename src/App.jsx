@@ -17,8 +17,6 @@ import KontaktSection from './sections/KontaktSection';
 import ImpressumSection from './sections/ImpressumSection';
 import DatenschutzSection from './sections/DatenschutzSection';
 
-import './App.css';
-
 const App = () => {
   const [activeTab, setActiveTab] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
