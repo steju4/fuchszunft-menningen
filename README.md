@@ -26,7 +26,7 @@ Wir verwenden ein einfaches Branching-Modell für die Entwicklung:
 
 *   **main (Production):**
     *   Dieser Branch spiegelt die **Live-Version** der Webseite wider.
-    *   Jeder Push auf diesen Branch löst ein automatisches Deployment auf die Produktionsumgebung aus (z.B. uchszunft-menningen.de).
+    *   Jeder Push auf diesen Branch löst ein automatisches Deployment auf die Produktionsumgebung aus: [fuchszunft-menningen.vercel.app](https://fuchszunft-menningen.vercel.app)
     *   Hier landet nur getesteter und funktionierender Code.
 
 *   **dev (Development):**
@@ -40,27 +40,9 @@ Wir verwenden ein einfaches Branching-Modell für die Entwicklung:
 2.  Testen der Änderungen in der Preview-Umgebung.
 3.  Merge von dev nach main, um die Änderungen live zu schalten.
 
-##  Lokale Entwicklung
-
-Um das Projekt lokal auf deinem Rechner zu starten:
-
-1.  **Repository klonen:**
-    `ash
-    git clone https://github.com/steju4/fuchszunft-menningen.git
-    cd fuchszunft-menningen
-    ``n
-2.  **Abhängigkeiten installieren:**
-    `ash
-    npm install
-    ``n
-3.  **Entwicklungsserver starten:**
-    `ash
-    npm run dev
-    ``n    Die Seite ist dann unter http://localhost:5173 erreichbar.
-
 ##  Autor & Kontakt
 
-Entwickelt und gepflegt von **Stefan Jung (steju4)** für die Fuchszunft Menningen e.V.
+Entwickelt und gepflegt von **Julian Stengele** für die Fuchszunft Menningen e.V.
 
 Bei Fragen oder technischen Problemen bitte ein Issue im GitHub-Repository erstellen oder direkt Kontakt aufnehmen.
 
