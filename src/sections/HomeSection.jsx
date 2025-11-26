@@ -1,12 +1,16 @@
 import React from 'react';
 import { FileText, Calendar, Users, ChevronRight } from 'lucide-react';
 import Countdown from '../components/Countdown';
+import heroBg from '../assets/Gesamt.jpg';
 
 const HomeSection = ({ setActiveTab }) => (
   <div className="animate-fadeIn">
     {/* Hero */}
     <div className="relative h-[600px] flex items-center justify-center overflow-hidden bg-stone-900">
-      <div className="absolute inset-0 opacity-50 bg-[url('/Gesamt.jpg')] bg-cover bg-[center_bottom_40%] transition-transform duration-[20s] hover:scale-105" />
+      <div 
+        className="absolute inset-0 opacity-50 bg-cover bg-[center_bottom_40%] transition-transform duration-[20s] hover:scale-105"
+        style={{ backgroundImage: `url(${heroBg})` }}
+      />
       <div className="absolute inset-0 bg-gradient-to-t from-stone-900 via-transparent to-stone-900/60" />
       
       <div className="relative z-10 text-center px-4 max-w-4xl">

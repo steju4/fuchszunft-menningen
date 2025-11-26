@@ -1,5 +1,6 @@
 import React from 'react';
 import { Info, Music, BookOpen } from 'lucide-react';
+import liedGif from '../assets/unnamed (1).gif';
 
 const GeschichteSection = () => (
   <div className="container mx-auto px-4 py-12 max-w-4xl animate-fadeIn">
@@ -37,7 +38,7 @@ const GeschichteSection = () => (
         <div className="flex justify-center mb-6">
           <div className="bg-white rounded-xl shadow-lg border border-orange-200 overflow-hidden max-w-2xl">
             <img 
-              src="/unnamed (1).gif" 
+              src={liedGif} 
               alt="Das Menninger Zunftlied" 
               className="w-full h-auto object-cover"
             />

@@ -1,5 +1,7 @@
 import React from 'react';
 import { figuren } from '../data/figurenData';
+import fuechseGif from '../assets/unnamed.gif';
+import praesidiumImg from '../assets/1057c88a-73d0-40a5-bcf8-f60b018cdd56.webp';
 
 const FigurenSection = () => {
   return (
@@ -16,7 +18,7 @@ const FigurenSection = () => {
         <div className="flex justify-center">
           <div className="bg-white rounded-2xl shadow-xl border border-stone-200 overflow-hidden max-w-fit">
             <img 
-              src="/unnamed.gif" 
+              src={fuechseGif} 
               alt="Füchse und Gausmates der Fuchszunft Menningen" 
               className="max-h-80 w-auto object-contain block"
             />
@@ -30,7 +32,7 @@ const FigurenSection = () => {
         <div className="bg-white rounded-2xl shadow-xl border border-stone-200 overflow-hidden">
           <div className="h-80 overflow-hidden">
             <img 
-              src="/1057c88a-73d0-40a5-bcf8-f60b018cdd56.webp" 
+              src={praesidiumImg} 
               alt="Zunftpräsidium mit den kleinen Füchsen" 
               className="w-full h-full object-cover"
             />
