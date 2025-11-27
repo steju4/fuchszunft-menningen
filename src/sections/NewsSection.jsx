@@ -1,4 +1,5 @@
 import React from 'react';
+import { Image as ImageIcon } from 'lucide-react';
 import Instagram from '../components/Instagram';
 import { newsArticles } from '../data/newsData';
 
@@ -91,19 +92,25 @@ const NewsSection = ({ selectedArticle, setSelectedArticle }) => {
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {newsArticles.map((article) => (
+        {[...newsArticles].reverse().map((article) => (
           <article 
             key={article.id}
             onClick={() => setSelectedArticle(article.id)}
             className="bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden cursor-pointer transform hover:-translate-y-2 transition-all duration-300 group"
           >
-            {article.image && (
-              <img 
-                src={article.image} 
-                alt={article.title}
-                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-            )}
+            <div className="h-48 overflow-hidden bg-stone-100">
+              {article.image ? (
+                <img 
+                  src={article.image} 
+                  alt={article.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-stone-100 to-stone-200 group-hover:scale-105 transition-transform duration-300">
+                  <ImageIcon className="text-stone-300 w-12 h-12" />
+                </div>
+              )}
+            </div>
             
             <div className="p-6">
               <div className="flex items-center gap-2 mb-3">

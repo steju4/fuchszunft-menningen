@@ -1,3 +1,4 @@
+import Gesamt_original from '../assets/Gesamt_original.jpg';
 export const newsArticles = [
   {
     id: 1,
@@ -47,5 +48,29 @@ export const newsArticles = [
     `,
     image: null,
     author: "Hausmeister Team"
+  },
+  {
+    id: 3,
+    title: "Testartikel für News-Sektion",
+    date: "1. Januar 2024",
+    category: "Test",
+    preview: "Dies ist ein Testartikel, um die News-Sektion der Webseite zu überprüfen. Er enthält Beispieltext und dient nur zu Testzwecken...",
+    content: `
+      Dies ist ein Testartikel, um die News-Sektion der Webseite zu überprüfen. Er enthält Beispieltext und dient nur zu Testzwecken.
+    `,
+    image: null,
+    author: "Testautor"
+  },
+  {
+    id: 4,
+    title: "Weitere Neuigkeiten folgen bald",
+    date: "15. Januar 2024",
+    category: "Ankündigung",
+    preview: "Bleiben Sie dran für weitere spannende Neuigkeiten und Updates rund um die Fuchszunft Menningen. Wir arbeiten ständig daran, Ihnen die besten Informationen zu bieten...",
+    content: `
+      Bleiben Sie dran für weitere spannende Neuigkeiten und Updates rund um die Fuchszunft Menningen. Wir arbeiten ständig daran, Ihnen die besten Informationen zu bieten.
+    `,
+    image: Gesamt_original,
+    author: "Zunftvorstand"
   }
 ];
