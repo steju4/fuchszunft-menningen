@@ -7,8 +7,10 @@ const HomeSection = ({ setActiveTab }) => (
   <div className="animate-fadeIn bg-stone-900">
     {/* Hero */}
     <div className="relative h-[520px] md:h-[610px] flex items-center justify-center overflow-hidden bg-stone-900">
+      {/* Preload hint for browser */}
+      <link rel="preload" as="image" href={heroBg} />
       <div 
-        className="absolute inset-0 opacity-50 bg-cover bg-[center_bottom] md:bg-[center_bottom_80%] transition-transform duration-[20s] hover:scale-105"
+        className="absolute inset-0 opacity-50 bg-cover bg-[center_bottom_6rem] md:bg-[center_bottom_30%] transition-transform duration-[20s] hover:scale-105"
         style={{ backgroundImage: `url(${heroBg})` }}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-stone-900 via-transparent to-stone-900/60" />
@@ -25,7 +27,7 @@ const HomeSection = ({ setActiveTab }) => (
           Wir freuen uns auf eine glückselige Fasnet im Ablachtal!
         </p>
         
-        <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center mb-6 md:mb-8">
+        <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center mb-4 md:mb-8">
           <button 
             onClick={() => setActiveTab('news')}
             className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 md:px-8 md:py-4 rounded-lg font-bold text-base md:text-lg transition-all transform hover:scale-105 shadow-lg flex items-center justify-center gap-2 border border-orange-500"

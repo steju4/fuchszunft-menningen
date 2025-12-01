@@ -1,7 +1,7 @@
 import React from 'react';
-import { Menu, X, Home, FileText, Calendar, Users, BookOpen, House, Mail } from 'lucide-react';
+import { Menu, X, Home, FileText, Calendar, Users, BookOpen, House, Mail, Sun, Moon } from 'lucide-react';
 
-const Navigation = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen }) => {
+const Navigation = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen, darkMode, toggleDarkMode }) => {
   const navItems = [
     { id: 'home', label: 'Startseite', icon: Home },
     { id: 'news', label: 'Aktuelles', icon: FileText },
@@ -31,7 +31,7 @@ const Navigation = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen }) => {
           </div>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex gap-1">
+          <div className="hidden lg:flex gap-1 items-center">
             {navItems.map((item) => (
               <button
                 key={item.id}
@@ -46,15 +46,32 @@ const Navigation = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen }) => {
                 {item.label}
               </button>
             ))}
+            
+            {/* Dark Mode Toggle */}
+            <button
+              onClick={toggleDarkMode}
+              className="ml-4 p-2 rounded-full hover:bg-stone-800 transition-colors text-stone-300 hover:text-white"
+              aria-label="Toggle Dark Mode"
+            >
+              {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
           </div>
 
           {/* Mobile Menu Toggle */}
-          <button 
-            className="lg:hidden p-2 text-stone-300 hover:text-white"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
+          <div className="lg:hidden flex items-center gap-2">
+            <button
+              onClick={toggleDarkMode}
+              className="p-2 text-stone-300 hover:text-white"
+            >
+              {darkMode ? <Sun size={24} /> : <Moon size={24} />}
+            </button>
+            <button 
+              className="p-2 text-stone-300 hover:text-white"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
+          </div>
         </div>
       </div>
 

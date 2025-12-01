@@ -4,11 +4,11 @@ import liedGif from '../assets/unnamed (1).gif';
 
 const GeschichteSection = () => (
   <div className="container mx-auto px-4 py-12 max-w-4xl animate-fadeIn">
-    <div className="prose prose-lg prose-stone mx-auto">
-      <h2 className="text-4xl font-bold text-stone-800 mb-8 text-center">Von Rittern und Füchsen</h2>
+    <div className="prose prose-lg prose-stone dark:prose-invert mx-auto">
+      <h2 className="text-4xl font-bold text-stone-800 dark:text-stone-100 mb-8 text-center">Von Rittern und Füchsen</h2>
       
-      <div className="bg-stone-50 p-8 rounded-2xl border border-stone-200 mb-12 shadow-sm">
-        <h3 className="text-2xl font-bold text-orange-700 mb-4 flex items-center gap-2">
+      <div className="bg-stone-50 dark:bg-stone-900 p-8 rounded-2xl border border-stone-200 dark:border-stone-700 mb-12 shadow-sm">
+        <h3 className="text-2xl font-bold text-orange-700 dark:text-orange-400 mb-4 flex items-center gap-2">
           <Info size={24} /> Entstehung und Gründung
         </h3>
         <p className="mb-4">
@@ -31,12 +31,12 @@ const GeschichteSection = () => (
       </div>
 
       {/* Zunftlied Sektion */}
-      <div className="bg-orange-50 p-8 rounded-2xl border border-orange-200 mb-12 shadow-sm">
-        <h3 className="text-2xl font-bold text-orange-700 mb-6 flex items-center gap-2 justify-center">
+      <div className="bg-orange-50 dark:bg-orange-900/20 p-8 rounded-2xl border border-orange-200 dark:border-orange-800 mb-12 shadow-sm">
+        <h3 className="text-2xl font-bold text-orange-700 dark:text-orange-400 mb-6 flex items-center gap-2 justify-center">
           <Music size={24} /> Das Menninger Zunftlied
         </h3>
         <div className="flex justify-center mb-6">
-          <div className="bg-white rounded-xl shadow-lg border border-orange-200 overflow-hidden max-w-2xl">
+          <div className="bg-white dark:bg-stone-800 rounded-xl shadow-lg border border-orange-200 dark:border-orange-800 overflow-hidden max-w-2xl">
             <img 
               src={liedGif} 
               alt="Das Menninger Zunftlied" 
@@ -44,22 +44,22 @@ const GeschichteSection = () => (
             />
           </div>
         </div>
-        <p className="text-center text-stone-600 italic">
+        <p className="text-center text-stone-600 dark:text-stone-400 italic">
           Unser traditionelles Zunftlied
         </p>
       </div>
 
       <div className="grid md:grid-cols-2 gap-8 mb-12">
         <div>
-          <h3 className="text-2xl font-bold text-stone-800 mb-4">Unser Dorf Menningen</h3>
-          <p className="text-stone-600 leading-relaxed">
+          <h3 className="text-2xl font-bold text-stone-800 dark:text-stone-100 mb-4">Unser Dorf Menningen</h3>
+          <p className="text-stone-600 dark:text-stone-300 leading-relaxed">
             Menningen liegt malerisch im Ablachtal, östlich von Meßkirch. 
             Seit 1974 Teilort der Stadt, hat sich Menningen seinen eigenständigen Charakter bewahrt. 
             Ursprünglich bestand der Ort aus zwei Teilen: Menningen (links der Ablach) und Leitishofen (rechts der Ablach), 
             die 1932 vereint wurden.
           </p>
         </div>
-        <div className="bg-green-900 text-white p-6 rounded-xl shadow-lg">
+        <div className="bg-green-900 dark:bg-green-950 text-white p-6 rounded-xl shadow-lg">
           <h4 className="font-bold mb-2 text-green-300 flex items-center gap-2"><BookOpen size={18}/> Schon gewusst?</h4>
           <p className="text-sm leading-relaxed opacity-90">
             Das Wappen der Herren von Gremlich spielt in unserer Zunft eine große Rolle. 

@@ -22,6 +22,26 @@ const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState(null);
+  const [darkMode, setDarkMode] = useState(() => {
+    // Check local storage or system preference
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('theme') === 'dark' ||
+        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [darkMode]);
+
+  const toggleDarkMode = () => setDarkMode(!darkMode);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,13 +82,15 @@ const App = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-stone-50 font-sans text-stone-900 selection:bg-orange-200 selection:text-orange-900">
+    <div className="flex flex-col min-h-screen bg-stone-50 dark:bg-stone-950 font-sans text-stone-900 dark:text-stone-100 selection:bg-orange-200 selection:text-orange-900 transition-colors duration-300">
       <Navigation 
         activeTab={activeTab} 
         setActiveTab={setActiveTab} 
         isMenuOpen={isMenuOpen} 
         setIsMenuOpen={setIsMenuOpen} 
-        scrolled={scrolled} 
+        scrolled={scrolled}
+        darkMode={darkMode}
+        toggleDarkMode={toggleDarkMode}
       />
 
       <main className="flex-grow pt-20">
