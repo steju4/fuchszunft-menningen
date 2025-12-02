@@ -2,6 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 
+// Assets for Preloading
+import heroBg from './assets/Gesamt.jpg';
+import fuechseGif from './assets/unnamed.gif';
+import praesidiumImg from './assets/1057c88a-73d0-40a5-bcf8-f60b018cdd56.webp';
+import liedGif from './assets/unnamed (1).gif';
+import zunftstubeImg from './assets/Zunftstube.jpg';
+
 // Components
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
@@ -27,6 +34,22 @@ const App = () => {
     return localStorage.getItem('theme') === 'dark' ||
       (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
   });
+
+  // Preload critical images
+  useEffect(() => {
+    const imagesToPreload = [
+      heroBg,
+      fuechseGif,
+      praesidiumImg,
+      liedGif,
+      zunftstubeImg
+    ];
+
+    imagesToPreload.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
 
   useEffect(() => {
     if (darkMode) {
