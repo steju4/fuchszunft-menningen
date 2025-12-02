@@ -48,7 +48,7 @@ const ImpressumSection = () => (
       </div>
       
       <div className="pt-6 border-t border-stone-200 dark:border-stone-700">
-        <h3 className="text-xl font-bold text-stone-900 mb-2">Haftungsausschluss (Disclaimer)</h3>
+        <h3 className="text-xl font-bold text-stone-900 dark:text-stone-100 mb-2">Haftungsausschluss (Disclaimer)</h3>
         <p className="mb-4"><strong>Haftung für Inhalte</strong><br/>Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
         <p className="mb-4"><strong>Haftung für Links</strong><br/>Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
         <p><strong>Urheberrecht</strong><br/>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
