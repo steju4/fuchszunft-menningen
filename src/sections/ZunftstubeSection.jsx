@@ -1,15 +1,24 @@
 import React from 'react';
-import { Music } from 'lucide-react';
+import { Music, House } from 'lucide-react';
+import Zunftstube from '../assets/zunftstube.jpg';
 
 const ZunftstubeSection = () => (
   <div className="animate-fadeIn">
-    <div className="bg-stone-900 dark:bg-stone-950 text-white py-20 px-4 relative overflow-hidden">
+    <div className="relative h-[400px] py-24 px-4 overflow-hidden bg-stone-900 dark:bg-stone-950">
+      {/* Background Image Placeholder */}
+      <div 
+        className="absolute inset-0 opacity-70 bg-cover bg-center"
+        style={{ backgroundImage: `url(${Zunftstube})` }}
+      />
+      {/* Gradient Overlay for readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-stone-900/90 via-stone-900/80 to-stone-900 dark:from-stone-950/90 dark:via-stone-950/80 dark:to-stone-950" />
+
       {/* Decorative background element */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-orange-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
       
       <div className="container mx-auto text-center max-w-3xl relative z-10">
         <Music size={48} className="mx-auto text-orange-500 mb-6" />
-        <h2 className="text-4xl font-bold mb-6">Die Zunftstube</h2>
+        <h2 className="text-4xl font-bold mb-6 text-white">Die Zunftstube</h2>
         <p className="text-xl text-stone-300 leading-relaxed">
           Seit 1985 unser ganzer Stolz. Ein Ort der Begegnung, der Kameradschaft und natürlich der Fasnet.
         </p>

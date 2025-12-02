@@ -28,7 +28,7 @@ const KontaktSection = () => (
         </div>
       </div>
 
-      <div className="bg-stone-100 dark:bg-stone-900 p-8 rounded-2xl border border-stone-200 dark:border-stone-700">
+      <div className="bg-stone-100 dark:bg-stone-800 p-8 rounded-2xl border border-stone-200 dark:border-stone-700">
         <h3 className="text-2xl font-bold text-stone-800 dark:text-stone-100 mb-6 flex items-center gap-2">
           <Download size={24} className="text-green-700 dark:text-green-500" /> Downloads
         </h3>
@@ -36,13 +36,13 @@ const KontaktSection = () => (
           Hier finden Sie wichtige Dokumente zum Verein. Werden Sie Teil der Tradition!
         </p>
         <div className="space-y-3">
-          <button className="w-full bg-white dark:bg-stone-800 hover:bg-orange-50 dark:hover:bg-orange-900/30 text-left px-4 py-3 rounded-lg shadow-sm border border-stone-200 dark:border-stone-700 flex items-center justify-between group transition-all hover:border-orange-200 dark:hover:border-orange-800">
+          <button className="w-full bg-white dark:bg-stone-700 hover:bg-orange-50 dark:hover:bg-orange-900/30 text-left px-4 py-3 rounded-lg shadow-sm border border-stone-200 dark:border-stone-700 flex items-center justify-between group transition-all hover:border-orange-200 dark:hover:border-orange-800">
             <span className="flex items-center gap-2 font-medium text-stone-700 dark:text-stone-300 group-hover:text-orange-700 dark:group-hover:text-orange-400">
               <FileText size={18} /> Beitrittserklärung (PDF)
             </span>
             <Download size={16} className="text-stone-400 dark:text-stone-500 group-hover:text-orange-600 dark:group-hover:text-orange-400" />
           </button>
-          <button className="w-full bg-white dark:bg-stone-800 hover:bg-orange-50 dark:hover:bg-orange-900/30 text-left px-4 py-3 rounded-lg shadow-sm border border-stone-200 dark:border-stone-700 flex items-center justify-between group transition-all hover:border-orange-200 dark:hover:border-orange-800">
+          <button className="w-full bg-white dark:bg-stone-700 hover:bg-orange-50 dark:hover:bg-orange-900/30 text-left px-4 py-3 rounded-lg shadow-sm border border-stone-200 dark:border-stone-700 flex items-center justify-between group transition-all hover:border-orange-200 dark:hover:border-orange-800">
             <span className="flex items-center gap-2 font-medium text-stone-700 dark:text-stone-300 group-hover:text-orange-700 dark:group-hover:text-orange-400">
               <BookOpen size={18} /> Vereinssatzung (PDF)
             </span>

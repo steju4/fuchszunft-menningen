@@ -7,7 +7,7 @@ const GeschichteSection = () => (
     <div className="prose prose-lg prose-stone dark:prose-invert mx-auto">
       <h2 className="text-4xl font-bold text-stone-800 dark:text-stone-100 mb-8 text-center">Von Rittern und Füchsen</h2>
       
-      <div className="bg-stone-50 dark:bg-stone-900 p-8 rounded-2xl border border-stone-200 dark:border-stone-700 mb-12 shadow-sm">
+      <div className="bg-stone-50 dark:bg-stone-800 p-8 rounded-2xl border border-stone-200 dark:border-stone-700 mb-12 shadow-sm">
         <h3 className="text-2xl font-bold text-orange-700 dark:text-orange-400 mb-4 flex items-center gap-2">
           <Info size={24} /> Entstehung und Gründung
         </h3>

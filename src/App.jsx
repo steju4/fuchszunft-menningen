@@ -79,7 +79,7 @@ const App = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-stone-50 dark:bg-stone-950 font-sans text-stone-900 dark:text-stone-100 selection:bg-orange-200 selection:text-orange-900 transition-colors duration-300">
+    <div className="flex flex-col min-h-screen bg-stone-50 dark:bg-stone-900 font-sans text-stone-900 dark:text-stone-100 selection:bg-orange-200 selection:text-orange-900 transition-colors duration-300">
       <Navigation 
         activeTab={activeTab} 
         setActiveTab={setActiveTab} 

@@ -46,7 +46,7 @@ const FigurenSection = () => {
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
         {figuren.map((figur, idx) => (
-          <div key={idx} className={`p-6 rounded-xl border-2 ${figur.color} hover:shadow-xl transition-all duration-300 group bg-white/50 dark:bg-stone-800/50`}>
+          <div key={idx} className={`p-6 rounded-xl border-2 ${figur.color} hover:shadow-xl transition-all duration-300 group bg-white/50 dark:bg-stone-800`}>
             <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">{figur.emoji}</div>
             <div className="flex justify-between items-start mb-2">
               <h3 className="text-xl font-bold text-stone-800 dark:text-stone-100">{figur.name}</h3>
