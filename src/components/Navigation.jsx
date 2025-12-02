@@ -62,6 +62,7 @@ const Navigation = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen, darkMo
             <button
               onClick={toggleDarkMode}
               className="p-2 text-stone-300 hover:text-white"
+              aria-label="Toggle Dark Mode"
             >
               {darkMode ? <Sun size={24} /> : <Moon size={24} />}
             </button>
