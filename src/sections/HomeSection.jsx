@@ -8,7 +8,6 @@ const HomeSection = ({ setActiveTab }) => (
     {/* Hero */}
     <div className="relative h-[520px] md:h-[610px] flex items-center justify-center overflow-hidden bg-stone-900">
       {/* Preload hint for browser */}
-      <link rel="preload" as="image" href={heroBg} />
       <div 
         className="absolute inset-0 opacity-50 bg-cover bg-[center_bottom_6rem] md:bg-[center_bottom_30%] transition-transform duration-[20s] hover:scale-105"
         style={{ backgroundImage: `url(${heroBg})` }}
