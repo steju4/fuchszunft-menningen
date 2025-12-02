@@ -98,7 +98,7 @@ const NewsSection = ({ selectedArticle, setSelectedArticle }) => {
             onClick={() => setSelectedArticle(article.id)}
             className="bg-white dark:bg-stone-800 rounded-xl shadow-lg border border-stone-200 dark:border-stone-700 overflow-hidden cursor-pointer transform hover:-translate-y-2 transition-all duration-300 group"
           >
-            <div className="h-48 overflow-hidden bg-stone-100">
+            <div className="h-48 overflow-hidden bg-stone-100 dark:bg-stone-900">
               {article.image ? (
                 <img 
                   src={article.image} 
