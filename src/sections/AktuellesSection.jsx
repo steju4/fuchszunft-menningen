@@ -151,39 +151,39 @@ const AktuellesSection = () => {
   return (
     <div className="container mx-auto px-4 py-12 max-w-4xl animate-fadeIn">
       <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-stone-800 mb-4">Termine 2026</h2>
-        <p className="text-stone-600 text-lg">Die wichtigsten Termine auf einen Blick.</p>
+        <h2 className="text-4xl font-bold text-stone-800 dark:text-stone-100 mb-4">Termine 2026</h2>
+        <p className="text-stone-600 dark:text-stone-300 text-lg">Die wichtigsten Termine auf einen Blick.</p>
       </div>
 
-      <div className="relative border-l-4 border-stone-200 ml-4 md:ml-8 space-y-8">
+      <div className="relative border-l-4 border-stone-200 dark:border-stone-700 ml-4 md:ml-8 space-y-8">
         {termine.map((termin, idx) => (
           <div key={idx} className="relative pl-8 md:pl-12">
             {/* Dot */}
-            <div className={`absolute -left-[13px] md:-left-[13px] w-6 h-6 rounded-full border-4 border-white ${termin.highlight ? 'bg-orange-600' : 'bg-stone-400'}`}></div>
+            <div className={`absolute -left-[13px] md:-left-[13px] w-6 h-6 rounded-full border-4 border-white dark:border-stone-900 ${termin.highlight ? 'bg-orange-600' : 'bg-stone-400 dark:bg-stone-600'}`}></div>
             
-            <div className={`bg-white p-6 rounded-xl border shadow-sm hover:shadow-md transition-shadow ${termin.highlight ? 'border-orange-200 bg-orange-50/30' : 'border-stone-100'}`}>
+            <div className={`bg-white dark:bg-stone-800 p-6 rounded-xl border shadow-sm hover:shadow-md transition-shadow ${termin.highlight ? 'border-orange-200 dark:border-orange-800 bg-orange-50/30 dark:bg-orange-900/20' : 'border-stone-100 dark:border-stone-700'}`}>
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-2">
                 <div>
                   <div className="flex items-baseline gap-2">
-                    <span className={`font-bold text-2xl ${termin.highlight ? 'text-orange-600' : 'text-stone-700'}`}>
+                    <span className={`font-bold text-2xl ${termin.highlight ? 'text-orange-600 dark:text-orange-500' : 'text-stone-700 dark:text-stone-300'}`}>
                       {termin.datum}
                     </span>
-                    <span className="text-sm font-bold bg-stone-100 px-2 py-0.5 rounded text-stone-600">{termin.wtag}</span>
-                    <span className="text-lg text-stone-400 font-normal hidden sm:inline">{termin.jahr}</span>
+                    <span className="text-sm font-bold bg-stone-100 dark:bg-stone-700 px-2 py-0.5 rounded text-stone-600 dark:text-stone-300">{termin.wtag}</span>
+                    <span className="text-lg text-stone-400 dark:text-stone-500 font-normal hidden sm:inline">{termin.jahr}</span>
                   </div>
-                  <h3 className="text-xl font-bold text-stone-800 mt-1">{termin.titel}</h3>
+                  <h3 className="text-xl font-bold text-stone-800 dark:text-stone-100 mt-1">{termin.titel}</h3>
                 </div>
-                <div className="flex items-center gap-2 text-stone-500 bg-white/50 px-3 py-1 rounded-full self-start md:self-center whitespace-nowrap border border-stone-100">
+                <div className="flex items-center gap-2 text-stone-500 dark:text-stone-400 bg-white/50 dark:bg-stone-900/50 px-3 py-1 rounded-full self-start md:self-center whitespace-nowrap border border-stone-100 dark:border-stone-700">
                   <Clock size={14} /> {termin.zeit}
                 </div>
               </div>
               
-              <div className="flex items-center gap-2 text-stone-600 font-medium mt-2">
+              <div className="flex items-center gap-2 text-stone-600 dark:text-stone-300 font-medium mt-2">
                 <MapPin size={16} className="text-orange-500" /> {termin.ort}
               </div>
               
               {termin.desc && (
-                <p className="mt-3 text-stone-500 text-sm italic border-t border-stone-200/50 pt-2">
+                <p className="mt-3 text-stone-500 dark:text-stone-400 text-sm italic border-t border-stone-200/50 dark:border-stone-700/50 pt-2">
                   {termin.desc}
                 </p>
               )}
@@ -192,23 +192,23 @@ const AktuellesSection = () => {
         ))}
       </div>
 
-      <div className="mt-12 text-center bg-stone-100 p-8 rounded-xl">
-        <h3 className="font-bold text-stone-800 mb-4">Nichts mehr verpassen?</h3>
+      <div className="mt-12 text-center bg-stone-100 dark:bg-stone-800 p-8 rounded-xl">
+        <h3 className="font-bold text-stone-800 dark:text-stone-100 mb-4">Nichts mehr verpassen?</h3>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button 
             onClick={exportToPDF}
-            className="text-orange-600 font-bold hover:underline flex items-center justify-center gap-2 transition-colors hover:text-orange-800 bg-white px-4 py-2 rounded-lg border border-orange-200 hover:bg-orange-50 shadow-sm"
+            className="text-orange-600 dark:text-orange-400 font-bold hover:underline flex items-center justify-center gap-2 transition-colors hover:text-orange-800 dark:hover:text-orange-300 bg-white dark:bg-stone-700 px-4 py-2 rounded-lg border border-orange-200 dark:border-orange-800 hover:bg-orange-50 dark:hover:bg-orange-900/30 shadow-sm"
           >
             <Download size={18} /> Als PDF herunterladen
           </button>
           <button 
             onClick={exportToCalendar}
-            className="text-green-600 font-bold hover:underline flex items-center justify-center gap-2 transition-colors hover:text-green-800 bg-white px-4 py-2 rounded-lg border border-green-200 hover:bg-green-50 shadow-sm"
+            className="text-green-600 dark:text-green-400 font-bold hover:underline flex items-center justify-center gap-2 transition-colors hover:text-green-800 dark:hover:text-green-300 bg-white dark:bg-stone-700 px-4 py-2 rounded-lg border border-green-200 dark:border-green-800 hover:bg-green-50 dark:hover:bg-green-900/30 shadow-sm"
           >
             <Calendar size={18} /> In Kalender importieren
           </button>
         </div>
-        <p className="text-xs text-stone-500 mt-3">
+        <p className="text-xs text-stone-500 dark:text-stone-400 mt-3">
           ICS-Datei funktioniert mit Outlook, Google Calendar, Apple Calendar und allen anderen Kalender-Apps
         </p>
       </div>
