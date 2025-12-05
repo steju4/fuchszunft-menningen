@@ -25,7 +25,6 @@ const HomeSection = ({ setActiveTab }) => {
       />
       
       {/* Preload Hint für Performance */}
-      <link rel="preload" as="image" href={heroBg} />
       
       {/* Dynamischer Gradient - schwächer oben, stärker unten */}
       <div className="absolute inset-0 bg-gradient-to-b from-stone-900/60 via-stone-900/20 to-stone-900" />
