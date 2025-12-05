@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 
@@ -13,16 +13,23 @@ import zunftstubeImg from './assets/Zunftstube.jpg';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 
-// Sections
+// Sections - Home wird direkt geladen, Rest lazy mit Preload
 import HomeSection from './sections/HomeSection';
-import NewsSection from './sections/NewsSection';
-import AktuellesSection from './sections/AktuellesSection';
-import FigurenSection from './sections/FigurenSection';
-import GeschichteSection from './sections/GeschichteSection';
-import ZunftstubeSection from './sections/ZunftstubeSection';
-import KontaktSection from './sections/KontaktSection';
-import ImpressumSection from './sections/ImpressumSection';
-import DatenschutzSection from './sections/DatenschutzSection';
+const NewsSection = lazy(() => import('./sections/NewsSection'));
+const AktuellesSection = lazy(() => import('./sections/AktuellesSection'));
+const FigurenSection = lazy(() => import('./sections/FigurenSection'));
+const GeschichteSection = lazy(() => import('./sections/GeschichteSection'));
+const ZunftstubeSection = lazy(() => import('./sections/ZunftstubeSection'));
+const KontaktSection = lazy(() => import('./sections/KontaktSection'));
+const ImpressumSection = lazy(() => import('./sections/ImpressumSection'));
+const DatenschutzSection = lazy(() => import('./sections/DatenschutzSection'));
+
+// Loading Spinner Component - außerhalb damit es nicht bei jedem Render neu erstellt wird
+const LoadingSpinner = () => (
+  <div className="flex items-center justify-center min-h-screen">
+    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600"></div>
+  </div>
+);
 
 const App = () => {
   const [activeTab, setActiveTab] = useState('home');
@@ -30,10 +37,20 @@ const App = () => {
   const [scrolled, setScrolled] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [darkMode, setDarkMode] = useState(() => {
-    // Check local storage or system preference
     return localStorage.getItem('theme') === 'dark' ||
       (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
   });
+
+  // Preload wichtige Sections im Hintergrund nach Initial Load
+  useEffect(() => {
+    // Preload nach 2 Sekunden, wenn User noch auf der Seite ist
+    const timer = setTimeout(() => {
+      import('./sections/NewsSection');
+      import('./sections/AktuellesSection');
+      import('./sections/FigurenSection');
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Preload critical images
   useEffect(() => {
@@ -81,21 +98,53 @@ const App = () => {
       case 'home':
         return <HomeSection setActiveTab={setActiveTab} />;
       case 'news':
-        return <NewsSection selectedArticle={selectedArticle} setSelectedArticle={setSelectedArticle} />;
+        return (
+          <Suspense fallback={<LoadingSpinner />}>
+            <NewsSection selectedArticle={selectedArticle} setSelectedArticle={setSelectedArticle} />
+          </Suspense>
+        );
       case 'termine':
-        return <AktuellesSection />;
+        return (
+          <Suspense fallback={<LoadingSpinner />}>
+            <AktuellesSection />
+          </Suspense>
+        );
       case 'figuren':
-        return <FigurenSection />;
+        return (
+          <Suspense fallback={<LoadingSpinner />}>
+            <FigurenSection />
+          </Suspense>
+        );
       case 'geschichte':
-        return <GeschichteSection />;
+        return (
+          <Suspense fallback={<LoadingSpinner />}>
+            <GeschichteSection />
+          </Suspense>
+        );
       case 'zunftstube':
-        return <ZunftstubeSection />;
+        return (
+          <Suspense fallback={<LoadingSpinner />}>
+            <ZunftstubeSection />
+          </Suspense>
+        );
       case 'kontakt':
-        return <KontaktSection />;
+        return (
+          <Suspense fallback={<LoadingSpinner />}>
+            <KontaktSection />
+          </Suspense>
+        );
       case 'impressum':
-        return <ImpressumSection />;
+        return (
+          <Suspense fallback={<LoadingSpinner />}>
+            <ImpressumSection />
+          </Suspense>
+        );
       case 'datenschutz':
-        return <DatenschutzSection />;
+        return (
+          <Suspense fallback={<LoadingSpinner />}>
+            <DatenschutzSection />
+          </Suspense>
+        );
       default:
         return <HomeSection setActiveTab={setActiveTab} />;
     }

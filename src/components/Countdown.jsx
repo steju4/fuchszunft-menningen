@@ -32,7 +32,7 @@ const Countdown = () => {
   }, []);
 
   return (
-    <div className="bg-stone-900/80 backdrop-blur-md text-white p-6 rounded-xl border border-orange-500/30 shadow-2xl max-w-2xl mx-auto mt-0 md:mt-0 mb-8 md:mb-0">
+    <div className="bg-stone-900/80 backdrop-blur-md text-white p-6 rounded-xl border border-orange-500/30 shadow-2xl max-w-2xl mx-auto mt-6 mb-0">
       <h3 className="text-center text-orange-400 uppercase tracking-widest text-sm mb-4 font-bold">Countdown zum Schmotzigen 2026</h3>
       <div className="flex justify-center gap-4 md:gap-8 text-center">
         {[

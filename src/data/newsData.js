@@ -1,4 +1,4 @@
-import Gesamt_original from '../assets/Gesamt_original.jpg';
+import Gesamt_original from '../assets/Gesamt.jpg';
 export const newsArticles = [
   {
     id: 1,
