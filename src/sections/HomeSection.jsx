@@ -109,7 +109,7 @@ const HomeSection = ({ setActiveTab }) => {
     </div>
 
     {/* Teaser Grid */}
-    <div className="container mx-auto px-4 py-4">
+    <div className="container mx-auto px-4 py-4 -mt-20 md:-mt28">
       <div className="grid md:grid-cols-3 gap-6 md:gap-8">
         {[
           { title: 'Historie', text: 'Erfahre mehr über die Gründung 1957 und unsere Wurzeln im Gremlich-Schloss.', link: 'geschichte', color: 'bg-green-800' },
