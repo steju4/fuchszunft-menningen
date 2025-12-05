@@ -36,16 +36,13 @@ const App = () => {
 
   // Preload wichtige Sections im Hintergrund nach Initial Load
   useEffect(() => {
-    const preloadSections = () => {
-      // Preload nach 2 Sekunden, wenn User noch auf der Seite ist
-      const timer = setTimeout(() => {
-        import('./sections/NewsSection');
-        import('./sections/AktuellesSection');
-        import('./sections/FigurenSection');
-      }, 2000);
-      return () => clearTimeout(timer);
-    };
-    preloadSections();
+    // Preload nach 2 Sekunden, wenn User noch auf der Seite ist
+    const timer = setTimeout(() => {
+      import('./sections/NewsSection');
+      import('./sections/AktuellesSection');
+      import('./sections/FigurenSection');
+    }, 2000);
+    return () => clearTimeout(timer);
   }, []);
 
   // Preload critical images
