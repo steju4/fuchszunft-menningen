@@ -4,45 +4,21 @@ import Countdown from '../components/Countdown';
 import heroBg from '../assets/Gesamt.jpg';
 
 const HomeSection = ({ setActiveTab }) => {
-  // Responsive background position mit useState für korrektes Re-Rendering
-  const [bgPosition, setBgPosition] = useState('center -290px');
-
-  useEffect(() => {
-    const updateBgPosition = () => {
-      const width = window.innerWidth;
-      if (width < 768) {
-        setBgPosition('center -290px');      // Mobile
-      } else if (width < 1350) {
-        setBgPosition('center -190px');      // Desktop < 1440px
-      } else if (width < 1600) {
-        setBgPosition('center -320px');      // Desktop 1440px - 1600px
-      } else {
-        setBgPosition('center -430px');      // Desktop >= 1440px
-      }
-    };
-
-    // Initial set
-    updateBgPosition();
-
-    // Update on resize
-    window.addEventListener('resize', updateBgPosition);
-    return () => window.removeEventListener('resize', updateBgPosition);
-  }, []);
-
   return (
   <div className="animate-fadeIn bg-stone-900">
     {/* Hero Section */}
-    <div className="relative min-h-screen flex flex-col overflow-hidden bg-stone-900">
+    <div className="relative flex flex-col overflow-hidden bg-stone-900">
       
-      {/* Hintergrundbild - Responsive Position */}
+      {/* Hintergrundbild - Responsive Position via Tailwind */}
       <div 
-        className="absolute inset-0"
+        className="absolute inset-0 bg-cover bg-no-repeat opacity-50 
+        bg-[center_-260px] 
+        sm:bg-[center_-180px] 
+        md:bg-[center_-190px] 
+        min-[1350px]:bg-[center_-320px] 
+        min-[1600px]:bg-[center_-450px]"
         style={{
           backgroundImage: `url(${heroBg})`,
-          backgroundSize: 'cover',
-          backgroundPosition: bgPosition,
-          backgroundRepeat: 'no-repeat',
-          opacity: 0.5
         }}
       />
       
@@ -55,7 +31,7 @@ const HomeSection = ({ setActiveTab }) => {
       <div className="absolute bottom-0 left-0 right-0 h-32 md:h-48 bg-gradient-to-t from-stone-900 via-stone-900/80 to-transparent" />
       
       {/* Content Container - Mit Flex-Grow für bessere Kontrolle */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 pt-16 md:pt-24 pb-8 md:pb-12 flex-grow flex flex-col justify-start space-y-8">
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 pt-16 md:pt-24 pb-16 flex-grow flex flex-col justify-start space-y-8">
         
         {/* Hauptüberschrift */}
         <div className="text-center space-y-4">
@@ -109,7 +85,7 @@ const HomeSection = ({ setActiveTab }) => {
     </div>
 
     {/* Teaser Grid */}
-    <div className="container mx-auto px-4 py-4 -mt-20 md:-mt-28">
+    <div className="container mx-auto px-4 pt-2 pb-8">
       <div className="grid md:grid-cols-3 gap-6 md:gap-8">
         {[
           { title: 'Historie', text: 'Erfahre mehr über die Gründung 1957 und unsere Wurzeln im Gremlich-Schloss.', link: 'geschichte', color: 'bg-green-800' },
