@@ -13,7 +13,7 @@ import zunftstubeImg from './assets/Zunftstube.jpg';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 
-// Sections - Home wird direkt geladen, Rest lazy
+// Sections - Home wird direkt geladen, Rest lazy mit Preload
 import HomeSection from './sections/HomeSection';
 const NewsSection = lazy(() => import('./sections/NewsSection'));
 const AktuellesSection = lazy(() => import('./sections/AktuellesSection'));
@@ -30,10 +30,23 @@ const App = () => {
   const [scrolled, setScrolled] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [darkMode, setDarkMode] = useState(() => {
-    // Check local storage or system preference
     return localStorage.getItem('theme') === 'dark' ||
       (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
   });
+
+  // Preload wichtige Sections im Hintergrund nach Initial Load
+  useEffect(() => {
+    const preloadSections = () => {
+      // Preload nach 2 Sekunden, wenn User noch auf der Seite ist
+      const timer = setTimeout(() => {
+        import('./sections/NewsSection');
+        import('./sections/AktuellesSection');
+        import('./sections/FigurenSection');
+      }, 2000);
+      return () => clearTimeout(timer);
+    };
+    preloadSections();
+  }, []);
 
   // Preload critical images
   useEffect(() => {

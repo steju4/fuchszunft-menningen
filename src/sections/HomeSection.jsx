@@ -9,13 +9,16 @@ const HomeSection = ({ setActiveTab }) => {
     {/* Hero Section - Komplett überarbeitet */}
     <div className="relative min-h-screen flex flex-col overflow-hidden bg-stone-900">
       
-      {/* Hintergrundbild - Responsive Position: Mobile tiefer, Desktop höher */}
+      {/* Hintergrundbild - Responsive Position: Mobile, Medium, Large Desktop */}
       <div 
         className="absolute inset-0"
         style={{
           backgroundImage: `url(${heroBg})`,
           backgroundSize: 'cover',
-          backgroundPosition: window.innerWidth < 768 ? 'center -270px' : 'center -440px',
+          backgroundPosition: 
+            window.innerWidth < 768 ? 'center -290px' :      // Mobile
+            window.innerWidth < 1440 ? 'center -190px' :     // Desktop < 1400px 
+            'center -440px',                                 // Desktop >= 1400px
           backgroundRepeat: 'no-repeat',
           opacity: 0.5
         }}
