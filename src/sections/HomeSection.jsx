@@ -1,24 +1,46 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FileText, Calendar, Users, ChevronRight } from 'lucide-react';
 import Countdown from '../components/Countdown';
 import heroBg from '../assets/Gesamt.jpg';
 
 const HomeSection = ({ setActiveTab }) => {
+  // Responsive background position mit useState für korrektes Re-Rendering
+  const [bgPosition, setBgPosition] = useState('center -290px');
+
+  useEffect(() => {
+    const updateBgPosition = () => {
+      const width = window.innerWidth;
+      if (width < 768) {
+        setBgPosition('center -290px');      // Mobile
+      } else if (width < 1350) {
+        setBgPosition('center -190px');      // Desktop < 1440px
+      } else if (width < 1600) {
+        setBgPosition('center -320px');      // Desktop 1440px - 1600px
+      } else {
+        setBgPosition('center -430px');      // Desktop >= 1440px
+      }
+    };
+
+    // Initial set
+    updateBgPosition();
+
+    // Update on resize
+    window.addEventListener('resize', updateBgPosition);
+    return () => window.removeEventListener('resize', updateBgPosition);
+  }, []);
+
   return (
   <div className="animate-fadeIn bg-stone-900">
-    {/* Hero Section - Komplett überarbeitet */}
+    {/* Hero Section */}
     <div className="relative min-h-screen flex flex-col overflow-hidden bg-stone-900">
       
-      {/* Hintergrundbild - Responsive Position: Mobile, Medium, Large Desktop */}
+      {/* Hintergrundbild - Responsive Position */}
       <div 
         className="absolute inset-0"
         style={{
           backgroundImage: `url(${heroBg})`,
           backgroundSize: 'cover',
-          backgroundPosition: 
-            window.innerWidth < 768 ? 'center -290px' :      // Mobile
-            window.innerWidth < 1440 ? 'center -190px' :     // Desktop < 1400px 
-            'center -440px',                                 // Desktop >= 1400px
+          backgroundPosition: bgPosition,
           backgroundRepeat: 'no-repeat',
           opacity: 0.5
         }}

@@ -24,6 +24,13 @@ const KontaktSection = lazy(() => import('./sections/KontaktSection'));
 const ImpressumSection = lazy(() => import('./sections/ImpressumSection'));
 const DatenschutzSection = lazy(() => import('./sections/DatenschutzSection'));
 
+// Loading Spinner Component - außerhalb damit es nicht bei jedem Render neu erstellt wird
+const LoadingSpinner = () => (
+  <div className="flex items-center justify-center min-h-screen">
+    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600"></div>
+  </div>
+);
+
 const App = () => {
   const [activeTab, setActiveTab] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -87,12 +94,6 @@ const App = () => {
   }, [activeTab]);
 
   const renderContent = () => {
-    const LoadingSpinner = () => (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600"></div>
-      </div>
-    );
-
     switch (activeTab) {
       case 'home':
         return <HomeSection setActiveTab={setActiveTab} />;
