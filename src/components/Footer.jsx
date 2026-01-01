@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail } from 'lucide-react';
+import { Mail, Github } from 'lucide-react';
 import Instagram from './Instagram';
 
 const Footer = ({ setActiveTab }) => {
@@ -12,7 +12,7 @@ const Footer = ({ setActiveTab }) => {
         </div>
         <div className="flex flex-wrap justify-center gap-6 text-sm mb-8 uppercase tracking-wider font-medium">
           <button onClick={() => setActiveTab('impressum')} className="hover:text-white transition-colors">Impressum</button>
-          <button onClick={() => setActiveTab('datenschutz')} className="hover:text-white transition-colors">Datenschutz</button>
+          <a href="https://github.com/steju4/fuchszunft-menningen" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">GitHub</a>
           <a href="http://www.narrenvereinigung-hegau-bodensee.de/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">NV Hegau-Bodensee</a>
         </div>
         <p className="text-xs text-stone-600 dark:text-stone-700">

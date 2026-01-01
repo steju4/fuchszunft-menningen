@@ -24,33 +24,6 @@ export const newsArticles = [
   },
   {
     id: 2,
-    title: "Zunftstube erstrahlt in neuem Glanz",
-    date: "3. November 2025",
-    category: "Zunftstube",
-    preview: "Nach wochenlangen Renovierungsarbeiten ist unsere beliebte Zunftstube wieder in vollem Betrieb. Die Küche wurde modernisiert...",
-    content: `
-      Unsere Zunftstube ist wieder bereit für die kommende Saison! Nach umfangreichen Renovierungsarbeiten erstrahlt sie in neuem Glanz.
-      
-      **Was wurde erneuert?**
-      
-      - Komplette Modernisierung der Küche mit neuen Geräten
-      - Frischer Anstrich in den traditionellen Zunftfarben
-      - Neue Beleuchtung im Hauptraum
-      - Restaurierung der historischen Zunftbilder
-      
-      **Wiedereröffnung gefeiert**
-      
-      Am 2. November wurde die renovierte Zunftstube mit einem gemütlichen Dämmerschoppen wiedereröffnet. Über 40 Mitglieder und Freunde der Zunft feierten gemeinsam bis in die späten Abendstunden.
-      
-      **Öffnungszeiten**
-      
-      Ab sofort ist die Zunftstube wieder jeden zweiten Montag für alle geöffnet. Der nächste Termin ist der 18. November um 19:00 Uhr.
-    `,
-    image: null,
-    author: "Hausmeister Team"
-  },
-  {
-    id: 3,
     title: "Testartikel für News-Sektion",
     date: "1. Januar 2024",
     category: "Test",
@@ -62,7 +35,7 @@ export const newsArticles = [
     author: "Testautor"
   },
   {
-    id: 4,
+    id: 3,
     title: "Weitere Neuigkeiten folgen bald",
     date: "15. Januar 2024",
     category: "Ankündigung",
