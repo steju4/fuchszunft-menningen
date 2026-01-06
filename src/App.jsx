@@ -1,4 +1,4 @@
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import React, { useState, useEffect, lazy, Suspense, useRef } from 'react';
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 
@@ -40,18 +40,47 @@ const App = () => {
     return localStorage.getItem('theme') === 'dark' ||
       (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
   });
+  
+  const isFirstRun = useRef(true);
 
-  // NEU: URL checken beim Laden
+  // Initial Load: URL checken
   useEffect(() => {
-    // Holt sich das "news" aus "fuchszunft-menningen.de/news"
     const path = window.location.pathname.substring(1); 
-    
-    // Liste deiner Tabs (aus Navigation.jsx und App.jsx Switch-Case)
-    const validTabs = ['news', 'termine', 'figuren', 'geschichte', 'zunftstube', 'kontakt', 'impressum'];
+    const validTabs = ['news', 'termine', 'figuren', 'geschichte', 'zunftstube', 'kontakt', 'impressum', 'datenschutz'];
 
     if (validTabs.includes(path)) {
       setActiveTab(path);
     }
+  }, []);
+
+  // Update URL wenn Tab wechselt
+  useEffect(() => {
+    if (isFirstRun.current) {
+      isFirstRun.current = false;
+      return;
+    }
+
+    const path = activeTab === 'home' ? '/' : `/${activeTab}`;
+    if (window.location.pathname !== path) {
+      window.history.pushState({}, '', path);
+    }
+  }, [activeTab]);
+
+  // Handle Browser Back/Forward Button
+  useEffect(() => {
+    const handlePopState = () => {
+      const path = window.location.pathname.substring(1);
+      const validTabs = ['news', 'termine', 'figuren', 'geschichte', 'zunftstube', 'kontakt', 'impressum', 'datenschutz'];
+      
+      if (validTabs.includes(path)) {
+        setActiveTab(path);
+      } else if (path === '' || path === 'home') {
+        setActiveTab('home');
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
   // Preload wichtige Sections im Hintergrund nach Initial Load
