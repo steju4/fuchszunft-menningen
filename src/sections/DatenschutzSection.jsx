@@ -76,6 +76,16 @@ const DatenschutzSection = () => {
             Zur Nutzung der Funktionen ist es notwendig, Ihre IP-Adresse zu speichern. Diese Informationen werden in der Regel an einen Server des Anbieters übertragen und dort gespeichert. Der Anbieter dieser Seite hat keinen Einfluss auf diese Datenübertragung.
           </p>
 
+          <h2 className="text-2xl font-bold text-stone-900 dark:text-white mt-8">7. Transparenz & Open Source</h2>
+          <h3 className="text-lg font-bold text-orange-600">Öffentlicher Quellcode</h3>
+          <p>
+            Unsere Webseite wird offen und transparent entwickelt. Der vollständige Programmcode (Source Code) ist auf der Plattform GitHub öffentlich einsehbar.
+            Dadurch hat jeder Benutzer die technische Möglichkeit, genau zu überprüfen, welche Daten erfasst werden und wie die Seite funktioniert (Auditierbarkeit).
+          </p>
+          <p>
+            Das öffentliche Repository finden Sie hier: <a href="https://github.com/steju4/fuchszunft-menningen" target="_blank" rel="noopener noreferrer" className="text-orange-600 hover:underline">https://github.com/steju4/fuchszunft-menningen</a>
+          </p>
+
         </div>
         
         <div className="mt-12 pt-8 border-t border-stone-200 dark:border-stone-700 text-sm text-stone-500">
