@@ -41,6 +41,19 @@ const App = () => {
       (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
   });
 
+  // NEU: URL checken beim Laden
+  useEffect(() => {
+    // Holt sich das "news" aus "fuchszunft-menningen.de/news"
+    const path = window.location.pathname.substring(1); 
+    
+    // Liste deiner Tabs (aus Navigation.jsx und App.jsx Switch-Case)
+    const validTabs = ['news', 'termine', 'figuren', 'geschichte', 'zunftstube', 'kontakt', 'impressum'];
+
+    if (validTabs.includes(path)) {
+      setActiveTab(path);
+    }
+  }, []);
+
   // Preload wichtige Sections im Hintergrund nach Initial Load
   useEffect(() => {
     // Preload nach 2 Sekunden, wenn User noch auf der Seite ist

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Menu, X, Home, FileText, Calendar, Users, BookOpen, House, Mail, Sun, Moon } from 'lucide-react';
+import wappenImg from '../assets/FZ Wappen digital_klein.png';
 
 const Navigation = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen, darkMode, toggleDarkMode }) => {
   const navItems = [
@@ -21,8 +22,8 @@ const Navigation = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen, darkMo
             className="flex items-center gap-3 cursor-pointer group" 
             onClick={() => setActiveTab('home')}
           >
-            <div className="bg-orange-600 p-2 rounded-lg transform group-hover:rotate-12 transition-transform">
-              <span className="text-3xl">🦊</span>
+            <div className="transform group-hover:rotate-12 transition-transform">
+              <img src={wappenImg} alt="Fuchszunft Wappen" className="h-12 w-auto drop-shadow-md" />
             </div>
             <div className="leading-tight">
               <div className="font-bold text-xl tracking-wide uppercase">Fuchszunft</div>

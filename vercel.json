@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    { "source": "/aktuelles.htm", "destination": "/news", "permanent": true },
+    { "source": "/kontakt.htm", "destination": "/kontakt", "permanent": true },
+    { "source": "/impressum.htm", "destination": "/impressum", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/" }
+  ]
+}
