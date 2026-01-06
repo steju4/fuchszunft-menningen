@@ -1,49 +1,31 @@
-import Gesamt_original from '../assets/Gesamt.jpg';
+import News_1 from '../assets/News_1.png';
 export const newsArticles = [
   {
     id: 1,
-    title: "Erfolgreicher Saisonauftakt 2026",
-    date: "15. November 2025",
-    category: "Fasnet",
-    preview: "Die Vorbereitungen für die Fasnet 2026 laufen auf Hochtouren. Alle Häser sind gereinigt und die ersten Proben haben begonnen...",
+    title: "Neue Webseite der Fuchszunft Menningen ist online!",
+    date: "6. Januar 2026",
+    category: "Aktuelles",
+    preview: "Wir freuen uns, euch unsere neue Webseite präsentieren zu können! Die Seite wird in den kommenden Wochen noch weiter angepasst und optimiert. Auch neue E-Mail-Adressen werden bald folgen...",
     content: `
-      Die Fuchszunft Menningen ist bereit für eine großartige Fasnet 2026! 
+      Liebe Besucher,
       
-      In den letzten Wochen haben alle Mitglieder fleißig an der Vorbereitung gearbeitet. Die traditionellen Häser wurden sorgfältig gereinigt und auf Schäden überprüft. Besonders die echten Fuchsfelle unserer Hauptfiguren benötigen intensive Pflege.
+      wir freuen uns sehr, euch heute unsere brandneue Webseite präsentieren zu können! Nach längerer Planung und Entwicklung ist sie nun online und bietet euch einen modernen und übersichtlichen Einblick in unsere Zunft.
       
-      **Erste Proben erfolgreich**
+      **Die Webseite wächst mit uns**
       
-      Bereits am vergangenen Wochenende fanden die ersten Proben in der Zunftstube statt. Die kleinen Füchse zeigten dabei wieder ihre beeindruckende Begeisterung und lernten schnell die traditionellen Bewegungen.
+      Bitte habt Verständnis dafür, dass unsere neue Webseite in den kommenden Wochen und Monaten noch weiter angepasst und optimiert wird. Wir arbeiten kontinuierlich daran, Inhalte zu ergänzen und die Funktionen zu verbessern, um euch das bestmögliche Erlebnis zu bieten.
       
-      **Neue Mitglieder willkommen**
+      **Neue E-Mail-Adressen in Kürze**
       
-      Wir freuen uns besonders über drei neue Mitglieder, die in dieser Saison erstmals mit uns auf die Straße gehen werden. Sie werden die Reihen der Gausmates verstärken.
+      Passend zu unserer neuen Webseite werden wir in nächster Zeit auch neue E-Mail-Adressen einführen. Diese werden hier in der News-Sektion bekanntgegeben, sobald sie verfügbar sind. Damit möchten wir die Kommunikation mit euch weiter verbessern und professionalisieren.
+      
+      **Euer Feedback ist willkommen**
+      
+      Wir freuen uns über euer Feedback zur neuen Webseite! Teilt uns gerne mit, was euch gefällt oder wo ihr Verbesserungsmöglichkeiten seht.
+      
+      Schaut regelmäßig vorbei, um keine Neuigkeiten zu verpassen!
     `,
-    image: null,
-    author: "Zunftvorstand"
-  },
-  {
-    id: 2,
-    title: "Testartikel für News-Sektion",
-    date: "1. Januar 2024",
-    category: "Test",
-    preview: "Dies ist ein Testartikel, um die News-Sektion der Webseite zu überprüfen. Er enthält Beispieltext und dient nur zu Testzwecken...",
-    content: `
-      Dies ist ein Testartikel, um die News-Sektion der Webseite zu überprüfen. Er enthält Beispieltext und dient nur zu Testzwecken.
-    `,
-    image: null,
-    author: "Testautor"
-  },
-  {
-    id: 3,
-    title: "Weitere Neuigkeiten folgen bald",
-    date: "15. Januar 2024",
-    category: "Ankündigung",
-    preview: "Bleiben Sie dran für weitere spannende Neuigkeiten und Updates rund um die Fuchszunft Menningen. Wir arbeiten ständig daran, Ihnen die besten Informationen zu bieten...",
-    content: `
-      Bleiben Sie dran für weitere spannende Neuigkeiten und Updates rund um die Fuchszunft Menningen. Wir arbeiten ständig daran, Ihnen die besten Informationen zu bieten.
-    `,
-    image: Gesamt_original,
-    author: "Zunftvorstand"
+    image: News_1,
+    author: "Webmaster"
   }
 ];
