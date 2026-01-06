@@ -26,7 +26,7 @@ Wir verwenden ein einfaches Branching-Modell für die Entwicklung:
 
 *   **main (Production):**
     *   Dieser Branch spiegelt die **Live-Version** der Webseite wider.
-    *   Jeder Push auf diesen Branch löst ein automatisches Deployment auf die Produktionsumgebung aus: [fuchszunft-menningen.vercel.app](https://fuchszunft-menningen.vercel.app)
+    *   Jeder Push auf diesen Branch löst ein automatisches Deployment auf die Produktionsumgebung aus: [fuchszunft-menningen.de](https://fuchszunft-menningen.de)
     *   Hier landet nur getesteter und funktionierender Code.
 
 *   **dev (Development):**
