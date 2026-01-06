@@ -38,13 +38,13 @@ const KontaktSection = () => (
 
         <div className="flex-grow rounded-lg overflow-hidden border border-stone-200 dark:border-stone-600 shadow-sm min-h-[300px]">
             <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1374.622349109247!2d9.160035282302957!3d48.00782504616597!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479a416826445e1f%3A0x458f624ad4bb8328!2sZunftstube%2C%20Fuchszunft%20Menningen%20e.V.!5e1!3m2!1sde!2sde!4v1767726288586!5m2!1sde!2sde"
                 width="100%" 
                 height="100%" 
-                frameBorder="0" 
-                scrolling="no" 
-                marginHeight="0" 
-                marginWidth="0" 
-                src="https://maps.google.com/maps?width=100%25&height=600&hl=de&q=Zunftstube,+Fuchszunft+Menningen+e.V.&t=&z=16&ie=UTF8&iwloc=B&output=embed"
+                style={{ border: 0 }} 
+                allowFullScreen="" 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
                 title="Standort Zunftstube"
                 className="w-full h-full"
             ></iframe>

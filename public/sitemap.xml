@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://fuchszunft-menningen.de/</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://fuchszunft-menningen.de/fuchszunft-gruppenbild.jpg</image:loc>
+      <image:title>Fuchszunft Menningen Gesamtbild</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://fuchszunft-menningen.de/news</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://fuchszunft-menningen.de/termine</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://fuchszunft-menningen.de/figuren</loc>
+    <lastmod>2026-01-01</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://fuchszunft-menningen.de/fuchs-charakter.gif</image:loc>
+      <image:title>Die Hauptfiguren unserer Zunft</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://fuchszunft-menningen.de/kontakt</loc>
+    <lastmod>2026-01-01</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://fuchszunft-menningen.de/geschichte</loc>
+    <lastmod>2026-01-01</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://fuchszunft-menningen.de/zunftstube</loc>
+    <lastmod>2026-01-01</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://fuchszunft-menningen.de/zunftstube.jpg</image:loc>
+      <image:title>Zunftstube Menningen</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://fuchszunft-menningen.de/impressum</loc>
+    <lastmod>2026-01-01</lastmod>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://fuchszunft-menningen.de/datenschutz</loc>
+    <lastmod>2026-01-01</lastmod>
+    <priority>0.3</priority>
+  </url>
+</urlset>
