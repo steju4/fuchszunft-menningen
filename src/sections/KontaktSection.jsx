@@ -10,6 +10,7 @@ const KontaktSection = () => {
     const formData = new FormData(event.target);
 
     formData.append("access_key", "7d101999-d5f0-452a-8bdc-56f4e86819a8");
+    formData.append("from_name", "Kontaktformular Fuchszunft Menningen");
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
