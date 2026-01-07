@@ -12,6 +12,8 @@ import zunftstubeImg from './assets/Zunftstube.jpg';
 // Components
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
+import ErrorBoundary from './components/ErrorBoundary';
+import SEO from './components/SEO';
 
 // Sections - Home wird direkt geladen, Rest lazy mit Preload
 import HomeSection from './sections/HomeSection';
@@ -53,13 +55,62 @@ const App = () => {
     }
   }, []);
 
-  // Update URL wenn Tab wechselt
+  // SEO Daten Mapping
+  const getSeoData = (tab) => {
+    const data = {
+      home: { 
+        title: "Fuchszunft Menningen e.V.", 
+        desc: "Offizielle Website der Fuchszunft Menningen e.V. - Alle Infos zur Fasnet, unseren Figuren Fuchs & Henne und aktuellen Terminen." 
+      },
+      news: { 
+        title: "News | Fuchszunft Menningen", 
+        desc: "Aktuelle Neuigkeiten und Berichte der Fuchszunft Menningen. Bleib auf dem Laufenden über unser Vereinsleben." 
+      },
+      termine: { 
+        title: "Termine | Fuchszunft Menningen", 
+        desc: "Aktuelle Termine: Alle Umzüge, Veranstaltungen und Termine der Fuchszunft im Überblick." 
+      },
+      figuren: { 
+        title: "Figuren | Fuchszunft Menningen", 
+        desc: "Unsere Figuren vorgestellt: Der Fuchs, die Gausmates und alle weiteren Figuren. Alles zu Häs und Geschichte." 
+      },
+      geschichte: { 
+        title: "Geschichte | Fuchszunft Menningen", 
+        desc: "Die Chronik der Fuchszunft Menningen: Von der Gründung bis heute. Erfahre mehr über unsere Wurzeln." 
+      },
+      zunftstube: { 
+        title: "Zunftstube | Fuchszunft Menningen", 
+        desc: "Die Zunftstube Menningen: Unser Treffpunkt. Infos zu Veranstaltungen und Vermietung." 
+      },
+      kontakt: { 
+        title: "Kontakt | Fuchszunft Menningen", 
+        desc: "Kontakt zur Fuchszunft Menningen e.V. - Wir freuen uns auf deine Nachricht." 
+      },
+      impressum: { 
+        title: "Impressum | Fuchszunft Menningen", 
+        desc: "Impressum und rechtliche Angaben der Fuchszunft Menningen e.V." 
+      },
+      datenschutz: { 
+        title: "Datenschutz | Fuchszunft Menningen", 
+        desc: "Datenschutzerklärung der Fuchszunft Menningen e.V." 
+      }
+    };
+    return data[tab] || data.home;
+  };
+
+  const currentSeo = getSeoData(activeTab);
+
+  // Update URL und Scroll-Position wenn Tab wechselt
   useEffect(() => {
     if (isFirstRun.current) {
       isFirstRun.current = false;
       return;
     }
 
+    // 1. Nach oben scrollen bei Tab-Wechsel
+    window.scrollTo(0, 0);
+
+    // 2. URL aktualisieren
     const path = activeTab === 'home' ? '/' : `/${activeTab}`;
     if (window.location.pathname !== path) {
       window.history.pushState({}, '', path);
@@ -204,8 +255,12 @@ const App = () => {
         toggleDarkMode={toggleDarkMode}
       />
 
+      <SEO title={currentSeo.title} description={currentSeo.desc} />
+
       <main className="flex-grow pt-20">
-        {renderContent()}
+        <ErrorBoundary>
+          {renderContent()}
+        </ErrorBoundary>
       </main>
 
       <Footer setActiveTab={setActiveTab} />
