@@ -94,17 +94,17 @@ const KontaktSection = () => {
             Unsere Zunftstube befindet sich zentral in Menningen.
           </p>
 
-          <div className="flex-grow rounded-lg overflow-hidden border border-stone-200 dark:border-stone-600 shadow-sm min-h-[400px]">
+          <div className="rounded-lg overflow-hidden border border-stone-200 dark:border-stone-600 shadow-sm">
               <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1374.622349109247!2d9.160035282302957!3d48.00782504616597!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479a416826445e1f%3A0x458f624ad4bb8328!2sZunftstube%2C%20Fuchszunft%20Menningen%20e.V.!5e1!3m2!1sde!2sde!4v1767726288586!5m2!1sde!2sde"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2749.2388978203894!2d9.157730476326291!3d48.00793386017798!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479a416826445e1f%3A0x458f624ad4bb8328!2sZunftstube%2C%20Fuchszunft%20Menningen%20e.V.!5e1!3m2!1sde!2sde!4v1767791185053!5m2!1sde!2sde"
                   width="100%" 
-                  height="100%" 
+                  height="350" 
                   style={{ border: 0 }} 
                   allowFullScreen="" 
                   loading="lazy" 
                   referrerPolicy="no-referrer-when-downgrade"
                   title="Standort Zunftstube"
-                  className="w-full h-full"
+                  className="w-full block"
               ></iframe>
           </div>
           <div className="mt-4 text-center">
