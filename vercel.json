@@ -3,7 +3,16 @@
     { "source": "/aktuelles.htm", "destination": "/news", "permanent": true },
     { "source": "/kontakt.htm", "destination": "/kontakt", "permanent": true },
     { "source": "/impressum.htm", "destination": "/impressum", "permanent": true },
-    { "source": "/datenschutz.htm", "destination": "/datenschutz", "permanent": true }
+    { "source": "/datenschutz.htm", "destination": "/datenschutz", "permanent": true },
+
+    { "source": "/Entstehung.htm", "destination": "/geschichte", "permanent": true },
+    { "source": "/Entstehung der Zunft.htm", "destination": "/geschichte", "permanent": true },
+    { "source": "/Unser Dorf.htm", "destination": "/geschichte", "permanent": true },
+    { "source": "/Zunftfiguren.htm", "destination": "/figuren", "permanent": true },
+    { "source": "/Zunftstube.htm", "destination": "/zunftstube", "permanent": true },
+    { "source": "/Zunftlied.htm", "destination": "/geschichte", "permanent": true },
+    { "source": "/Links.htm", "destination": "/", "permanent": true },
+    { "source": "/Navigation.htm", "destination": "/", "permanent": true }
   ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/" }
