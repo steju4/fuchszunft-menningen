@@ -1,9 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { FileText, Calendar, Users, ChevronRight, Award, Shield } from 'lucide-react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { FileText, Calendar, Users, ChevronRight, Award, Shield, Bell, MapPin } from 'lucide-react';
 import Countdown from '../components/Countdown';
+import { termine } from '../data/termineData';
 import heroBg from '../assets/Gesamt.jpg';
 
 const HomeSection = ({ setActiveTab }) => {
+  // Prüfen, ob heute ein Termin ist
+  const todaysEvents = useMemo(() => {
+    const now = new Date();
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const year = String(now.getFullYear());
+    const dateStr = `${day}.${month}.`;
+
+    return termine.filter(t => t.datum === dateStr && t.jahr === year);
+  }, []);
+
   return (
   <div className="animate-fadeIn bg-stone-900">
     {/* Hero Section */}
@@ -31,8 +43,31 @@ const HomeSection = ({ setActiveTab }) => {
       <div className="absolute bottom-0 left-0 right-0 h-32 md:h-48 bg-gradient-to-t from-stone-900 via-stone-900/80 to-transparent" />
       
       {/* Content Container - Mit Flex-Grow für bessere Kontrolle */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 pt-16 md:pt-24 pb-16 flex-grow flex flex-col justify-start space-y-8">
+      <div className={`relative z-10 w-full max-w-6xl mx-auto px-4 pb-16 flex-grow flex flex-col justify-start space-y-8 ${
+        todaysEvents.length > 0 ? 'pt-4 md:pt-6' : 'pt-16 md:pt-24'
+      }`}>
         
+        {/* HEUTE-BANNER: Nur anzeigen, wenn ein Termin heute ist */}
+        {todaysEvents.length > 0 && (
+          <div className="animate-bounce-slight w-full max-w-2xl mx-auto">
+            <div className="bg-orange-600/90 text-white px-6 py-3 rounded-full shadow-[0_0_15px_rgba(234,88,12,0.5)] border border-orange-400 flex items-center justify-center gap-3 backdrop-blur-md">
+              <Bell className="animate-pulse flex-shrink-0" size={24} />
+              <div className="text-center">
+                <span className="font-bold uppercase tracking-wider text-sm block text-orange-200">Heute:</span>
+                <span className="font-bold text-lg leading-tight">
+                  {todaysEvents[0].titel} 
+                  {todaysEvents[0].zeit && <span className="font-normal"> um {todaysEvents[0].zeit} Uhr</span>}
+                  {todaysEvents[0].ort && (
+                    <span className="text-orange-200 text-sm flex sm:inline-flex items-center justify-center sm:ml-2 gap-1 font-medium">
+                       <MapPin size={14} /> {todaysEvents[0].ort}
+                    </span>
+                  )}
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Hauptüberschrift */}
         <div className="text-center space-y-4">
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white drop-shadow-2xl tracking-tight">
@@ -84,14 +119,16 @@ const HomeSection = ({ setActiveTab }) => {
       </div>
     </div>
 
-    {/* Trust Badges / Verbände Section - New placement */}
+    {/* Trust Badges / Verbände Section */}
     <div className="bg-stone-800 border-b border-stone-700">
         <div className="container mx-auto px-4 py-12">
             <div className="flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-16">
                 
                 {/* Kulturerbe */}
                 <div className="flex flex-col-reverse md:flex-row items-center gap-6 max-w-2xl text-center md:text-left">
-                    <img src="/kulturerbe-logo.png" alt="Kulturerbe Logo" className="w-72 md:w-80 lg:w-96 h-auto object-contain" />
+                    <a href="https://www.unesco.de/staette/schwaebisch-alemannische-fastnacht/" target="_blank" rel="noopener noreferrer" className="block w-72 md:w-80 lg:w-96 hover:opacity-80 transition-opacity flex-shrink-0" title="Zum UNESCO-Eintrag">
+                        <img src="/kulturerbe-logo.png" alt="Immaterielles Kulturerbe - Schwäbisch-Alemannische Fasnet" className="w-full h-auto object-contain" />
+                    </a>
                     <div>
                         <h3 className="font-bold text-stone-100 uppercase text-xs tracking-wider mb-1">Immaterielles Kulturerbe</h3>
                         <p className="text-stone-400 text-sm leading-snug">

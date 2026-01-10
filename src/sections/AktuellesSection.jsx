@@ -3,6 +3,75 @@ import { Clock, MapPin, Download, Calendar } from 'lucide-react';
 import { termine } from '../data/termineData';
 
 const AktuellesSection = () => {
+
+  const generateICS = (terminListe) => {
+    let icsContent = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Fuchszunft Menningen//Website//DE\nCALSCALE:GREGORIAN\nMETHOD:PUBLISH\n";
+    
+    terminListe.forEach(termin => {
+       const [tag, monat] = termin.datum.split('.');
+       const jahr = termin.jahr;
+       
+       // Zeit parsen
+       let stunde = 10; 
+       let minute = 0;
+       
+       if (termin.zeit !== 'Tagsüber' && termin.zeit !== 'Abends') {
+         const zeitMatch = termin.zeit.match(/(\d{1,2}):?(\d{2})?/);
+         if (zeitMatch) {
+           stunde = parseInt(zeitMatch[1]);
+           minute = zeitMatch[2] ? parseInt(zeitMatch[2]) : 0;
+         }
+       } else if (termin.zeit === 'Abends') {
+         stunde = 19;
+       }
+
+       const pad = (n) => n < 10 ? '0' + n : n;
+       const formatDT = (y, m, d, h, min) => `${y}${pad(m)}${pad(d)}T${pad(h)}${pad(min)}00`;
+       
+       const start = formatDT(jahr, parseInt(monat), parseInt(tag), stunde, minute);
+       
+       // Dauer: Standard 3h
+       const end = formatDT(jahr, parseInt(monat), parseInt(tag), stunde + 3, minute);
+       const now = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+       const uid = `${jahr}${monat}${tag}-${stunde}${minute}@fuchszunft-menningen.de`;
+
+       icsContent += `BEGIN:VEVENT
+UID:${uid}
+DTSTAMP:${now}
+DTSTART:${start}
+DTEND:${end}
+SUMMARY:${termin.titel}
+DESCRIPTION:${termin.desc || 'Fasnet Veranstaltung'}
+LOCATION:${termin.ort}
+STATUS:CONFIRMED
+END:VEVENT
+`;
+    });
+
+    icsContent += "END:VCALENDAR";
+    return icsContent;
+  };
+
+  const downloadICS = (content, filename) => {
+      const blob = new Blob([content], { type: 'text/calendar;charset=utf-8' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+  };
+
+  const exportAllToCalendar = () => {
+    const content = generateICS(termine);
+    downloadICS(content, 'Fasnet-Termine-2026.ics');
+  };
+
+  const exportSingleToCalendar = (termin) => {
+    const content = generateICS([termin]);
+    downloadICS(content, `Termin_${termin.titel.replace(/\s+/g, '_')}.ics`);
+  };
+
   const exportToPDF = async () => {
     const jsPDF = (await import('jspdf')).default;
     const doc = new jsPDF();
@@ -70,84 +139,6 @@ const AktuellesSection = () => {
     doc.save('Fasnet-Termine-2026.pdf');
   };
 
-  const exportToCalendar = async () => {
-    const { createEvents } = await import('ics');
-    const events = termine.map((termin) => {
-      // Datum parsen
-      const [tag, monat] = termin.datum.split('.');
-      const jahr = termin.jahr;
-      
-      // Zeit parsen
-      let stunde = 10; // Standardzeit falls nicht parsebar
-      let minute = 0;
-      
-      if (termin.zeit !== 'Tagsüber' && termin.zeit !== 'Abends') {
-        const zeitMatch = termin.zeit.match(/(\d{1,2}):?(\d{2})?/);
-        if (zeitMatch) {
-          stunde = parseInt(zeitMatch[1]);
-          minute = zeitMatch[2] ? parseInt(zeitMatch[2]) : 0;
-        }
-      } else if (termin.zeit === 'Abends') {
-        stunde = 19;
-        minute = 0;
-      }
-      
-      const startDate = [
-        parseInt(jahr),
-        parseInt(monat),
-        parseInt(tag),
-        stunde,
-        minute
-      ];
-      
-      // Enddatum (1-2 Stunden später je nach Event)
-      const dauer = termin.titel.includes('Umzug') || termin.titel.includes('Ball') ? 3 : 2;
-      const endDate = [
-        parseInt(jahr),
-        parseInt(monat),
-        parseInt(tag),
-        stunde + dauer,
-        minute
-      ];
-      
-      return {
-        title: termin.titel,
-        description: `${termin.desc || ''}\n\nVeranstaltung der Fuchszunft Menningen e.V.`,
-        location: termin.ort,
-        start: startDate,
-        end: endDate,
-        status: 'CONFIRMED',
-        organizer: {
-          name: 'Fuchszunft Menningen e.V.',
-          email: 'Fuchszunft-Menningen@t-online.de'
-        },
-        alarms: [{
-          action: 'display',
-          description: 'Fasnet-Termin Erinnerung',
-          trigger: { hours: 2, minutes: 0, before: true }
-        }]
-      };
-    });
-
-    createEvents(events, (error, value) => {
-      if (error) {
-        console.log('Fehler beim Erstellen der Kalender-Datei:', error);
-        alert('Fehler beim Erstellen der Kalender-Datei. Bitte versuchen Sie es erneut.');
-        return;
-      }
-
-      // ICS-Datei als Download anbieten
-      const blob = new Blob([value], { type: 'text/calendar;charset=utf-8' });
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
-      link.download = 'Fasnet-Termine-2026.ics';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(link.href);
-    });
-  };
-
   return (
     <div className="container mx-auto px-4 py-12 max-w-4xl animate-fadeIn">
       <div className="text-center mb-12">
@@ -162,8 +153,8 @@ const AktuellesSection = () => {
             <div className={`absolute -left-[13px] md:-left-[13px] w-6 h-6 rounded-full border-4 border-white dark:border-stone-900 ${termin.highlight ? 'bg-orange-600' : 'bg-stone-400 dark:bg-stone-600'}`}></div>
             
             <div className={`bg-white dark:bg-stone-800 p-6 rounded-xl border shadow-sm hover:shadow-md transition-shadow ${termin.highlight ? 'border-orange-200 dark:border-orange-800 bg-orange-50/30 dark:bg-orange-900/20' : 'border-stone-100 dark:border-stone-700'}`}>
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-2">
-                <div>
+              <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-2">
+                <div className="flex-grow">
                   <div className="flex items-baseline gap-2">
                     <span className={`font-bold text-2xl ${termin.highlight ? 'text-orange-600 dark:text-orange-500' : 'text-stone-700 dark:text-stone-300'}`}>
                       {termin.datum}
@@ -173,8 +164,18 @@ const AktuellesSection = () => {
                   </div>
                   <h3 className="text-xl font-bold text-stone-800 dark:text-stone-100 mt-1">{termin.titel}</h3>
                 </div>
-                <div className="flex items-center gap-2 text-stone-500 dark:text-stone-400 bg-white/50 dark:bg-stone-900/50 px-3 py-1 rounded-full self-start md:self-center whitespace-nowrap border border-stone-100 dark:border-stone-700">
-                  <Clock size={14} /> {termin.zeit}
+                
+                <div className="flex items-center gap-2 self-start md:self-start">
+                  <div className="flex items-center gap-2 text-stone-500 dark:text-stone-400 bg-white/50 dark:bg-stone-900/50 px-3 py-1 rounded-full whitespace-nowrap border border-stone-100 dark:border-stone-700">
+                    <Clock size={14} /> {termin.zeit}
+                  </div>
+                   <button 
+                    onClick={() => exportSingleToCalendar(termin)}
+                    title="Diesen Termin in Kalender speichern"
+                    className="p-2 rounded-full hover:bg-stone-100 dark:hover:bg-stone-700 text-stone-400 hover:text-green-600 dark:text-stone-500 dark:hover:text-green-400 transition-colors"
+                  >
+                    <Calendar size={20} />
+                  </button>
                 </div>
               </div>
               
@@ -202,10 +203,10 @@ const AktuellesSection = () => {
             <Download size={18} /> Als PDF herunterladen
           </button>
           <button 
-            onClick={exportToCalendar}
+            onClick={exportAllToCalendar}
             className="text-green-600 dark:text-green-400 font-bold hover:underline flex items-center justify-center gap-2 transition-colors hover:text-green-800 dark:hover:text-green-300 bg-white dark:bg-stone-700 px-4 py-2 rounded-lg border border-green-200 dark:border-green-800 hover:bg-green-50 dark:hover:bg-green-900/30 shadow-sm"
           >
-            <Calendar size={18} /> In Kalender importieren
+            <Calendar size={18} /> Alle in Kalender importieren
           </button>
         </div>
         <p className="text-xs text-stone-500 dark:text-stone-400 mt-3">

@@ -10,6 +10,10 @@
       <image:loc>https://fuchszunft-menningen.de/fuchszunft-gruppenbild.jpg</image:loc>
       <image:title>Fuchszunft Menningen Gesamtbild</image:title>
     </image:image>
+    <image:image>
+      <image:loc>https://fuchszunft-menningen.de/kulturerbe-logo.png</image:loc>
+      <image:title>Immaterielles Kulturerbe Logo</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://fuchszunft-menningen.de/news</loc>
