@@ -3,6 +3,7 @@ import { Phone, Mail, MapPin, Send } from 'lucide-react';
 
 const KontaktSection = () => {
   const [result, setResult] = useState("");
+  const [showMap, setShowMap] = useState(false);
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -96,18 +97,39 @@ const KontaktSection = () => {
             Unsere Zunftstube befindet sich zentral in Menningen.
           </p>
 
-          <div className="rounded-lg overflow-hidden border border-stone-200 dark:border-stone-600 shadow-sm">
-              <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2749.2388978203894!2d9.157730476326291!3d48.00793386017798!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479a416826445e1f%3A0x458f624ad4bb8328!2sZunftstube%2C%20Fuchszunft%20Menningen%20e.V.!5e1!3m2!1sde!2sde!4v1767791185053!5m2!1sde!2sde"
-                  width="100%" 
-                  height="350" 
-                  style={{ border: 0 }} 
-                  allowFullScreen="" 
-                  loading="lazy" 
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Standort Zunftstube"
-                  className="w-full block"
-              ></iframe>
+          <div className="rounded-lg overflow-hidden border border-stone-200 dark:border-stone-600 shadow-sm min-h-[350px] bg-stone-100 dark:bg-stone-900 flex items-center justify-center relative">
+              {showMap ? (
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2749.2388978203894!2d9.157730476326291!3d48.00793386017798!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479a416826445e1f%3A0x458f624ad4bb8328!2sZunftstube%2C%20Fuchszunft%20Menningen%20e.V.!5e1!3m2!1sde!2sde!4v1767791185053!5m2!1sde!2sde"
+                    width="100%" 
+                    height="350" 
+                    style={{ border: 0 }} 
+                    allowFullScreen="" 
+                    loading="lazy" 
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Standort Zunftstube"
+                    className="w-full h-[350px] block animate-fadeIn"
+                ></iframe>
+              ) : (
+                <div className="text-center p-6 max-w-md w-full">
+                    <div className="bg-stone-200 dark:bg-stone-800 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <MapPin size={32} className="text-stone-500 dark:text-stone-400" />
+                    </div>
+                    <h4 className="font-bold text-lg text-stone-800 dark:text-stone-200 mb-2">Google Maps laden</h4>
+                    <p className="text-sm text-stone-600 dark:text-stone-400 mb-6 leading-relaxed">
+                        Wir nutzen Google Maps, um den Standort anzuzeigen. Wenn Sie die Karte aktivieren, werden personenbezogene Daten (wie Ihre IP-Adresse) an Google übertragen.
+                    </p>
+                    <button 
+                        onClick={() => setShowMap(true)}
+                        className="bg-stone-800 hover:bg-stone-700 dark:bg-stone-700 dark:hover:bg-stone-600 text-white font-medium py-2.5 px-6 rounded-lg transition-colors shadow-sm w-full sm:w-auto"
+                    >
+                        Karte anzeigen
+                    </button>
+                    <p className="text-xs text-stone-400 dark:text-stone-500 mt-4">
+                      Mehr Infos in unserer <span className="underline cursor-pointer">Datenschutzerklärung</span>.
+                    </p>
+                </div>
+              )}
           </div>
           <div className="mt-4 text-center">
                <a 
