@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FileText, Calendar, Users, ChevronRight } from 'lucide-react';
+import { FileText, Calendar, Users, ChevronRight, Award, Shield } from 'lucide-react';
 import Countdown from '../components/Countdown';
 import heroBg from '../assets/Gesamt.jpg';
 
@@ -84,8 +84,44 @@ const HomeSection = ({ setActiveTab }) => {
       </div>
     </div>
 
+    {/* Trust Badges / Verbände Section - New placement */}
+    <div className="bg-stone-800 border-b border-stone-700">
+        <div className="container mx-auto px-4 py-12">
+            <div className="flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-16">
+                
+                {/* Kulturerbe */}
+                <div className="flex flex-col-reverse md:flex-row items-center gap-6 max-w-2xl text-center md:text-left">
+                    <img src="/kulturerbe-logo.png" alt="Kulturerbe Logo" className="w-72 md:w-80 lg:w-96 h-auto object-contain" />
+                    <div>
+                        <h3 className="font-bold text-stone-100 uppercase text-xs tracking-wider mb-1">Immaterielles Kulturerbe</h3>
+                        <p className="text-stone-400 text-sm leading-snug">
+                            Die Fuchszunft ist als Teil der schwäbisch-alemannischen Fasnet im bundesweiten Verzeichnis eingetragen.
+                        </p>
+                    </div>
+                </div>
+
+                {/* Divider for Desktop */}
+                <div className="hidden lg:block w-px h-12 bg-stone-600"></div>
+
+                {/* Narrenvereinigung */}
+                <div className="flex items-center gap-4 max-w-md">
+                    <div className="bg-orange-900/40 p-3 rounded-full text-orange-400">
+                        <Shield size={32} />
+                    </div>
+                    <div>
+                        <h3 className="font-bold text-stone-100 uppercase text-xs tracking-wider mb-1">Stolzes Mitglied</h3>
+                        <p className="text-stone-400 text-sm leading-snug">
+                            Wir sind Gründungsmitglied der <br/><strong>Narrenvereinigung Hegau-Bodensee.</strong>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     {/* Teaser Grid */}
-    <div className="container mx-auto px-4 pt-2 pb-8">
+    <div className="container mx-auto px-4 pt-12 pb-12">
       <div className="grid md:grid-cols-3 gap-6 md:gap-8">
         {[
           { title: 'Historie', text: 'Erfahre mehr über die Gründung 1957 und unsere Wurzeln im Gremlich-Schloss.', link: 'geschichte', color: 'bg-green-800' },
