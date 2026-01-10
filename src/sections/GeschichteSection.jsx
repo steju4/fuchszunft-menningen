@@ -71,6 +71,8 @@ const GeschichteSection = () => (
                 </div>
                 <p className="text-stone-700 dark:text-stone-300 text-sm leading-relaxed">
                     Offizielle Gründung im Gasthaus "Bahnhof" mit 8 Mitgliedern. Name: "Grafschaft Fuchsbühl zu Menningen" (wegen der Gremlich-Ritter).
+                    <br/><br/>
+                    <span className="font-semibold text-orange-700 dark:text-orange-400">Übrigens:</span> Die Fuchszunft ist stolzes Gründungsmitglied der Narrenvereinigung Hegau-Bodensee.
                 </p>
             </div>
         </div>
