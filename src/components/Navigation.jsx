@@ -33,7 +33,7 @@ const Navigation = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen, darkMo
 
   return (
     <nav className="bg-stone-900 dark:bg-stone-950 text-white shadow-lg fixed top-0 left-0 right-0 z-50 border-b-4 border-orange-600">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
         <div className="flex justify-between items-center h-20">
           {/* Logo Area */}
           <div 
