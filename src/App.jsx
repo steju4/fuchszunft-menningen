@@ -19,6 +19,7 @@ import SEO from './components/SEO';
 import HomeSection from './sections/HomeSection';
 const NewsSection = lazy(() => import('./sections/NewsSection'));
 const AktuellesSection = lazy(() => import('./sections/AktuellesSection'));
+const GalerieSection = lazy(() => import('./sections/GalerieSection'));
 const FigurenSection = lazy(() => import('./sections/FigurenSection'));
 const GeschichteSection = lazy(() => import('./sections/GeschichteSection'));
 const ZunftstubeSection = lazy(() => import('./sections/ZunftstubeSection'));
@@ -48,7 +49,7 @@ const App = () => {
   // Initial Load: URL checken
   useEffect(() => {
     const path = window.location.pathname.substring(1); 
-    const validTabs = ['news', 'termine', 'figuren', 'geschichte', 'zunftstube', 'kontakt', 'impressum', 'datenschutz'];
+    const validTabs = ['news', 'termine', 'galerie', 'figuren', 'geschichte', 'zunftstube', 'kontakt', 'impressum', 'datenschutz'];
 
     if (validTabs.includes(path)) {
       setActiveTab(path);
@@ -69,6 +70,10 @@ const App = () => {
       termine: { 
         title: "Termine | Fuchszunft Menningen", 
         desc: "Aktuelle Termine: Alle Umzüge, Veranstaltungen und Termine der Fuchszunft im Überblick." 
+      },
+      galerie: {
+        title: "Galerie & Videos | Fuchszunft Menningen",
+        desc: "Bilder und Videos der Fuchszunft Menningen. Rückblicke auf Fasnachtsumzüge und Veranstaltungen."
       },
       figuren: { 
         title: "Figuren | Fuchszunft Menningen", 
@@ -117,7 +122,7 @@ const App = () => {
     }
   }, [activeTab]);
 
-  // Handle Browser Back/Forward Button
+      const validTabs = ['news', 'termine', 'galerie', 'figuren', 'geschichte', 'zunftstube', 'kontakt', 'impressum', 'datenschutz'];
   useEffect(() => {
     const handlePopState = () => {
       const path = window.location.pathname.substring(1);
@@ -200,6 +205,12 @@ const App = () => {
         return (
           <Suspense fallback={<LoadingSpinner />}>
             <AktuellesSection />
+          </Suspense>
+        );
+      case 'galerie':
+        return (
+          <Suspense fallback={<LoadingSpinner />}>
+            <GalerieSection />
           </Suspense>
         );
       case 'figuren':
