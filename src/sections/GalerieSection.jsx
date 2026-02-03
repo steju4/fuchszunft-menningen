@@ -62,10 +62,12 @@ const GalerieSection = () => {
            {/* Beispiel Album Cards */}
            {albums.map((album, idx) => (
                <div key={idx} className="group relative rounded-2xl overflow-hidden shadow-lg cursor-pointer h-[250px]">
-                   {/* Background Image */}
-                   <div 
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
-                    style={{ backgroundImage: `url(${album.coverImage})` }}
+                   {/* Image for SEO & Accessibility */}
+                   <img 
+                    src={album.coverImage}
+                    alt={`Galerie Album: ${album.title}`}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
                    />
                    
                    {/* Overlay */}
