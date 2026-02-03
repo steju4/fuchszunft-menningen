@@ -58,50 +58,62 @@ const App = () => {
 
   // SEO Daten Mapping
   const getSeoData = (tab) => {
+    const baseUrl = "https://fuchszunft-menningen.de";
     const data = {
       home: { 
         title: "Fuchszunft Menningen e.V.", 
-        desc: "Offizielle Website der Fuchszunft Menningen e.V. - Alle Infos zur Fasnet, unseren Figuren Fuchs & Henne und aktuellen Terminen." 
+        desc: "Offizielle Website der Fuchszunft Menningen e.V. - Alle Infos zur Fasnet, unseren Figuren Fuchs & Henne und aktuellen Terminen.",
+        url: `${baseUrl}/`
       },
       news: { 
         title: "News | Fuchszunft Menningen", 
-        desc: "Aktuelle Neuigkeiten und Berichte der Fuchszunft Menningen. Bleib auf dem Laufenden über unser Vereinsleben." 
+        desc: "Aktuelle Neuigkeiten und Berichte der Fuchszunft Menningen. Bleib auf dem Laufenden über unser Vereinsleben.",
+        url: `${baseUrl}/news`
       },
       termine: { 
         title: "Termine | Fuchszunft Menningen", 
-        desc: "Aktuelle Termine: Alle Umzüge, Veranstaltungen und Termine der Fuchszunft im Überblick." 
+        desc: "Aktuelle Termine: Alle Umzüge, Veranstaltungen und Termine der Fuchszunft im Überblick.",
+        url: `${baseUrl}/termine`
       },
       galerie: {
         title: "Galerie & Videos | Fuchszunft Menningen",
-        desc: "Bilder und Videos der Fuchszunft Menningen. Rückblicke auf Fasnachtsumzüge und Veranstaltungen."
+        desc: "Bilder und Videos der Fuchszunft Menningen. Rückblicke auf Fasnachtsumzüge und Veranstaltungen.",
+        url: `${baseUrl}/galerie`
       },
       figuren: { 
         title: "Figuren | Fuchszunft Menningen", 
-        desc: "Unsere Figuren vorgestellt: Der Fuchs, die Gausmates und alle weiteren Figuren. Alles zu Häs und Geschichte." 
+        desc: "Unsere Figuren vorgestellt: Der Fuchs, die Gausmates und alle weiteren Figuren. Alles zu Häs und Geschichte.",
+        url: `${baseUrl}/figuren`
       },
       geschichte: { 
         title: "Geschichte | Fuchszunft Menningen", 
-        desc: "Die Chronik der Fuchszunft Menningen: Von der Gründung bis heute. Erfahre mehr über unsere Wurzeln." 
+        desc: "Die Chronik der Fuchszunft Menningen: Von der Gründung bis heute. Erfahre mehr über unsere Wurzeln.",
+        url: `${baseUrl}/geschichte`
       },
       zunftstube: { 
         title: "Zunftstube | Fuchszunft Menningen", 
-        desc: "Die Zunftstube Menningen: Unser Treffpunkt. Infos zu Veranstaltungen und Vermietung." 
+        desc: "Die Zunftstube Menningen: Unser Treffpunkt. Infos zu Veranstaltungen und Vermietung.",
+        url: `${baseUrl}/zunftstube`
       },
       kontakt: { 
         title: "Kontakt | Fuchszunft Menningen", 
-        desc: "Kontakt zur Fuchszunft Menningen e.V. - Wir freuen uns auf deine Nachricht." 
+        desc: "Kontakt zur Fuchszunft Menningen e.V. - Wir freuen uns auf deine Nachricht.",
+        url: `${baseUrl}/kontakt`
       },
       impressum: { 
         title: "Impressum | Fuchszunft Menningen", 
-        desc: "Impressum und rechtliche Angaben der Fuchszunft Menningen e.V." 
+        desc: "Impressum und rechtliche Angaben der Fuchszunft Menningen e.V.",
+        url: `${baseUrl}/impressum`
       },
       datenschutz: { 
         title: "Datenschutz | Fuchszunft Menningen", 
-        desc: "Datenschutzerklärung der Fuchszunft Menningen e.V." 
+        desc: "Datenschutzerklärung der Fuchszunft Menningen e.V.",
+        url: `${baseUrl}/datenschutz`
       }
     };
     return data[tab] || data.home;
   };
+
 
   const currentSeo = getSeoData(activeTab);
 
@@ -266,7 +278,7 @@ const App = () => {
         toggleDarkMode={toggleDarkMode}
       />
 
-      <SEO title={currentSeo.title} description={currentSeo.desc} />
+      <SEO title={currentSeo.title} description={currentSeo.desc} url={currentSeo.url} />
 
       <main className="flex-grow pt-20">
         <ErrorBoundary>

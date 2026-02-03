@@ -36,9 +36,10 @@ const Navigation = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen, darkMo
       <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
         <div className="flex justify-between items-center h-20">
           {/* Logo Area */}
-          <div 
+          <a
+            href="/"
             className="flex items-center gap-3 cursor-pointer group" 
-            onClick={() => setActiveTab('home')}
+            onClick={(e) => { e.preventDefault(); setActiveTab('home'); }}
           >
             <div className="transform group-hover:rotate-12 transition-transform">
               <img src={wappenImg} alt="Fuchszunft Wappen" className="h-12 w-auto drop-shadow-md" />
@@ -47,7 +48,7 @@ const Navigation = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen, darkMo
               <div className="font-bold text-xl tracking-wide uppercase">Fuchszunft</div>
               <div className="text-orange-400 text-sm font-medium">Menningen e.V.</div>
             </div>
-          </div>
+          </a>
 
           {/* Desktop Nav */}
           <div className="hidden lg:flex gap-1 items-center">
@@ -71,9 +72,10 @@ const Navigation = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen, darkMo
                     <div className="absolute left-0 mt-0 pt-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-left -translate-y-2 group-hover:translate-y-0">
                       <div className="bg-stone-800 rounded-lg shadow-xl border border-stone-700 overflow-hidden">
                         {item.subItems.map(sub => (
-                          <button
+                          <a
                             key={sub.id}
-                            onClick={() => setActiveTab(sub.id)}
+                            href={`/${sub.id}`}
+                            onClick={(e) => { e.preventDefault(); setActiveTab(sub.id); }}
                             className={`w-full px-4 py-3 text-left flex items-center gap-3 transition-colors ${
                                activeTab === sub.id
                                 ? 'bg-orange-600/20 text-orange-400 font-bold'
@@ -82,7 +84,7 @@ const Navigation = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen, darkMo
                           >
                              <sub.icon size={16} />
                              {sub.label}
-                          </button>
+                          </a>
                         ))}
                       </div>
                     </div>
@@ -91,9 +93,10 @@ const Navigation = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen, darkMo
               }
               
               return (
-                <button
+                <a
                   key={item.id}
-                  onClick={() => setActiveTab(item.id)}
+                  href={`/${item.id === 'home' ? '' : item.id}`}
+                  onClick={(e) => { e.preventDefault(); setActiveTab(item.id); }}
                   className={`px-4 py-2 rounded-md transition-all duration-200 flex items-center gap-2 font-medium ${
                     isActive(item)
                       ? 'bg-orange-600 text-white shadow-md transform scale-105' 
@@ -102,7 +105,7 @@ const Navigation = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen, darkMo
                 >
                   <item.icon size={16} />
                   {item.label}
-                </button>
+                </a>
               );
             })}
             
@@ -148,9 +151,11 @@ const Navigation = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen, darkMo
                       </div>
                       <div className="pl-4 mt-1 space-y-1">
                         {item.subItems.map(sub => (
-                             <button
+                             <a
                                 key={sub.id}
-                                onClick={() => {
+                                href={`/${sub.id}`}
+                                onClick={(e) => {
+                                  e.preventDefault();
                                   setActiveTab(sub.id);
                                   setIsMenuOpen(false);
                                 }}
@@ -162,7 +167,7 @@ const Navigation = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen, darkMo
                               >
                                 <sub.icon size={18} />
                                 <span className="text-base">{sub.label}</span>
-                              </button>
+                              </a>
                         ))}
                       </div>
                    </div>
@@ -170,9 +175,11 @@ const Navigation = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen, darkMo
               }
 
               return (
-              <button
+              <a
                 key={item.id}
-                onClick={() => {
+                href={`/${item.id === 'home' ? '' : item.id}`}
+                onClick={(e) => {
+                  e.preventDefault();
                   setActiveTab(item.id);
                   setIsMenuOpen(false);
                 }}
@@ -184,7 +191,7 @@ const Navigation = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen, darkMo
               >
                 <item.icon size={20} />
                 <span className="text-lg">{item.label}</span>
-              </button>
+              </a>
             )})}
           </div>
         </div>
