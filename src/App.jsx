@@ -3,11 +3,9 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 
 // Assets for Preloading
-import heroBg from './assets/Gesamt.jpg';
-import fuechseGif from './assets/unnamed.gif';
-import praesidiumImg from './assets/1057c88a-73d0-40a5-bcf8-f60b018cdd56.webp';
-import liedGif from './assets/unnamed (1).gif';
-import zunftstubeImg from './assets/Zunftstube.jpg';
+// heroBg wird in HomeSection importiert und verwendet
+// Andere Assets werden bei Bedarf geladen oder lazy imported
+
 
 // Components
 import Navigation from './components/Navigation';
@@ -160,22 +158,6 @@ const App = () => {
       import('./sections/FigurenSection');
     }, 2000);
     return () => clearTimeout(timer);
-  }, []);
-
-  // Preload critical images
-  useEffect(() => {
-    const imagesToPreload = [
-      heroBg,
-      fuechseGif,
-      praesidiumImg,
-      liedGif,
-      zunftstubeImg
-    ];
-
-    imagesToPreload.forEach(src => {
-      const img = new Image();
-      img.src = src;
-    });
   }, []);
 
   useEffect(() => {
