@@ -15,9 +15,15 @@ const GalerieSection = () => {
   const albums = useMemo(() => {
     const processedAlbums = [];
     
+    // Safety check bei leerem JSON oder Fehler
+    if (!galleryData || Object.keys(galleryData).length === 0) {
+      return [];
+    }
+    
     // Iteriere über Jahre (z.B. "2025")
     Object.keys(galleryData).sort((a, b) => b - a).forEach(year => {
       const yearAlbums = galleryData[year];
+      if (!yearAlbums) return;
       
       // Iteriere über Alben innerhalb des Jahres (z.B. "Fasnet")
       Object.keys(yearAlbums).forEach(albumName => {
