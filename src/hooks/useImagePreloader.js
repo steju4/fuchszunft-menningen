@@ -4,6 +4,11 @@ const useImagePreloader = (imageSources) => {
   const [imagesLoaded, setImagesLoaded] = useState(false);
 
   useEffect(() => {
+    let isMounted = true;
+    
+    // Reset state bei neuen Bildern
+    setImagesLoaded(false);
+
     // Wenn keine Bilder da sind, sind wir "fertig"
     if (!imageSources || imageSources.length === 0) {
       setImagesLoaded(true);
@@ -14,6 +19,7 @@ const useImagePreloader = (imageSources) => {
     const total = imageSources.length;
 
     const checkDone = () => {
+      if (!isMounted) return;
       loadedCount++;
       if (loadedCount === total) {
         setImagesLoaded(true);
@@ -32,8 +38,11 @@ const useImagePreloader = (imageSources) => {
       }
     });
 
-    // Cleanup nicht nötig, da Image-Objekte garbage collected werden
-  }, [imageSources]); // Dependency array sicherstellen
+    return () => {
+      isMounted = false;
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [JSON.stringify(imageSources)]); 
 
   return imagesLoaded;
 };

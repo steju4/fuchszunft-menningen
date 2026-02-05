@@ -132,7 +132,7 @@ const App = () => {
   useEffect(() => {
     const handlePopState = () => {
       const path = window.location.pathname.substring(1);
-      const validTabs = ['news', 'termine', 'figuren', 'geschichte', 'zunftstube', 'kontakt', 'impressum', 'datenschutz'];
+      const validTabs = ['news', 'termine', 'galerie', 'figuren', 'geschichte', 'zunftstube', 'kontakt', 'impressum', 'datenschutz'];
       
       if (validTabs.includes(path)) {
         setActiveTab(path);
@@ -164,6 +164,7 @@ const App = () => {
       imagesToPreload.forEach(src => {
         const img = new Image();
         img.src = src;
+        img.onerror = (e) => console.warn('Konnte Bild nicht preloaden:', src, e); 
       });
 
     }, 2000); // 2 Sekunden warten, damit Initial Load nicht blockiert wird

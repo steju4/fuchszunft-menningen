@@ -29,7 +29,7 @@ const FigurenSection = () => {
               src={fuechseGif} 
               alt="Füchse und Gausmates der Fuchszunft Menningen" 
               className="h-full w-auto object-contain"
-              loading="lazy"
+              // loading="lazy" entfernt, da wir es preloaden
             />
           </div>
           <div className="px-4 py-6 text-center">
@@ -44,7 +44,7 @@ const FigurenSection = () => {
               src={praesidiumImg} 
               alt="Zunftpräsidium mit den kleinen Füchsen" 
               className="w-full h-full object-cover"
-              loading="lazy"
+              // loading="lazy" entfernt, da wir es preloaden
             />
           </div>
           <div className="px-4 py-6 text-center">

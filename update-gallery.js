@@ -21,10 +21,9 @@ function getImagesRecursively(dir, rootDir) {
              if (['.jpg', '.jpeg', '.png', '.webp', '.gif'].includes(ext)) {
                  if (!Array.isArray(images)) images = [];
                  // Convert absolute path to relative URL for browser
-                 // e.g. public/galerie/2025/Fasnet/img.jpg -> /galerie/2025/Fasnet/img.jpg
-                 const relativePath = fullPath.substring(rootDir.length).replace(/\\/g, '/');
+                 const relativePath = path.relative(rootDir, fullPath).replace(/\\/g, '/');
                  // Ensure it starts with /galerie
-                 const url = `/galerie${relativePath}`;
+                 const url = `/galerie/${relativePath}`;
                  images.push(url);
              }
         }
@@ -55,6 +54,11 @@ try {
         }
     }
     sortArrays(galleryData);
+
+    const outputDir = path.dirname(OUTPUT_FILE);
+    if (!fs.existsSync(outputDir)) {
+        fs.mkdirSync(outputDir, { recursive: true });
+    }
 
     fs.writeFileSync(OUTPUT_FILE, JSON.stringify(galleryData, null, 2));
     console.log(`✅ Galerie-Daten gespeichert in: ${OUTPUT_FILE}`);
