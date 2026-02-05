@@ -1,8 +1,17 @@
 import React from 'react';
 import { Music, House } from 'lucide-react';
+import LoadingSpinner from '../components/LoadingSpinner';
+import useImagePreloader from '../hooks/useImagePreloader';
 import Zunftstube from '../assets/Zunftstube.webp';
 
-const ZunftstubeSection = () => (
+const ZunftstubeSection = () => {
+  const imagesLoaded = useImagePreloader([Zunftstube]);
+
+  if (!imagesLoaded) {
+    return <LoadingSpinner />;
+  }
+
+  return (
   <div className="animate-fadeIn">
     <div className="relative h-[400px] py-24 px-4 overflow-hidden bg-stone-900 dark:bg-stone-950">
       {/* Background Image Placeholder */}
@@ -45,6 +54,7 @@ const ZunftstubeSection = () => (
             Die Zunftstube ist als Schank-Gaststätte angemeldet und etwa jeden zweiten Montagabend für die Bevölkerung geöffnet.
           </p>
         </div>
+        
         <div className="bg-white dark:bg-stone-800 p-6 rounded-xl shadow-lg border-t-4 border-green-600 hover:transform hover:-translate-y-1 transition-transform">
           <h3 className="font-bold text-xl mb-2 text-stone-800 dark:text-stone-100">Ausstattung</h3>
           <p className="text-stone-600 dark:text-stone-300">
@@ -54,6 +64,7 @@ const ZunftstubeSection = () => (
       </div>
     </div>
   </div>
-);
+  );
+};
 
 export default ZunftstubeSection;
