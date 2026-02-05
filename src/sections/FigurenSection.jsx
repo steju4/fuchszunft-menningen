@@ -1,9 +1,17 @@
 import React from 'react';
 import { figuren } from '../data/figurenData';
+import LoadingSpinner from '../components/LoadingSpinner';
+import useImagePreloader from '../hooks/useImagePreloader';
 import fuechseGif from '../assets/unnamed.webp';
 import praesidiumImg from '../assets/1057c88a-73d0-40a5-bcf8-f60b018cdd56.webp';
 
 const FigurenSection = () => {
+  const imagesLoaded = useImagePreloader([fuechseGif, praesidiumImg]);
+
+  if (!imagesLoaded) {
+    return <LoadingSpinner />;
+  }
+
   return (
     <div className="container mx-auto px-4 py-12 animate-fadeIn">
       <div className="text-center mb-16">

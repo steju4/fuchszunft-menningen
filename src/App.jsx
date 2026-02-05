@@ -14,6 +14,7 @@ import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import ErrorBoundary from './components/ErrorBoundary';
 import SEO from './components/SEO';
+import LoadingSpinner from './components/LoadingSpinner';
 
 // Sections - Home wird direkt geladen, Rest lazy mit Preload
 import HomeSection from './sections/HomeSection';
@@ -26,13 +27,6 @@ const ZunftstubeSection = lazy(() => import('./sections/ZunftstubeSection'));
 const KontaktSection = lazy(() => import('./sections/KontaktSection'));
 const ImpressumSection = lazy(() => import('./sections/ImpressumSection'));
 const DatenschutzSection = lazy(() => import('./sections/DatenschutzSection'));
-
-// Loading Spinner Component - außerhalb damit es nicht bei jedem Render neu erstellt wird
-const LoadingSpinner = () => (
-  <div className="flex items-center justify-center min-h-screen">
-    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600"></div>
-  </div>
-);
 
 const App = () => {
   const [activeTab, setActiveTab] = useState('home');

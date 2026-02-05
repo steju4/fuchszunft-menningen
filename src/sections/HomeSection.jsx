@@ -20,7 +20,7 @@ const HomeSection = ({ setActiveTab }) => {
   <div className="animate-fadeIn bg-stone-900">
     {/* Hero Section */}
     <div className="relative flex flex-col overflow-hidden bg-stone-900">
-      
+
       {/* Hintergrundbild - Als Image Tag für besseres LCP/Preloading */}
       <img
         src={heroBg}
