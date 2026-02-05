@@ -1,6 +1,6 @@
 import React from 'react';
 import { Music, House } from 'lucide-react';
-import Zunftstube from '../assets/Zunftstube.jpg';
+import Zunftstube from '../assets/Zunftstube.webp';
 
 const ZunftstubeSection = () => (
   <div className="animate-fadeIn">

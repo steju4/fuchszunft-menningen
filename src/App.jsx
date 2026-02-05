@@ -3,8 +3,10 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 
 // Assets for Preloading
-// heroBg wird in HomeSection importiert und verwendet
-// Andere Assets werden bei Bedarf geladen oder lazy imported
+// Wir importieren die wichtigen Bilder hier, um sie vorzuladen
+import heroBg from './assets/Gesamt.webp';
+import fuechseGif from './assets/unnamed.webp';
+import zunftstubeImg from './assets/Zunftstube.webp';
 
 
 // Components
@@ -149,14 +151,28 @@ const App = () => {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  // Preload wichtige Sections im Hintergrund nach Initial Load
+  // Preload wichtige Sections UND BILDER im Hintergrund nach Initial Load
   useEffect(() => {
-    // Preload nach 2 Sekunden, wenn User noch auf der Seite ist
+    // 1. Module (Code) vorladen
     const timer = setTimeout(() => {
       import('./sections/NewsSection');
       import('./sections/AktuellesSection');
       import('./sections/FigurenSection');
-    }, 2000);
+      import('./sections/ZunftstubeSection');
+
+      // 2. Bilder vorladen (damit sie beim Klick sofort da sind)
+      const imagesToPreload = [
+        heroBg,       // Sollte schon da sein, aber sicher ist sicher
+        fuechseGif,   // Für Figuren-Seite
+        zunftstubeImg // Für Zunftstube-Seite
+      ];
+
+      imagesToPreload.forEach(src => {
+        const img = new Image();
+        img.src = src;
+      });
+
+    }, 2000); // 2 Sekunden warten, damit Initial Load nicht blockiert wird
     return () => clearTimeout(timer);
   }, []);
 
