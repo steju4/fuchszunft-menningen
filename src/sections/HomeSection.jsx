@@ -3,6 +3,7 @@ import { FileText, Calendar, Users, ChevronRight, Award, Shield, Bell, MapPin } 
 import Countdown from '../components/Countdown';
 import { termine } from '../data/termineData';
 import heroBg from '../assets/Gesamt.webp';
+import heroMobile from '../assets/Gesamt-mobile.webp';
 
 const HomeSection = ({ setActiveTab }) => {
   // Prüfen, ob heute ein Termin ist
@@ -24,6 +25,8 @@ const HomeSection = ({ setActiveTab }) => {
       {/* Hintergrundbild - Als Image Tag für besseres LCP/Preloading */}
       <img
         src={heroBg}
+        srcSet={`${heroMobile} 800w, ${heroBg} 1920w`}
+        sizes="(max-width: 768px) 100vw, 100vw"
         alt="Zunftrat der Fuchszunft Menningen"
         fetchPriority="high"
         loading="eager"
@@ -127,7 +130,7 @@ const HomeSection = ({ setActiveTab }) => {
                 {/* Kulturerbe */}
                 <div className="flex flex-col-reverse md:flex-row items-center gap-6 max-w-2xl text-center md:text-left">
                     <a href="https://www.unesco.de/staette/schwaebisch-alemannische-fastnacht/" target="_blank" rel="noopener noreferrer" className="block w-72 md:w-80 lg:w-96 hover:opacity-80 transition-opacity flex-shrink-0" title="Zum UNESCO-Eintrag">
-                        <img src="/kulturerbe-logo.png" alt="Immaterielles Kulturerbe - Schwäbisch-Alemannische Fasnet" className="w-full h-auto object-contain rounded-xl" />
+                        <img src="/kulturerbe-logo.webp" alt="Immaterielles Kulturerbe - Schwäbisch-Alemannische Fasnet" className="w-full h-auto object-contain rounded-xl" />
                     </a>
                     <div>
                         <h3 className="font-bold text-stone-100 uppercase text-xs tracking-wider mb-1">Immaterielles Kulturerbe</h3>

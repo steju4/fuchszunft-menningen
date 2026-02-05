@@ -1,6 +1,6 @@
 import React from 'react';
 import { Menu, X, Home, FileText, Calendar, Users, BookOpen, House, Mail, Sun, Moon, Image as ImageIcon, ChevronDown } from 'lucide-react';
-import wappenImg from '../assets/FZ Wappen digital_klein.png';
+import wappenImg from '../assets/FZ Wappen digital_klein.webp';
 
 const Navigation = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen, darkMode, toggleDarkMode }) => {
   const navItems = [
