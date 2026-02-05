@@ -156,7 +156,7 @@ const App = () => {
 
       // 2. Bilder vorladen (damit sie beim Klick sofort da sind)
       const imagesToPreload = [
-        heroBg,       // Sollte schon da sein, aber sicher ist sicher
+        // heroBg entfernt - wird nativ geladen
         fuechseGif,   // Für Figuren-Seite
         zunftstubeImg // Für Zunftstube-Seite
       ];
