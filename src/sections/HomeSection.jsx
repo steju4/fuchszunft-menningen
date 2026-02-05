@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { FileText, Calendar, Users, ChevronRight, Award, Shield, Bell, MapPin } from 'lucide-react';
 import Countdown from '../components/Countdown';
 import { termine } from '../data/termineData';
-import heroBg from '../assets/Gesamt.jpg';
+import heroBg from '../assets/Gesamt.webp';
 
 const HomeSection = ({ setActiveTab }) => {
   // Prüfen, ob heute ein Termin ist
@@ -21,22 +21,22 @@ const HomeSection = ({ setActiveTab }) => {
     {/* Hero Section */}
     <div className="relative flex flex-col overflow-hidden bg-stone-900">
       
-      {/* Hintergrundbild - Responsive Position via Tailwind */}
-      <div 
-        className="absolute inset-0 bg-cover bg-no-repeat opacity-50 
-        bg-[center_-260px] 
-        sm:bg-[center_-180px] 
-        md:bg-[center_-190px] 
-        min-[1350px]:bg-[center_-320px] 
-        min-[1600px]:bg-[center_-450px]"
-        style={{
-          backgroundImage: `url(${heroBg})`,
-        }}
+      {/* Hintergrundbild - Als Image Tag für besseres LCP/Preloading */}
+      <img
+        src={heroBg}
+        alt="Zunftrat der Fuchszunft Menningen"
+        fetchPriority="high"
+        loading="eager"
+        className="absolute inset-0 w-full h-full object-cover opacity-50 
+        object-[center_-260px] 
+        sm:object-[center_-180px] 
+        md:object-[center_-190px] 
+        min-[1350px]:object-[center_-320px] 
+        min-[1600px]:object-[center_-450px]"
       />
       
-      {/* Preload Hint für Performance */}
-      
       {/* Dynamischer Gradient - schwächer oben, stärker unten */}
+
       <div className="absolute inset-0 bg-gradient-to-b from-stone-900/60 via-stone-900/20 to-stone-900" />
       
       {/* Extra sanfter Übergang am unteren Rand */}

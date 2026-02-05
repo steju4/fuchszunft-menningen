@@ -3,11 +3,11 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 
 // Assets for Preloading
-import heroBg from './assets/Gesamt.jpg';
-import fuechseGif from './assets/unnamed.gif';
-import praesidiumImg from './assets/1057c88a-73d0-40a5-bcf8-f60b018cdd56.webp';
-import liedGif from './assets/unnamed (1).gif';
-import zunftstubeImg from './assets/Zunftstube.jpg';
+// Wir importieren die wichtigen Bilder hier, um sie vorzuladen
+import heroBg from './assets/Gesamt.webp';
+import fuechseGif from './assets/unnamed.webp';
+import zunftstubeImg from './assets/Zunftstube.webp';
+
 
 // Components
 import Navigation from './components/Navigation';
@@ -19,6 +19,7 @@ import SEO from './components/SEO';
 import HomeSection from './sections/HomeSection';
 const NewsSection = lazy(() => import('./sections/NewsSection'));
 const AktuellesSection = lazy(() => import('./sections/AktuellesSection'));
+const GalerieSection = lazy(() => import('./sections/GalerieSection'));
 const FigurenSection = lazy(() => import('./sections/FigurenSection'));
 const GeschichteSection = lazy(() => import('./sections/GeschichteSection'));
 const ZunftstubeSection = lazy(() => import('./sections/ZunftstubeSection'));
@@ -48,7 +49,7 @@ const App = () => {
   // Initial Load: URL checken
   useEffect(() => {
     const path = window.location.pathname.substring(1); 
-    const validTabs = ['news', 'termine', 'figuren', 'geschichte', 'zunftstube', 'kontakt', 'impressum', 'datenschutz'];
+    const validTabs = ['news', 'termine', 'galerie', 'figuren', 'geschichte', 'zunftstube', 'kontakt', 'impressum', 'datenschutz'];
 
     if (validTabs.includes(path)) {
       setActiveTab(path);
@@ -57,46 +58,62 @@ const App = () => {
 
   // SEO Daten Mapping
   const getSeoData = (tab) => {
+    const baseUrl = "https://fuchszunft-menningen.de";
     const data = {
       home: { 
         title: "Fuchszunft Menningen e.V.", 
-        desc: "Offizielle Website der Fuchszunft Menningen e.V. - Alle Infos zur Fasnet, unseren Figuren Fuchs & Henne und aktuellen Terminen." 
+        desc: "Offizielle Website der Fuchszunft Menningen e.V. - Alle Infos zur Fasnet, unseren Figuren Fuchs & Henne und aktuellen Terminen.",
+        url: `${baseUrl}/`
       },
       news: { 
         title: "News | Fuchszunft Menningen", 
-        desc: "Aktuelle Neuigkeiten und Berichte der Fuchszunft Menningen. Bleib auf dem Laufenden über unser Vereinsleben." 
+        desc: "Aktuelle Neuigkeiten und Berichte der Fuchszunft Menningen. Bleib auf dem Laufenden über unser Vereinsleben.",
+        url: `${baseUrl}/news`
       },
       termine: { 
         title: "Termine | Fuchszunft Menningen", 
-        desc: "Aktuelle Termine: Alle Umzüge, Veranstaltungen und Termine der Fuchszunft im Überblick." 
+        desc: "Aktuelle Termine: Alle Umzüge, Veranstaltungen und Termine der Fuchszunft im Überblick.",
+        url: `${baseUrl}/termine`
+      },
+      galerie: {
+        title: "Galerie & Videos | Fuchszunft Menningen",
+        desc: "Bilder und Videos der Fuchszunft Menningen. Rückblicke auf Fasnachtsumzüge und Veranstaltungen.",
+        url: `${baseUrl}/galerie`
       },
       figuren: { 
         title: "Figuren | Fuchszunft Menningen", 
-        desc: "Unsere Figuren vorgestellt: Der Fuchs, die Gausmates und alle weiteren Figuren. Alles zu Häs und Geschichte." 
+        desc: "Unsere Figuren vorgestellt: Der Fuchs, die Gausmates und alle weiteren Figuren. Alles zu Häs und Geschichte.",
+        url: `${baseUrl}/figuren`
       },
       geschichte: { 
         title: "Geschichte | Fuchszunft Menningen", 
-        desc: "Die Chronik der Fuchszunft Menningen: Von der Gründung bis heute. Erfahre mehr über unsere Wurzeln." 
+        desc: "Die Chronik der Fuchszunft Menningen: Von der Gründung bis heute. Erfahre mehr über unsere Wurzeln.",
+        url: `${baseUrl}/geschichte`
       },
       zunftstube: { 
         title: "Zunftstube | Fuchszunft Menningen", 
-        desc: "Die Zunftstube Menningen: Unser Treffpunkt. Infos zu Veranstaltungen und Vermietung." 
+        desc: "Die Zunftstube Menningen: Unser Treffpunkt. Infos zu Veranstaltungen und Vermietung.",
+        url: `${baseUrl}/zunftstube`
       },
       kontakt: { 
         title: "Kontakt | Fuchszunft Menningen", 
-        desc: "Kontakt zur Fuchszunft Menningen e.V. - Wir freuen uns auf deine Nachricht." 
+        desc: "Kontakt zur Fuchszunft Menningen e.V. - Wir freuen uns auf deine Nachricht.",
+        url: `${baseUrl}/kontakt`
       },
       impressum: { 
         title: "Impressum | Fuchszunft Menningen", 
-        desc: "Impressum und rechtliche Angaben der Fuchszunft Menningen e.V." 
+        desc: "Impressum und rechtliche Angaben der Fuchszunft Menningen e.V.",
+        url: `${baseUrl}/impressum`
       },
       datenschutz: { 
         title: "Datenschutz | Fuchszunft Menningen", 
-        desc: "Datenschutzerklärung der Fuchszunft Menningen e.V." 
+        desc: "Datenschutzerklärung der Fuchszunft Menningen e.V.",
+        url: `${baseUrl}/datenschutz`
       }
     };
     return data[tab] || data.home;
   };
+
 
   const currentSeo = getSeoData(activeTab);
 
@@ -117,7 +134,7 @@ const App = () => {
     }
   }, [activeTab]);
 
-  // Handle Browser Back/Forward Button
+      const validTabs = ['news', 'termine', 'galerie', 'figuren', 'geschichte', 'zunftstube', 'kontakt', 'impressum', 'datenschutz'];
   useEffect(() => {
     const handlePopState = () => {
       const path = window.location.pathname.substring(1);
@@ -134,31 +151,29 @@ const App = () => {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  // Preload wichtige Sections im Hintergrund nach Initial Load
+  // Preload wichtige Sections UND BILDER im Hintergrund nach Initial Load
   useEffect(() => {
-    // Preload nach 2 Sekunden, wenn User noch auf der Seite ist
+    // 1. Module (Code) vorladen
     const timer = setTimeout(() => {
       import('./sections/NewsSection');
       import('./sections/AktuellesSection');
       import('./sections/FigurenSection');
-    }, 2000);
+      import('./sections/ZunftstubeSection');
+
+      // 2. Bilder vorladen (damit sie beim Klick sofort da sind)
+      const imagesToPreload = [
+        heroBg,       // Sollte schon da sein, aber sicher ist sicher
+        fuechseGif,   // Für Figuren-Seite
+        zunftstubeImg // Für Zunftstube-Seite
+      ];
+
+      imagesToPreload.forEach(src => {
+        const img = new Image();
+        img.src = src;
+      });
+
+    }, 2000); // 2 Sekunden warten, damit Initial Load nicht blockiert wird
     return () => clearTimeout(timer);
-  }, []);
-
-  // Preload critical images
-  useEffect(() => {
-    const imagesToPreload = [
-      heroBg,
-      fuechseGif,
-      praesidiumImg,
-      liedGif,
-      zunftstubeImg
-    ];
-
-    imagesToPreload.forEach(src => {
-      const img = new Image();
-      img.src = src;
-    });
   }, []);
 
   useEffect(() => {
@@ -200,6 +215,12 @@ const App = () => {
         return (
           <Suspense fallback={<LoadingSpinner />}>
             <AktuellesSection />
+          </Suspense>
+        );
+      case 'galerie':
+        return (
+          <Suspense fallback={<LoadingSpinner />}>
+            <GalerieSection />
           </Suspense>
         );
       case 'figuren':
@@ -255,7 +276,7 @@ const App = () => {
         toggleDarkMode={toggleDarkMode}
       />
 
-      <SEO title={currentSeo.title} description={currentSeo.desc} />
+      <SEO title={currentSeo.title} description={currentSeo.desc} url={currentSeo.url} />
 
       <main className="flex-grow pt-20">
         <ErrorBoundary>
