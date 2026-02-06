@@ -128,7 +128,6 @@ const App = () => {
     }
   }, [activeTab]);
 
-      const validTabs = ['news', 'termine', 'galerie', 'figuren', 'geschichte', 'zunftstube', 'kontakt', 'impressum', 'datenschutz'];
   useEffect(() => {
     const handlePopState = () => {
       const path = window.location.pathname.substring(1);
@@ -190,11 +189,6 @@ const App = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    setIsMenuOpen(false);
-  }, [activeTab]);
 
   const renderContent = () => {
     switch (activeTab) {

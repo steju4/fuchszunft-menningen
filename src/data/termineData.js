@@ -4,7 +4,7 @@ export const termine = [
   { datum: '24.01.', jahr: '2026', zeit: '14:00', wtag: 'SA', titel: 'Kinderumzug Leibertingen', ort: 'Leibertingen', highlight: true, desc: 'Treffpunkt Zunftstube 12:30 Uhr (Privat-PKW)' },
   { datum: '30.01.', jahr: '2026', zeit: '19:00', wtag: 'FR', titel: 'Nachtumzug Bichtlingen', ort: 'Bichtlingen', highlight: true },
   { datum: '01.02.', jahr: '2026', zeit: '13:30', wtag: 'SO', titel: 'Großer Narrensprung Bichtlingen', ort: 'Bichtlingen', highlight: true, desc: 'Hin-/Rückfahrt mit Biberbahn möglich' },
-  { datum: '08.02.', jahr: '2026', zeit: '13:00', wtag: 'SO', titel: 'Narrentreffen Oberkirch', ort: 'Oberkirch', highlight: true, desc: 'Abfahrt Bus 08:45 Uhr / Rückfahrt 17:30 Uhr' },
+  { datum: '08.02.', jahr: '2026', zeit: '13:00', wtag: 'SO', titel: 'Narrentreffen Oberkirch', ort: 'Oberkirch', highlight: true, desc: 'Abfahrt Bus 08:30 Uhr / Rückfahrt 17:30 Uhr' },
   { datum: '09.02.', jahr: '2026', zeit: '19:00', wtag: 'MO', titel: 'Käsfest', ort: 'Zunftstube', highlight: true },
   { datum: '12.02.', jahr: '2026', zeit: '06:00', wtag: 'DO', titel: 'Schmotziger Dunschdig', ort: 'Menningen', highlight: true, desc: 'Wecken (06:00), Narrenfrühstück (08:15), Umzug & Narrenbaumstellen (14:00), Närrischer Nachmittag (15:00), Hemdglonker (19:00)' },
   { datum: '14.02.', jahr: '2026', zeit: '19:33', wtag: 'SA', titel: 'Bürgerball', ort: 'Gemeindesaal', highlight: true },
