@@ -92,7 +92,7 @@ const NewsSection = ({ selectedArticle, setSelectedArticle }) => {
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {[...newsArticles].reverse().map((article) => (
+        {[...newsArticles].sort((a, b) => b.id - a.id).map((article) => (
           <article 
             key={article.id}
             onClick={() => setSelectedArticle(article.id)}
