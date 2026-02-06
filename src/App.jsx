@@ -56,7 +56,7 @@ const App = () => {
     const data = {
       home: { 
         title: "Fuchszunft Menningen e.V.", 
-        desc: "Offizielle Website der Fuchszunft Menningen e.V. - Alle Infos zur Fasnet, unseren Figuren Fuchs & Henne und aktuellen Terminen.",
+        desc: "Offizielle Website der Fuchszunft Menningen e.V. - Alle Infos zur Fasnet, unseren Figuren und aktuellen Terminen.",
         url: `${baseUrl}/`
       },
       news: { 
