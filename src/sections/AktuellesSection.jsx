@@ -1,8 +1,24 @@
-import React from 'react';
-import { Clock, MapPin, Download, Calendar } from 'lucide-react';
+import React, { useState } from 'react';
+import { Clock, MapPin, Download, Calendar, ChevronDown, ChevronUp } from 'lucide-react';
 import { termine } from '../data/termineData';
 
 const AktuellesSection = () => {
+  const [showAllPast, setShowAllPast] = useState(false);
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  // Termine parsen und prüfen, ob sie in der Vergangenheit liegen
+  const processedTermine = termine.map(termin => {
+    const [tag, monat] = termin.datum.split('.');
+    const date = new Date(parseInt(termin.jahr), parseInt(monat) - 1, parseInt(tag), 23, 59, 59);
+    return { ...termin, isPast: date < today, dateObj: date };
+  });
+
+  const pastCount = processedTermine.filter(t => t.isPast).length;
+  // Wir zeigen standardmäßig die letzten 2 vergangenen Termine an
+  const pastToShow = 2;
+  const hiddenPastCount = Math.max(0, pastCount - pastToShow);
 
   const generateICS = (terminListe) => {
     let icsContent = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Fuchszunft Menningen//Website//DE\nCALSCALE:GREGORIAN\nMETHOD:PUBLISH\n";
@@ -147,50 +163,80 @@ END:VEVENT
       </div>
 
       <div className="relative border-l-4 border-stone-200 dark:border-stone-700 ml-4 md:ml-8 space-y-8">
-        {termine.map((termin, idx) => (
-          <div key={idx} className="relative pl-8 md:pl-12">
+        {hiddenPastCount > 0 && !showAllPast && (
+          <div className="relative pl-8 md:pl-12 group cursor-pointer" onClick={() => setShowAllPast(true)}>
+            <div className="absolute -left-[16px] -translate-y-1/2 top-1/2 w-7 h-7 rounded-full border-4 border-white dark:border-stone-900 bg-stone-200 dark:bg-stone-700 flex items-center justify-center group-hover:bg-stone-300 dark:group-hover:bg-stone-600 transition-colors">
+              <ChevronDown size={14} className="text-stone-500 dark:text-stone-400" />
+            </div>
+            <div className="bg-stone-50 dark:bg-stone-800/50 p-3 rounded-xl border border-dashed border-stone-200 dark:border-stone-700 text-center text-sm font-medium text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 transition-colors">
+              {hiddenPastCount} vergangene Termine anzeigen
+            </div>
+          </div>
+        )}
+        
+        {processedTermine.map((termin, idx) => {
+          // Falls wir nicht alle vergangenen zeigen, blenden wir die ältesten aus
+          if (!showAllPast && termin.isPast && idx < hiddenPastCount) {
+             return null;
+          }
+
+          return (
+          <div key={idx} className={`relative pl-8 md:pl-12 ${termin.isPast ? 'opacity-60 saturate-50' : ''}`}>
             {/* Dot */}
-            <div className={`absolute -left-[13px] md:-left-[13px] w-6 h-6 rounded-full border-4 border-white dark:border-stone-900 ${termin.highlight ? 'bg-orange-600' : 'bg-stone-400 dark:bg-stone-600'}`}></div>
+            <div className={`absolute -left-[14px] top-0 mt-[-1px] w-6 h-6 rounded-full border-4 border-white dark:border-stone-900 ${termin.highlight && !termin.isPast ? 'bg-orange-600' : 'bg-stone-400 dark:bg-stone-600'}`}></div>
             
-            <div className={`bg-white dark:bg-stone-800 p-6 rounded-xl border shadow-sm hover:shadow-md transition-shadow ${termin.highlight ? 'border-orange-200 dark:border-orange-800 bg-orange-50/30 dark:bg-orange-900/20' : 'border-stone-100 dark:border-stone-700'}`}>
+            <div className={`bg-white dark:bg-stone-800 rounded-xl border transition-all ${termin.isPast ? 'p-4 border-stone-100 dark:border-stone-700/50 shadow-none hover:bg-stone-50 dark:hover:bg-stone-800' : 'p-6 shadow-sm hover:shadow-md'} ${termin.highlight && !termin.isPast ? 'border-orange-200 dark:border-orange-800 bg-orange-50/30 dark:bg-orange-900/20' : 'border-stone-100 dark:border-stone-700'}`}>
               <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-2">
                 <div className="flex-grow">
                   <div className="flex items-baseline gap-2">
-                    <span className={`font-bold text-2xl ${termin.highlight ? 'text-orange-600 dark:text-orange-500' : 'text-stone-700 dark:text-stone-300'}`}>
+                    <span className={`font-bold ${termin.isPast ? 'text-xl' : 'text-2xl'} ${termin.highlight && !termin.isPast ? 'text-orange-600 dark:text-orange-500' : 'text-stone-700 dark:text-stone-300'}`}>
                       {termin.datum}
                     </span>
                     <span className="text-sm font-bold bg-stone-100 dark:bg-stone-700 px-2 py-0.5 rounded text-stone-600 dark:text-stone-300">{termin.wtag}</span>
                     <span className="text-lg text-stone-400 dark:text-stone-500 font-normal hidden sm:inline">{termin.jahr}</span>
                   </div>
-                  <h3 className="text-xl font-bold text-stone-800 dark:text-stone-100 mt-1">{termin.titel}</h3>
+                  <h3 className={`font-bold text-stone-800 dark:text-stone-100 mt-1 ${termin.isPast ? 'text-lg text-stone-600 dark:text-stone-300' : 'text-xl'}`}>{termin.titel}</h3>
                 </div>
                 
                 <div className="flex items-center gap-2 self-start md:self-start">
-                  <div className="flex items-center gap-2 text-stone-500 dark:text-stone-400 bg-white/50 dark:bg-stone-900/50 px-3 py-1 rounded-full whitespace-nowrap border border-stone-100 dark:border-stone-700">
-                    <Clock size={14} /> {termin.zeit}
+                  <div className={`flex items-center gap-2 text-stone-500 dark:text-stone-400 bg-white/50 dark:bg-stone-900/50 rounded-full whitespace-nowrap border border-stone-100 dark:border-stone-700 ${termin.isPast ? 'px-2 py-0.5 text-sm' : 'px-3 py-1'}`}>
+                    <Clock size={termin.isPast ? 12 : 14} /> {termin.zeit}
                   </div>
-                   <button 
-                    onClick={() => exportSingleToCalendar(termin)}
-                    title="Diesen Termin in Kalender speichern"
-                    className="p-2 rounded-full hover:bg-stone-100 dark:hover:bg-stone-700 text-stone-400 hover:text-green-600 dark:text-stone-500 dark:hover:text-green-400 transition-colors"
-                  >
-                    <Calendar size={20} />
-                  </button>
+                   {!termin.isPast && (
+                     <button 
+                      onClick={() => exportSingleToCalendar(termin)}
+                      title="Diesen Termin in Kalender speichern"
+                      className="p-2 rounded-full hover:bg-stone-100 dark:hover:bg-stone-700 text-stone-400 hover:text-green-600 dark:text-stone-500 dark:hover:text-green-400 transition-colors"
+                     >
+                      <Calendar size={20} />
+                     </button>
+                   )}
                 </div>
               </div>
               
-              <div className="flex items-center gap-2 text-stone-600 dark:text-stone-300 font-medium mt-2">
-                <MapPin size={16} className="text-orange-500" /> {termin.ort}
+              <div className={`flex items-center gap-2 font-medium mt-2 ${termin.isPast ? 'text-stone-400 dark:text-stone-500 text-sm' : 'text-stone-600 dark:text-stone-300'}`}>
+                <MapPin size={termin.isPast ? 14 : 16} className={termin.isPast ? "text-stone-400" : "text-orange-500"} /> {termin.ort}
               </div>
               
               {termin.desc && (
-                <p className="mt-3 text-stone-500 dark:text-stone-400 text-sm italic border-t border-stone-200/50 dark:border-stone-700/50 pt-2">
+                <p className={`mt-3 italic border-t border-stone-200/50 dark:border-stone-700/50 pt-2 ${termin.isPast ? 'text-stone-400 dark:text-stone-500 text-xs' : 'text-stone-500 dark:text-stone-400 text-sm'}`}>
                   {termin.desc}
                 </p>
               )}
             </div>
           </div>
-        ))}
+        )})}
+        
+        {hiddenPastCount > 0 && showAllPast && (
+          <div className="relative pl-8 md:pl-12 group cursor-pointer" onClick={() => setShowAllPast(false)}>
+            <div className="absolute -left-[16px] -translate-y-1/2 top-1/2 w-7 h-7 rounded-full border-4 border-white dark:border-stone-900 bg-stone-200 dark:bg-stone-700 flex items-center justify-center group-hover:bg-stone-300 dark:group-hover:bg-stone-600 transition-colors">
+              <ChevronUp size={14} className="text-stone-500 dark:text-stone-400" />
+            </div>
+            <div className="bg-stone-50 dark:bg-stone-800/50 p-3 rounded-xl border border-dashed border-stone-200 dark:border-stone-700 text-center text-sm font-medium text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 transition-colors">
+              Ältere Termine einklappen
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="mt-12 text-center bg-stone-100 dark:bg-stone-800 p-8 rounded-xl">
