@@ -13,4 +13,5 @@ export const termine = [
   { datum: '20.02.', jahr: '2026', zeit: '19:30', wtag: 'FR', titel: 'Abschlusshock', ort: 'Vereinsheim', highlight: true },
   { datum: '21.02.', jahr: '2026', zeit: '17:00', wtag: 'SA', titel: 'Narrenbaum fällen', ort: 'Menningen', highlight: false },
   { datum: '02.03.', jahr: '2026', zeit: '18:00', wtag: 'MO', titel: 'Häsrückgabe', ort: 'Zunftstube', highlight: false, desc: '18:00 Uhr Kinder, 19:00 Uhr Erwachsene' },
+  { datum: '30.04.', jahr: '2026', zeit: '18:00', wtag: 'DO', titel: 'Maibaumstellen', ort: 'Dorfplatz Menningen', highlight: true }
 ];
