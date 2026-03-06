@@ -8,7 +8,7 @@ const Footer = ({ setActiveTab }) => {
       <div className="container mx-auto px-4 text-center">
         <div className="flex justify-center gap-6 mb-8">
           <a href="https://www.instagram.com/fuchszunft_menningen/" target="_blank" rel="noopener noreferrer" className="bg-stone-800 dark:bg-stone-900 p-3 rounded-full hover:bg-orange-600 hover:text-white transition-all"><Instagram size={24} /></a>
-          <a href="mailto:Fuchszunft-Menningen@t-online.de" className="bg-stone-800 dark:bg-stone-900 p-3 rounded-full hover:bg-orange-600 hover:text-white transition-all"><Mail size={24} /></a>
+          <a href="mailto:info@fuchszunft-menningen.de" className="bg-stone-800 dark:bg-stone-900 p-3 rounded-full hover:bg-orange-600 hover:text-white transition-all"><Mail size={24} /></a>
         </div>
         <div className="flex flex-wrap justify-center gap-6 text-sm mb-8 uppercase tracking-wider font-medium">
           <button onClick={() => setActiveTab('impressum')} className="hover:text-white transition-colors">Impressum</button>

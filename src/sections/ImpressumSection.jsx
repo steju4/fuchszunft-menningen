@@ -13,7 +13,7 @@ const ImpressumSection = () => (
 
       <div>
         <h3 className="text-xl font-bold text-stone-900 dark:text-stone-100 mb-2" id="m56">Kontaktmöglichkeiten</h3>
-        <p>E-Mail-Adresse: <a href="mailto:fuchszunft-menningen@t-online.de" className="text-orange-600 hover:text-orange-700 dark:text-orange-400 dark:hover:text-orange-300">fuchszunft-menningen@t-online.de</a></p>
+        <p>E-Mail-Adresse: <a href="mailto:info@fuchszunft-menningen.de" className="text-orange-600 hover:text-orange-700 dark:text-orange-400 dark:hover:text-orange-300">info@fuchszunft-menningen.de</a></p>
       </div>
 
       <div>
