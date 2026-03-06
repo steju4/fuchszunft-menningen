@@ -9,8 +9,8 @@ const __dirname = path.dirname(__filename);
 
 // Konfiguration
 const START_DIR = path.join(__dirname, 'public', 'galerie');
-const MAX_SIZE = 2100; // Maximale Größe für die längste Seite (egal ob hoch oder quer)
-const QUALITY = 80;    // Qualität 0-100
+const MAX_SIZE = 1400; // Maximale Größe für die längste Seite (egal ob hoch oder quer)
+const QUALITY = 82;    // Qualität 0-100
 
 async function processDirectory(directory) {
     const files = fs.readdirSync(directory);
