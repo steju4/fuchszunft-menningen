@@ -54,9 +54,9 @@ const KontaktSection = () => {
                 <Phone size={20} />
                 <span className="font-mono font-medium">0162 / 3029546</span>
               </a>
-              <a href="mailto:Fuchszunft-Menningen@t-online.de" className="flex items-center gap-3 text-stone-700 dark:text-stone-300 hover:text-orange-600 dark:hover:text-orange-400 transition-colors bg-stone-50 dark:bg-stone-800 p-4 rounded-lg border border-stone-200 dark:border-stone-700 hover:shadow-md">
+              <a href="mailto:info@fuchszunft-menningen.de" className="flex items-center gap-3 text-stone-700 dark:text-stone-300 hover:text-orange-600 dark:hover:text-orange-400 transition-colors bg-stone-50 dark:bg-stone-800 p-4 rounded-lg border border-stone-200 dark:border-stone-700 hover:shadow-md">
                 <Mail size={20} />
-                <span className="font-medium">Fuchszunft-Menningen@t-online.de</span>
+                <span className="font-medium">info@fuchszunft-menningen.de</span>
               </a>
             </div>
           </div>
