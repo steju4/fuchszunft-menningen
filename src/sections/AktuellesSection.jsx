@@ -223,6 +223,21 @@ END:VEVENT
                   {termin.desc}
                 </p>
               )}
+
+              {termin.details?.items?.length > 0 && (
+                <div className={`mt-3 border-t border-stone-200/50 dark:border-stone-700/50 pt-3 ${termin.isPast ? 'text-stone-500 dark:text-stone-500' : 'text-stone-700 dark:text-stone-300'}`}>
+                  {termin.details.heading && (
+                    <h4 className={`font-semibold mb-2 ${termin.isPast ? 'text-xs' : 'text-sm'}`}>
+                      {termin.details.heading}
+                    </h4>
+                  )}
+                  <ol className={`list-decimal pl-5 space-y-1 ${termin.isPast ? 'text-xs' : 'text-sm'}`}>
+                    {termin.details.items.map((item, itemIndex) => (
+                      <li key={`${termin.titel}-detail-${itemIndex}`}>{item}</li>
+                    ))}
+                  </ol>
+                </div>
+              )}
             </div>
           </div>
         )})}
