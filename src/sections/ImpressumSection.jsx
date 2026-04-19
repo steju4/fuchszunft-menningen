@@ -7,19 +7,19 @@ const ImpressumSection = () => (
       <div>
         <h3 className="text-xl font-bold text-stone-900 dark:text-stone-100 mb-2" id="m46">Diensteanbieter</h3>
         <p>Grafschaft Fuchsbühl zu Menningen e.V.</p>
-        <p>Brunnenäcker 9</p>
+        <p>Leitishofen 39</p>
         <p>88605 Meßkirch</p>
       </div>
 
       <div>
         <h3 className="text-xl font-bold text-stone-900 dark:text-stone-100 mb-2" id="m56">Kontaktmöglichkeiten</h3>
-        <p>Telefon: <a href="tel:01623029546" className="text-orange-600 hover:text-orange-700 dark:text-orange-400 dark:hover:text-orange-300">0162 / 3029546</a></p>
+        <p>Telefon: <a href="tel:01723201650" className="text-orange-600 hover:text-orange-700 dark:text-orange-400 dark:hover:text-orange-300">0172 / 3201650</a></p>
         <p>E-Mail-Adresse: <a href="mailto:info@fuchszunft-menningen.de" className="text-orange-600 hover:text-orange-700 dark:text-orange-400 dark:hover:text-orange-300">info@fuchszunft-menningen.de</a></p>
       </div>
 
       <div>
         <h3 className="text-xl font-bold text-stone-900 dark:text-stone-100 mb-2" id="m153">Vertretungsberechtigte Personen</h3>
-        <p>Vertretungsberechtigt: Winfried Stengele (Präsident)</p>
+        <p>Vertretungsberechtigt: Silvia Grüninger (Präsidentin)</p>
       </div>
 
       <div>

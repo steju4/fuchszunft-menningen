@@ -40,10 +40,10 @@ const DatenschutzSection = () => {
           <p>Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:</p>
           <p className="font-medium bg-stone-100 dark:bg-stone-900 p-4 rounded border border-stone-200 dark:border-stone-700">
             Grafschaft Fuchsbühl zu Menningen e.V.<br />
-            Winfried Stengele<br />
-            Brunnenäcker 9<br />
+            Silvia Grüninger<br />
+            Leitishofen 39<br />
             88605 Meßkirch-Menningen<br />
-            Telefon: 0162 / 3029546<br />
+            Telefon: 0172 3201650<br />
             E-Mail: info@fuchszunft-menningen.de
           </p>
           <p>

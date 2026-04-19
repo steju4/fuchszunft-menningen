@@ -44,15 +44,15 @@ const KontaktSection = () => {
           <h3 className="text-2xl font-bold text-orange-700 dark:text-orange-400 mb-6">Ansprechpartner</h3>
           <div className="space-y-6">
             <div>
-              <p className="font-bold text-stone-900 dark:text-stone-100 text-lg">Präsident</p>
-              <p className="text-lg text-stone-800 dark:text-stone-200">Winfried Stengele</p>
-              <p className="text-stone-600 dark:text-stone-300">Brunnenäcker 9<br/>88605 Meßkirch-Menningen</p>
+              <p className="font-bold text-stone-900 dark:text-stone-100 text-lg">Präsidentin</p>
+              <p className="text-lg text-stone-800 dark:text-stone-200">Silvia Grüninger</p>
+              <p className="text-stone-600 dark:text-stone-300">Leitishofen 39<br/>88605 Meßkirch-Menningen</p>
             </div>
             
             <div className="flex flex-col gap-3">
-              <a href="tel:01623029546" className="flex items-center gap-3 text-stone-700 dark:text-stone-300 hover:text-orange-600 dark:hover:text-orange-400 transition-colors bg-stone-50 dark:bg-stone-800 p-4 rounded-lg border border-stone-200 dark:border-stone-700 hover:shadow-md">
+              <a href="tel:01723201650" className="flex items-center gap-3 text-stone-700 dark:text-stone-300 hover:text-orange-600 dark:hover:text-orange-400 transition-colors bg-stone-50 dark:bg-stone-800 p-4 rounded-lg border border-stone-200 dark:border-stone-700 hover:shadow-md">
                 <Phone size={20} />
-                <span className="font-mono font-medium">0162 / 3029546</span>
+                <span className="font-mono font-medium">0172 3201650</span>
               </a>
               <a href="mailto:info@fuchszunft-menningen.de" className="flex items-center gap-3 text-stone-700 dark:text-stone-300 hover:text-orange-600 dark:hover:text-orange-400 transition-colors bg-stone-50 dark:bg-stone-800 p-4 rounded-lg border border-stone-200 dark:border-stone-700 hover:shadow-md">
                 <Mail size={20} />
