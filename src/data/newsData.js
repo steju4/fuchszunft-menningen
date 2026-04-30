@@ -1,5 +1,32 @@
 import News_1 from '../assets/News_1.png';
+import NeueVorstandschaft from '../assets/neue vorstandschaft.webp';
 export const newsArticles = [
+  {
+    id: 2,
+    title: "Führungswechsel bei der Fuchszunft Menningen",
+    date: "28. April 2026",
+    category: "Aktuelles",
+    preview: "Winfried Stengele gibt nach zwölf Jahren das Präsidentenamt ab. Silvia Grüninger übernimmt und wurde mit viel Beifall gewählt.",
+    content: `
+      Bei der 69. Hauptversammlung der Fuchszunft Menningen im Gasthof Adler in Leitishofen ging es vor allem um die neue Führung der Zunft. Nach zwölf Jahren an der Spitze stellte sich Winfried Stengele nicht mehr zur Wahl. Silvia Grüninger stellte sich für das Amt zur Verfügung und wurde einstimmig als neue Präsidentin gewählt.
+
+      **Abschied von Winfried Stengele**
+
+      Winfried Stengele war seit 2005 im Zunftrat vertreten. Zwischen 2011 und 2014 übernahm er das Amt des zweiten Zunftmeisters, bevor er die Fuchszunft von 2014 bis 2026 als Präsident führte. Zum Dank seiner langjährigen Dienste überreichten ihm die Mitglieder ein Erinnerungsalbum, begleitet von viel Applaus. Damit war er insgesamt 21 Jahre in der Vorstandschaft und im Zunftrat der Fuchszunft Menningen aktiv.
+
+      **Silvia Grüninger übernimmt**
+
+      Silvia Grüninger wurde zur neuen Präsidentin gewählt und mit viel Applaus begrüßt. Sie war seit 2015 im Zunftrat und zuletzt als Schriftführerin aktiv. Jetzt übernimmt sie das Amt der Präsidentin.
+
+      Die Fuchszunft zählt derzeit 125 Mitglieder.
+
+      Wer mehr dazu lesen möchte, findet den ausführlichen Bericht im SÜDKURIER.
+    `,
+    author: "",
+    sourceUrl: "https://www.suedkurier.de/linzgau/fuehrungswechsel-bei-der-fuchszunft-menningen-114043976",
+    sourceLabel: "Zum SÜDKURIER-Artikel",
+    image: NeueVorstandschaft
+  },
   {
     id: 1,
     title: "Neue Webseite der Fuchszunft Menningen ist online!",
