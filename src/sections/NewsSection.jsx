@@ -66,6 +66,20 @@ const NewsSection = ({ selectedArticle, setSelectedArticle }) => {
                 return null;
               })}
             </div>
+
+            {article.sourceUrl && (
+              <div className="mt-8 pt-6 border-t border-stone-200 dark:border-stone-700">
+                <a
+                  href={article.sourceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-orange-600 hover:text-orange-800 dark:text-orange-400 dark:hover:text-orange-300 font-medium transition-colors"
+                >
+                  {article.sourceLabel || 'Quelle öffnen'}
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            )}
           </div>
         </article>
       </div>
