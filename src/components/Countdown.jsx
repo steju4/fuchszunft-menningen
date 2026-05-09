@@ -12,21 +12,32 @@ const Countdown = () => {
     return new Date(year, month, day, hours, minutes);
   };
 
-  // Nächstes Highlight finden
-  const nextHighlight = useMemo(() => {
+  const nextEvent = useMemo(() => {
     const now = new Date();
-    // Filtere Events, die ein Highlight sind UND in der Zukunft liegen
-    const upcoming = termine
+    const mapped = termine
       .map(t => ({ ...t, dateObj: parseDate(t) }))
-      .filter(t => t.highlight && t.dateObj > now)
+      .filter(t => t.dateObj > now)
       .sort((a, b) => a.dateObj - b.dateObj);
 
-    return upcoming.length > 0 ? upcoming[0] : null;
+    const nextHighlight = mapped.find(t => t.highlight);
+    const nextZunftstube = mapped.find(
+      t => t.titel === 'Zunftstube geöffnet' || t.ort === 'Zunftstube'
+    );
+
+    if (!nextHighlight && !nextZunftstube) {
+      return mapped[0] || null;
+    }
+
+    if (nextHighlight && nextZunftstube) {
+      return nextHighlight.dateObj <= nextZunftstube.dateObj ? nextHighlight : nextZunftstube;
+    }
+
+    return nextHighlight || nextZunftstube || null;
   }, []); // Nur beim Mounten berechnen (oder wenn sich termine ändern würde)
 
-  // Wenn kein Highlight mehr da ist dieses Jahr (Fallback)
-  const targetDate = nextHighlight 
-    ? nextHighlight.dateObj.getTime() 
+  // Wenn kein Termin mehr da ist dieses Jahr (Fallback)
+  const targetDate = nextEvent
+    ? nextEvent.dateObj.getTime()
     : new Date('2026-11-11T11:11:00').getTime(); // Fallback 11.11.
 
   // Berechnung
@@ -60,14 +71,14 @@ const Countdown = () => {
     <div className="bg-stone-900/80 backdrop-blur-md text-white p-6 rounded-xl border border-orange-500/30 shadow-2xl max-w-2xl mx-auto mt-6 mb-0">
       <div className="text-center mb-3">
         <h3 className="text-orange-400 uppercase tracking-widest text-xs font-bold mb-1">
-          {nextHighlight ? 'Nächster Termin' : 'Vorschau'}
+          {nextEvent ? 'Nächster Termin' : 'Vorschau'}
         </h3>
         <div className="text-xl md:text-2xl font-black text-stone-100 leading-tight">
-          {nextHighlight ? nextHighlight.titel : 'Fasneteröffnung 11.11.'}
+          {nextEvent ? nextEvent.titel : 'Fasneteröffnung 11.11.'}
         </div>
-        {nextHighlight && (
+        {nextEvent && (
           <div className="text-stone-400 text-sm mt-1">
-             {nextHighlight.datum}{nextHighlight.jahr} &bull; {nextHighlight.ort}
+             {nextEvent.datum}{nextEvent.jahr} &bull; {nextEvent.ort}
           </div>
         )}
       </div>

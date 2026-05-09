@@ -4,6 +4,7 @@ import { termine } from '../data/termineData';
 
 const AktuellesSection = () => {
   const [showAllPast, setShowAllPast] = useState(false);
+  const [showAllFuture, setShowAllFuture] = useState(false);
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -19,6 +20,9 @@ const AktuellesSection = () => {
   // Wir zeigen standardmäßig die letzten 2 vergangenen Termine an
   const pastToShow = 2;
   const hiddenPastCount = Math.max(0, pastCount - pastToShow);
+  const futureCount = processedTermine.filter(t => !t.isPast).length;
+  const futureToShow = 4;
+  const hiddenFutureCount = Math.max(0, futureCount - futureToShow);
 
   const generateICS = (terminListe) => {
     let icsContent = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Fuchszunft Menningen//Website//DE\nCALSCALE:GREGORIAN\nMETHOD:PUBLISH\n";
@@ -175,6 +179,10 @@ END:VEVENT
         )}
         
         {processedTermine.map((termin, idx) => {
+          const futureIndex = termin.isPast ? null : processedTermine.slice(0, idx + 1).filter(t => !t.isPast).length - 1;
+          if (!showAllFuture && !termin.isPast && futureIndex >= futureToShow) {
+             return null;
+          }
           // Falls wir nicht alle vergangenen zeigen, blenden wir die ältesten aus
           if (!showAllPast && termin.isPast && idx < hiddenPastCount) {
              return null;
@@ -241,6 +249,17 @@ END:VEVENT
             </div>
           </div>
         )})}
+
+        {hiddenFutureCount > 0 && !showAllFuture && (
+          <div className="relative pl-8 md:pl-12 group cursor-pointer" onClick={() => setShowAllFuture(true)}>
+            <div className="absolute -left-[16px] -translate-y-1/2 top-1/2 w-7 h-7 rounded-full border-4 border-white dark:border-stone-900 bg-stone-200 dark:bg-stone-700 flex items-center justify-center group-hover:bg-stone-300 dark:group-hover:bg-stone-600 transition-colors">
+              <ChevronDown size={14} className="text-stone-500 dark:text-stone-400" />
+            </div>
+            <div className="bg-stone-50 dark:bg-stone-800/50 p-3 rounded-xl border border-dashed border-stone-200 dark:border-stone-700 text-center text-sm font-medium text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 transition-colors">
+              {hiddenFutureCount} weitere kommende Termine anzeigen
+            </div>
+          </div>
+        )}
         
         {hiddenPastCount > 0 && showAllPast && (
           <div className="relative pl-8 md:pl-12 group cursor-pointer" onClick={() => setShowAllPast(false)}>
@@ -249,6 +268,17 @@ END:VEVENT
             </div>
             <div className="bg-stone-50 dark:bg-stone-800/50 p-3 rounded-xl border border-dashed border-stone-200 dark:border-stone-700 text-center text-sm font-medium text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 transition-colors">
               Ältere Termine einklappen
+            </div>
+          </div>
+        )}
+
+        {hiddenFutureCount > 0 && showAllFuture && (
+          <div className="relative pl-8 md:pl-12 group cursor-pointer" onClick={() => setShowAllFuture(false)}>
+            <div className="absolute -left-[16px] -translate-y-1/2 top-1/2 w-7 h-7 rounded-full border-4 border-white dark:border-stone-900 bg-stone-200 dark:bg-stone-700 flex items-center justify-center group-hover:bg-stone-300 dark:group-hover:bg-stone-600 transition-colors">
+              <ChevronUp size={14} className="text-stone-500 dark:text-stone-400" />
+            </div>
+            <div className="bg-stone-50 dark:bg-stone-800/50 p-3 rounded-xl border border-dashed border-stone-200 dark:border-stone-700 text-center text-sm font-medium text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 transition-colors">
+              Kommende Termine einklappen
             </div>
           </div>
         )}
