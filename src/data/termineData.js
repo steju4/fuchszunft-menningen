@@ -38,5 +38,20 @@ export const termine = [
       ]
     }
   },
-  { datum: '30.04.', jahr: '2026', zeit: '18:00', wtag: 'DO', titel: 'Maibaumstellen', ort: 'Dorfplatz Menningen', highlight: true }
+  { datum: '30.04.', jahr: '2026', zeit: '18:00', wtag: 'DO', titel: 'Maibaumstellen', ort: 'Dorfplatz Menningen', highlight: true },
+  { datum: '04.05.', jahr: '2026', zeit: '20:00', wtag: 'MO', titel: 'Zunftstube geöffnet', ort: 'Zunftstube', highlight: false },
+  { datum: '18.05.', jahr: '2026', zeit: '20:00', wtag: 'MO', titel: 'Zunftstube geöffnet', ort: 'Zunftstube', highlight: false },
+  { datum: '01.06.', jahr: '2026', zeit: '20:00', wtag: 'MO', titel: 'Zunftstube geöffnet', ort: 'Zunftstube', highlight: false },
+  { datum: '15.06.', jahr: '2026', zeit: '20:00', wtag: 'MO', titel: 'Zunftstube geöffnet', ort: 'Zunftstube', highlight: false },
+  { datum: '06.07.', jahr: '2026', zeit: '20:00', wtag: 'MO', titel: 'Zunftstube geöffnet', ort: 'Zunftstube', highlight: false },
+  { datum: '20.07.', jahr: '2026', zeit: '20:00', wtag: 'MO', titel: 'Zunftstube geöffnet', ort: 'Zunftstube', highlight: false },
+  { datum: '07.09.', jahr: '2026', zeit: '20:00', wtag: 'MO', titel: 'Zunftstube geöffnet', ort: 'Zunftstube', highlight: false },
+  { datum: '28.09.', jahr: '2026', zeit: '20:00', wtag: 'MO', titel: 'Zunftstube geöffnet', ort: 'Zunftstube', highlight: false },
+  { datum: '12.10.', jahr: '2026', zeit: '20:00', wtag: 'MO', titel: 'Zunftstube geöffnet', ort: 'Zunftstube', highlight: false },
+  { datum: '26.10.', jahr: '2026', zeit: '20:00', wtag: 'MO', titel: 'Zunftstube geöffnet', ort: 'Zunftstube', highlight: false },
+  { datum: '11.11.', jahr: '2026', zeit: '20:00', wtag: 'MI', titel: '11.11. Sitzung', ort: 'Zunftstube', highlight: true },
+  { datum: '16.11.', jahr: '2026', zeit: '20:00', wtag: 'MO', titel: 'Zunftstube geöffnet', ort: 'Zunftstube', highlight: false },
+  { datum: '30.11.', jahr: '2026', zeit: '20:00', wtag: 'MO', titel: 'Zunftstube geöffnet', ort: 'Zunftstube', highlight: false },
+  { datum: '14.12.', jahr: '2026', zeit: '20:00', wtag: 'MO', titel: 'Zunftstube geöffnet', ort: 'Zunftstube', highlight: false },
+  { datum: '31.12.', jahr: '2026', zeit: '14:00', wtag: 'DO', titel: 'Silvester-Baschen', ort: 'Zunftstube', highlight: false }
 ];
