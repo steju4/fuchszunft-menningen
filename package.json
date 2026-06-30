@@ -15,24 +15,24 @@
     "ics": "^3.8.1",
     "jspdf": "^4.1.0",
     "lucide-react": "^0.554.0",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
     "yet-another-react-lightbox": "^3.28.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.1",
-    "@types/react": "^19.2.15",
+    "@eslint/js": "^9.39.4",
+    "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react-swc": "^4.3.1",
-    "autoprefixer": "^10.4.22",
-    "baseline-browser-mapping": "^2.10.32",
-    "eslint": "^9.39.1",
+    "autoprefixer": "^10.5.2",
+    "baseline-browser-mapping": "^2.10.40",
+    "eslint": "^9.39.4",
     "eslint-plugin-react-hooks": "^7.0.1",
-    "eslint-plugin-react-refresh": "^0.4.24",
-    "globals": "^16.5.0",
-    "postcss": "^8.5.15",
+    "eslint-plugin-react-refresh": "^0.5.3",
+    "globals": "^17.7.0",
+    "postcss": "^8.5.16",
     "tailwindcss": "^3.4.18",
     "terser": "^5.48.0",
-    "vite": "^7.2.4"
+    "vite": "^7.3.6"
   }
 }
