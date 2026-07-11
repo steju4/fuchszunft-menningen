@@ -1,10 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Clock, MapPin, Download, Calendar, ChevronDown, ChevronUp } from 'lucide-react';
 import { termine } from '../data/termineData';
+import { buildTermineEventsJsonLd } from '../utils/eventSchema';
 
 const AktuellesSection = () => {
   const [showAllPast, setShowAllPast] = useState(false);
   const [showAllFuture, setShowAllFuture] = useState(false);
+
+  // Event-Structured-Data (schema.org), damit Google die Termine als
+  // Rich Results (Datum, Ort) anzeigen kann.
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(buildTermineEventsJsonLd(termine));
+    document.head.appendChild(script);
+    return () => script.remove();
+  }, []);
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);

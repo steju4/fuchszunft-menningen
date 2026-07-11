@@ -1,4 +1,5 @@
 {
+  "cleanUrls": true,
   "redirects": [
     { "source": "/aktuelles.htm", "destination": "/news", "permanent": true },
     { "source": "/kontakt.htm", "destination": "/kontakt", "permanent": true },
@@ -13,9 +14,6 @@
     { "source": "/Zunftlied.htm", "destination": "/geschichte", "permanent": true },
     { "source": "/Links.htm", "destination": "/", "permanent": true },
     { "source": "/Navigation.htm", "destination": "/", "permanent": true }
-  ],
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
   ],
   "headers": [
     {
@@ -36,5 +34,9 @@
         }
       ]
     }
+  ],
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "status": 404, "dest": "/404.html" }
   ]
 }

@@ -26,4 +26,11 @@ export default defineConfig([
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
     },
   },
+  {
+    // Node-Build-Skripte (laufen nicht im Browser)
+    files: ['scripts/**/*.js', '*.config.js', 'optimize-*.js', 'update-gallery.js'],
+    languageOptions: {
+      globals: globals.node,
+    },
+  },
 ])

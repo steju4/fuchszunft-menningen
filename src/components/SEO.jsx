@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const SEO = ({ title, description, url, image }) => {
+const SEO = ({ title, description, url, image, noindex }) => {
   useEffect(() => {
     // 1. Titel setzen
     document.title = title;
@@ -52,8 +52,21 @@ const SEO = ({ title, description, url, image }) => {
         setMetaTag('meta[property="og:image"]', 'content', image);
     }
 
+    // 4. Robots Meta (z.B. für die 404-Seite: nicht indexieren)
+    let robotsTag = document.querySelector('meta[name="robots"]');
+    if (noindex) {
+        if (!robotsTag) {
+            robotsTag = document.createElement('meta');
+            robotsTag.name = 'robots';
+            document.head.appendChild(robotsTag);
+        }
+        robotsTag.setAttribute('content', 'noindex, follow');
+    } else if (robotsTag) {
+        robotsTag.remove();
+    }
+
     // Cleanup nicht zwingend nötig für SPA transitionen, da Werte überschrieben werden
-  }, [title, description, url, image]);
+  }, [title, description, url, image, noindex]);
 
   return null;
 };
