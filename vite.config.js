@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
+import react from '@vitejs/plugin-react'
 
 // Plugin: Hero-Hintergrundbild vorab laden via <link rel="preload">
 function preloadHeroImage() {
