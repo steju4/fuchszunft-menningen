@@ -26,7 +26,6 @@ const KontaktSection = () => {
         setResult("Nachricht erfolgreich gesendet!");
         event.target.reset();
       } else {
-        console.log("Error", data);
         setResult(data.message);
       }
     } catch (error) {
