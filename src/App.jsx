@@ -4,7 +4,6 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 
 // Assets for Preloading
 // Wir importieren die wichtigen Bilder hier, um sie vorzuladen
-import heroBg from './assets/Gesamt.webp';
 import fuechseGif from './assets/unnamed.webp';
 import zunftstubeImg from './assets/Zunftstube.webp';
 
@@ -30,8 +29,18 @@ const KontaktSection = lazy(() => import('./sections/KontaktSection'));
 const ImpressumSection = lazy(() => import('./sections/ImpressumSection'));
 const DatenschutzSection = lazy(() => import('./sections/DatenschutzSection'));
 
+// Liest den aktuellen Pfad direkt beim ersten Rendern aus (statt in einem
+// Effect danach), damit gleich die richtige Seite angezeigt wird - ohne
+// kurzes Aufblitzen der Startseite bei Direktaufrufen von Unterseiten.
+const getInitialTab = () => {
+  const path = window.location.pathname.substring(1);
+  if (path === '') return 'home';
+  if (PAGE_TABS.includes(path)) return path;
+  return 'notfound';
+};
+
 const App = () => {
-  const [activeTab, setActiveTab] = useState('home');
+  const [activeTab, setActiveTab] = useState(getInitialTab);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState(null);
@@ -39,21 +48,8 @@ const App = () => {
     return localStorage.getItem('theme') === 'dark' ||
       (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
   });
-  
+
   const isFirstRun = useRef(true);
-
-  // Initial Load: URL checken
-  useEffect(() => {
-    const path = window.location.pathname.substring(1);
-
-    if (path === '') {
-      setActiveTab('home');
-    } else if (PAGE_TABS.includes(path)) {
-      setActiveTab(path);
-    } else {
-      setActiveTab('notfound');
-    }
-  }, []);
 
   const currentSeo = getSeoData(activeTab);
 

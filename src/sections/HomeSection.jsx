@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { FileText, Calendar, Users, ChevronRight, Award, Shield, Bell, MapPin } from 'lucide-react';
 import Countdown from '../components/Countdown';
 import { termine } from '../data/termineData';
