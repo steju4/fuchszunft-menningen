@@ -220,7 +220,7 @@ const App = () => {
 
       <SEO title={currentSeo.title} description={currentSeo.desc} url={currentSeo.url} noindex={currentSeo.noindex} />
 
-      <main className="flex-grow pt-20">
+      <main className="grow pt-20">
         <ErrorBoundary>
           {renderContent()}
         </ErrorBoundary>

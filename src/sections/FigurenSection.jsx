@@ -60,7 +60,7 @@ const FigurenSection = () => {
             <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">{figur.emoji}</div>
             <div className="flex justify-between items-start mb-2">
               <h3 className="text-xl font-bold text-stone-800 dark:text-stone-100">{figur.name}</h3>
-              <span className="text-xs font-bold bg-white dark:bg-stone-700 px-2 py-1 rounded text-stone-600 dark:text-stone-300 shadow-sm">{figur.year}</span>
+              <span className="text-xs font-bold bg-white dark:bg-stone-700 px-2 py-1 rounded-sm text-stone-600 dark:text-stone-300 shadow-xs">{figur.year}</span>
             </div>
             <p className="text-stone-700 dark:text-stone-300 leading-relaxed">
               {figur.desc}

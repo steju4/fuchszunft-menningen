@@ -20,7 +20,7 @@ const ZunftstubeSection = () => {
         style={{ backgroundImage: `url(${Zunftstube})` }}
       />
       {/* Gradient Overlay for readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-stone-900/90 via-stone-900/80 to-stone-900 dark:from-stone-950/90 dark:via-stone-950/80 dark:to-stone-950" />
+      <div className="absolute inset-0 bg-linear-to-b from-stone-900/90 via-stone-900/80 to-stone-900 dark:from-stone-950/90 dark:via-stone-950/80 dark:to-stone-950" />
 
       {/* Decorative background element */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-orange-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>

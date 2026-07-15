@@ -3,7 +3,7 @@ import React from 'react';
 const ImpressumSection = () => (
   <div className="container mx-auto px-4 py-12 max-w-4xl animate-fadeIn">
     <h2 className="text-4xl font-bold text-stone-800 dark:text-stone-100 mb-8">Impressum</h2>
-    <div className="bg-white dark:bg-stone-800 p-8 rounded-xl shadow-sm border border-stone-200 dark:border-stone-700 text-stone-700 dark:text-stone-300 space-y-6">
+    <div className="bg-white dark:bg-stone-800 p-8 rounded-xl shadow-xs border border-stone-200 dark:border-stone-700 text-stone-700 dark:text-stone-300 space-y-6">
       <div>
         <h3 className="text-xl font-bold text-stone-900 dark:text-stone-100 mb-2" id="m46">Diensteanbieter</h3>
         <p>Grafschaft Fuchsbühl zu Menningen e.V.</p>

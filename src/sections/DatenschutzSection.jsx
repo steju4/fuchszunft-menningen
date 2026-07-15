@@ -38,7 +38,7 @@ const DatenschutzSection = () => {
           {/* 2 */}
           <h2 className="text-2xl font-bold text-stone-900 dark:text-white mt-8">2. Verantwortliche Stelle</h2>
           <p>Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:</p>
-          <p className="font-medium bg-stone-100 dark:bg-stone-900 p-4 rounded border border-stone-200 dark:border-stone-700">
+          <p className="font-medium bg-stone-100 dark:bg-stone-900 p-4 rounded-sm border border-stone-200 dark:border-stone-700">
             Grafschaft Fuchsbühl zu Menningen e.V.<br />
             Silvia Grüninger<br />
             Leitishofen 39<br />
@@ -146,7 +146,7 @@ const DatenschutzSection = () => {
           <p>
             Sie haben gemäß Art. 77 DSGVO das Recht, sich bei einer Datenschutz-Aufsichtsbehörde über die Verarbeitung Ihrer personenbezogenen Daten durch uns zu beschweren. Die für uns zuständige Aufsichtsbehörde ist:
           </p>
-          <p className="bg-stone-100 dark:bg-stone-900 p-4 rounded border border-stone-200 dark:border-stone-700">
+          <p className="bg-stone-100 dark:bg-stone-900 p-4 rounded-sm border border-stone-200 dark:border-stone-700">
             Der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Baden-Württemberg<br />
             Postfach 10 29 32, 70025 Stuttgart<br />
             Lautenschlagerstraße 20, 70173 Stuttgart<br />

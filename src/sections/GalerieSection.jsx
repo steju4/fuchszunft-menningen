@@ -97,8 +97,8 @@ const GalerieSection = () => {
                      />
                      
                      {/* Overlay */}
-                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
-                          <span className="bg-orange-600 text-white text-xs font-bold px-2 py-1 rounded w-fit mb-2">
+                     <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
+                          <span className="bg-orange-600 text-white text-xs font-bold px-2 py-1 rounded-sm w-fit mb-2">
                               {album.year}
                           </span>
                           <h4 className="text-white font-bold text-xl">{album.title}</h4>
