@@ -84,4 +84,8 @@ export default defineConfig({
   optimizeDeps: {
     include: ['react', 'react-dom', 'lucide-react'],
   },
+  test: {
+    environment: 'node',
+    include: ['src/**/*.test.js', 'scripts/**/*.test.js'],
+  },
 })
