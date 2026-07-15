@@ -23,6 +23,12 @@ const HomeSection = ({ setActiveTab }) => {
     <div className="relative flex flex-col overflow-hidden bg-stone-900">
 
       {/* Hintergrundbild - Als Image Tag für besseres LCP/Preloading */}
+      {/*
+        Das "!" bei 3xl/4xl erzwingt !important: Tailwind v4 platziert diese
+        Regeln vor md:/sm: im generierten CSS, wodurch md: sie sonst bei
+        Breiten ab 1350px überschreiben würde (der Personen-Ausschnitt im
+        Bild wäre dann bei normalen Desktop-Auflösungen nicht mehr sichtbar).
+      */}
       <img
         src={heroBg}
         srcSet={`${heroMobile} 800w, ${heroBg} 1920w`}
@@ -30,12 +36,12 @@ const HomeSection = ({ setActiveTab }) => {
         alt="Zunftrat der Fuchszunft Menningen"
         fetchPriority="high"
         loading="eager"
-        className="absolute inset-0 w-full h-full object-cover opacity-50 
-        object-[center_-260px] 
-        sm:object-[center_-180px] 
-        md:object-[center_-190px] 
-        min-[1350px]:object-[center_-320px] 
-        min-[1600px]:object-[center_-450px]"
+        className="absolute inset-0 w-full h-full object-cover opacity-50
+        object-[center_-260px]
+        sm:object-[center_-180px]
+        md:object-[center_-190px]
+        3xl:object-[center_-320px]!
+        4xl:object-[center_-450px]!"
       />
       
       {/* Dynamischer Gradient - schwächer oben, stärker unten */}

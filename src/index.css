@@ -3,6 +3,20 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
+  Zusätzliche Breakpoints oberhalb von 2xl (Standard-Skala endet bei 1536px),
+  für die feinjustierte object-position des Hero-Hintergrundbilds in
+  HomeSection.jsx (dort zusätzlich mit "!" erzwungen, siehe Kommentar dort -
+  Tailwind v4 platziert diese Regeln beim CSS-Export vor den md:/sm:-Regeln,
+  wodurch md: sonst die eigentlich speziellere Regel bei Breiten >1350px
+  überschreiben würde, unabhängig davon ob der Breakpoint hier benannt oder
+  als min-[…]-Arbitrary-Variant direkt in der Klasse steht).
+*/
+@theme {
+  --breakpoint-3xl: 1350px;
+  --breakpoint-4xl: 1600px;
+}
+
+/*
   The default border color has changed to `currentcolor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still
   looks the same as it did with Tailwind CSS v3.
