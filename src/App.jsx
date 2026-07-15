@@ -4,7 +4,6 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 
 // Assets for Preloading
 // Wir importieren die wichtigen Bilder hier, um sie vorzuladen
-import heroBg from './assets/Gesamt.webp';
 import fuechseGif from './assets/unnamed.webp';
 import zunftstubeImg from './assets/Zunftstube.webp';
 
@@ -15,9 +14,11 @@ import Footer from './components/Footer';
 import ErrorBoundary from './components/ErrorBoundary';
 import SEO from './components/SEO';
 import LoadingSpinner from './components/LoadingSpinner';
+import { PAGE_TABS, getSeoData } from './data/seoData';
 
 // Sections - Home wird direkt geladen, Rest lazy mit Preload
 import HomeSection from './sections/HomeSection';
+import NotFoundSection from './sections/NotFoundSection';
 const NewsSection = lazy(() => import('./sections/NewsSection'));
 const AktuellesSection = lazy(() => import('./sections/AktuellesSection'));
 const GalerieSection = lazy(() => import('./sections/GalerieSection'));
@@ -28,8 +29,18 @@ const KontaktSection = lazy(() => import('./sections/KontaktSection'));
 const ImpressumSection = lazy(() => import('./sections/ImpressumSection'));
 const DatenschutzSection = lazy(() => import('./sections/DatenschutzSection'));
 
+// Liest den aktuellen Pfad direkt beim ersten Rendern aus (statt in einem
+// Effect danach), damit gleich die richtige Seite angezeigt wird - ohne
+// kurzes Aufblitzen der Startseite bei Direktaufrufen von Unterseiten.
+const getInitialTab = () => {
+  const path = window.location.pathname.substring(1);
+  if (path === '') return 'home';
+  if (PAGE_TABS.includes(path)) return path;
+  return 'notfound';
+};
+
 const App = () => {
-  const [activeTab, setActiveTab] = useState('home');
+  const [activeTab, setActiveTab] = useState(getInitialTab);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState(null);
@@ -37,77 +48,8 @@ const App = () => {
     return localStorage.getItem('theme') === 'dark' ||
       (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
   });
-  
+
   const isFirstRun = useRef(true);
-
-  // Initial Load: URL checken
-  useEffect(() => {
-    const path = window.location.pathname.substring(1); 
-    const validTabs = ['news', 'termine', 'galerie', 'figuren', 'geschichte', 'zunftstube', 'kontakt', 'impressum', 'datenschutz'];
-
-    if (validTabs.includes(path)) {
-      setActiveTab(path);
-    }
-  }, []);
-
-  // SEO Daten Mapping
-  const getSeoData = (tab) => {
-    const baseUrl = "https://fuchszunft-menningen.de";
-    const data = {
-      home: { 
-        title: "Fuchszunft Menningen e.V.", 
-        desc: "Offizielle Website der Fuchszunft Menningen e.V. - Alle Infos zur Fasnet, unseren Figuren und aktuellen Terminen.",
-        url: `${baseUrl}/`
-      },
-      news: { 
-        title: "News | Fuchszunft Menningen", 
-        desc: "Aktuelle Neuigkeiten und Berichte der Fuchszunft Menningen. Bleib auf dem Laufenden über unser Vereinsleben.",
-        url: `${baseUrl}/news`
-      },
-      termine: { 
-        title: "Termine | Fuchszunft Menningen", 
-        desc: "Aktuelle Termine: Alle Umzüge, Veranstaltungen und Termine der Fuchszunft im Überblick.",
-        url: `${baseUrl}/termine`
-      },
-      galerie: {
-        title: "Galerie & Videos | Fuchszunft Menningen",
-        desc: "Bilder und Videos der Fuchszunft Menningen. Rückblicke auf Fasnachtsumzüge und Veranstaltungen.",
-        url: `${baseUrl}/galerie`
-      },
-      figuren: { 
-        title: "Figuren | Fuchszunft Menningen", 
-        desc: "Unsere Figuren vorgestellt: Der Fuchs, die Gausmates und alle weiteren Figuren. Alles zu Häs und Geschichte.",
-        url: `${baseUrl}/figuren`
-      },
-      geschichte: { 
-        title: "Geschichte | Fuchszunft Menningen", 
-        desc: "Die Chronik der Fuchszunft Menningen: Von der Gründung bis heute. Erfahre mehr über unsere Wurzeln.",
-        url: `${baseUrl}/geschichte`
-      },
-      zunftstube: { 
-        title: "Zunftstube | Fuchszunft Menningen", 
-        desc: "Die Zunftstube Menningen: Unser Treffpunkt. Infos zu Veranstaltungen und Vermietung.",
-        url: `${baseUrl}/zunftstube`
-      },
-      kontakt: { 
-        title: "Kontakt | Fuchszunft Menningen", 
-        desc: "Kontakt zur Fuchszunft Menningen e.V. - Wir freuen uns auf deine Nachricht.",
-        url: `${baseUrl}/kontakt`
-      },
-      impressum: { 
-        title: "Impressum | Fuchszunft Menningen", 
-        desc: "Impressum und rechtliche Angaben der Fuchszunft Menningen e.V.",
-        url: `${baseUrl}/impressum`
-      },
-      datenschutz: { 
-        title: "Datenschutz | Fuchszunft Menningen", 
-        desc: "Datenschutzerklärung der Fuchszunft Menningen e.V.",
-        url: `${baseUrl}/datenschutz`
-      }
-    };
-    return data[tab] || data.home;
-  };
-
 
   const currentSeo = getSeoData(activeTab);
 
@@ -121,7 +63,11 @@ const App = () => {
     // 1. Nach oben scrollen bei Tab-Wechsel
     window.scrollTo(0, 0);
 
-    // 2. URL aktualisieren
+    // 2. URL aktualisieren (bei 404 bleibt die ursprünglich aufgerufene,
+    // fehlerhafte URL sichtbar, damit sie nicht überschrieben wird)
+    if (activeTab === 'notfound') {
+      return;
+    }
     const path = activeTab === 'home' ? '/' : `/${activeTab}`;
     if (window.location.pathname !== path) {
       window.history.pushState({}, '', path);
@@ -131,12 +77,13 @@ const App = () => {
   useEffect(() => {
     const handlePopState = () => {
       const path = window.location.pathname.substring(1);
-      const validTabs = ['news', 'termine', 'galerie', 'figuren', 'geschichte', 'zunftstube', 'kontakt', 'impressum', 'datenschutz'];
-      
-      if (validTabs.includes(path)) {
-        setActiveTab(path);
-      } else if (path === '' || path === 'home') {
+
+      if (path === '' || path === 'home') {
         setActiveTab('home');
+      } else if (PAGE_TABS.includes(path)) {
+        setActiveTab(path);
+      } else {
+        setActiveTab('notfound');
       }
     };
 
@@ -248,6 +195,8 @@ const App = () => {
             <DatenschutzSection />
           </Suspense>
         );
+      case 'notfound':
+        return <NotFoundSection setActiveTab={setActiveTab} />;
       default:
         return <HomeSection setActiveTab={setActiveTab} />;
     }
@@ -265,9 +214,9 @@ const App = () => {
         toggleDarkMode={toggleDarkMode}
       />
 
-      <SEO title={currentSeo.title} description={currentSeo.desc} url={currentSeo.url} />
+      <SEO title={currentSeo.title} description={currentSeo.desc} url={currentSeo.url} noindex={currentSeo.noindex} />
 
-      <main className="flex-grow pt-20">
+      <main className="grow pt-20">
         <ErrorBoundary>
           {renderContent()}
         </ErrorBoundary>

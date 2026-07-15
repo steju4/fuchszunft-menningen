@@ -44,7 +44,7 @@ const GeschichteSection = () => (
         
         <div className="grid md:grid-cols-3 gap-6">
             {/* Card 1 */}
-            <div className="bg-stone-50 dark:bg-stone-800 p-6 rounded-xl border border-stone-200 dark:border-stone-700 shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+            <div className="bg-stone-50 dark:bg-stone-800 p-6 rounded-xl border border-stone-200 dark:border-stone-700 shadow-xs hover:shadow-md transition-all hover:-translate-y-1">
                 <div className="flex items-center gap-2 text-orange-600 font-bold mb-3">
                     <Calendar size={18}/> <span>Die Idee</span>
                 </div>
@@ -55,7 +55,7 @@ const GeschichteSection = () => (
             </div>
 
             {/* Card 2 */}
-            <div className="bg-stone-50 dark:bg-stone-800 p-6 rounded-xl border border-stone-200 dark:border-stone-700 shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+            <div className="bg-stone-50 dark:bg-stone-800 p-6 rounded-xl border border-stone-200 dark:border-stone-700 shadow-xs hover:shadow-md transition-all hover:-translate-y-1">
                 <div className="flex items-center gap-2 text-orange-600 font-bold mb-3">
                     <Calendar size={18}/> <span>22. Jan 1956</span>
                 </div>
@@ -65,7 +65,7 @@ const GeschichteSection = () => (
             </div>
 
             {/* Card 3 */}
-            <div className="bg-stone-50 dark:bg-stone-800 p-6 rounded-xl border border-stone-200 dark:border-stone-700 shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+            <div className="bg-stone-50 dark:bg-stone-800 p-6 rounded-xl border border-stone-200 dark:border-stone-700 shadow-xs hover:shadow-md transition-all hover:-translate-y-1">
                 <div className="flex items-center gap-2 text-orange-600 font-bold mb-3">
                     <Calendar size={18}/> <span>10. Jan 1957</span>
                 </div>
@@ -82,11 +82,11 @@ const GeschichteSection = () => (
       <div className="grid md:grid-cols-2 gap-8 items-stretch">
         
         {/* Zunftlied - Compact */}
-        <div className="bg-orange-50 dark:bg-orange-900/20 p-6 rounded-2xl border border-orange-200 dark:border-orange-800 shadow-sm flex flex-col">
+        <div className="bg-orange-50 dark:bg-orange-900/20 p-6 rounded-2xl border border-orange-200 dark:border-orange-800 shadow-xs flex flex-col">
             <h3 className="text-xl font-bold text-orange-700 dark:text-orange-400 mb-4 flex items-center gap-2 justify-center">
             <Music size={20} /> Das Menninger Zunftlied
             </h3>
-            <div className="flex-grow flex flex-col justify-center items-center">
+            <div className="grow flex flex-col justify-center items-center">
                 <div className="bg-white dark:bg-stone-800 rounded-lg shadow-md border border-orange-200 dark:border-orange-800 overflow-hidden max-w-sm w-full">
                     <img 
                     src={liedGif} 
@@ -98,11 +98,11 @@ const GeschichteSection = () => (
         </div>
 
         {/* Gründungsmitglieder */}
-        <div className="bg-stone-100 dark:bg-stone-800 p-6 rounded-2xl border border-stone-200 dark:border-stone-700 shadow-sm flex flex-col">
+        <div className="bg-stone-100 dark:bg-stone-800 p-6 rounded-2xl border border-stone-200 dark:border-stone-700 shadow-xs flex flex-col">
             <h3 className="text-xl font-bold text-stone-800 dark:text-stone-100 mb-4 flex items-center gap-2">
                 <Info size={20} className="text-blue-600" /> Die 8 Gründungsmitglieder
             </h3>
-            <div className="prose prose-sm prose-stone dark:prose-invert flex-grow">
+            <div className="prose prose-sm prose-stone dark:prose-invert grow">
                 <p className="mb-4">
                     Am 10. Januar 1957 unterschrieben im Gasthaus "Bahnhof" folgende acht Personen das Gründungsprotokoll:
                 </p>

@@ -1,8 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Menu, X, Home, FileText, Calendar, Users, BookOpen, House, Mail, Sun, Moon, Image as ImageIcon, ChevronDown } from 'lucide-react';
 import wappenImg from '../assets/FZ Wappen digital_klein.webp';
 
 const Navigation = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen, darkMode, toggleDarkMode }) => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  // Strg/Cmd/Shift-Klick soll weiterhin den Browser-Standard auslösen
+  // (Link in neuem Tab/Fenster öffnen), statt immer zu preventDefault().
+  const handleNavClick = (e, tabId) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+    e.preventDefault();
+    setActiveTab(tabId);
+  };
+
+  const handleMobileNavClick = (e, tabId) => {
+    handleNavClick(e, tabId);
+    if (!(e.metaKey || e.ctrlKey || e.shiftKey)) {
+      setIsMenuOpen(false);
+    }
+  };
+
+  // Öffnet/schließt das Dropdown bei Hover UND bei Tastatur-Fokus,
+  // damit "Die Zunft" auch ohne Maus erreichbar ist.
+  const closeDropdownIfFocusLeft = (e) => {
+    if (!e.currentTarget.contains(e.relatedTarget)) {
+      setDropdownOpen(false);
+    }
+  };
+
   const navItems = [
     { id: 'home', label: 'Startseite', icon: Home },
     { id: 'news', label: 'Aktuelles', icon: FileText },
@@ -38,8 +63,8 @@ const Navigation = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen, darkMo
           {/* Logo Area */}
           <a
             href="/"
-            className="flex items-center gap-3 cursor-pointer group" 
-            onClick={(e) => { e.preventDefault(); setActiveTab('home'); }}
+            className="flex items-center gap-3 cursor-pointer group"
+            onClick={(e) => handleNavClick(e, 'home')}
           >
             <div className="transform group-hover:rotate-12 transition-transform">
               <img src={wappenImg} alt="Fuchszunft Wappen" className="h-12 w-auto drop-shadow-md" />
@@ -55,27 +80,41 @@ const Navigation = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen, darkMo
             {navItems.map((item) => {
               if (item.isDropdown) {
                 return (
-                  <div key={item.id} className="relative group">
+                  <div
+                    key={item.id}
+                    className="relative"
+                    onMouseEnter={() => setDropdownOpen(true)}
+                    onMouseLeave={() => setDropdownOpen(false)}
+                    onFocus={() => setDropdownOpen(true)}
+                    onBlur={closeDropdownIfFocusLeft}
+                    onKeyDown={(e) => { if (e.key === 'Escape') setDropdownOpen(false); }}
+                  >
                     <button
+                      type="button"
+                      aria-haspopup="true"
+                      aria-expanded={dropdownOpen}
+                      onClick={() => setDropdownOpen(true)}
                       className={`px-4 py-2 rounded-md transition-all duration-200 flex items-center gap-2 font-medium ${
                         isActive(item)
-                          ? 'bg-orange-600 text-white shadow-md' 
+                          ? 'bg-orange-600 text-white shadow-md'
                           : 'text-stone-300 hover:bg-stone-800 hover:text-white'
                       }`}
                     >
                       <item.icon size={16} />
                       {item.label}
-                      <ChevronDown size={14} className="ml-1 group-hover:rotate-180 transition-transform" />
+                      <ChevronDown size={14} className={`ml-1 transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} />
                     </button>
-                    
+
                     {/* Dropdown Content */}
-                    <div className="absolute left-0 mt-0 pt-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-left -translate-y-2 group-hover:translate-y-0">
+                    <div className={`absolute left-0 mt-0 pt-2 w-48 transition-all duration-200 transform origin-top-left ${
+                      dropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+                    }`}>
                       <div className="bg-stone-800 rounded-lg shadow-xl border border-stone-700 overflow-hidden">
                         {item.subItems.map(sub => (
                           <a
                             key={sub.id}
                             href={`/${sub.id}`}
-                            onClick={(e) => { e.preventDefault(); setActiveTab(sub.id); }}
+                            onClick={(e) => { handleNavClick(e, sub.id); setDropdownOpen(false); }}
                             className={`w-full px-4 py-3 text-left flex items-center gap-3 transition-colors ${
                                activeTab === sub.id
                                 ? 'bg-orange-600/20 text-orange-400 font-bold'
@@ -96,7 +135,7 @@ const Navigation = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen, darkMo
                 <a
                   key={item.id}
                   href={`/${item.id === 'home' ? '' : item.id}`}
-                  onClick={(e) => { e.preventDefault(); setActiveTab(item.id); }}
+                  onClick={(e) => handleNavClick(e, item.id)}
                   className={`px-4 py-2 rounded-md transition-all duration-200 flex items-center gap-2 font-medium ${
                     isActive(item)
                       ? 'bg-orange-600 text-white shadow-md transform scale-105' 
@@ -128,9 +167,12 @@ const Navigation = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen, darkMo
             >
               {darkMode ? <Sun size={24} /> : <Moon size={24} />}
             </button>
-            <button 
+            <button
               className="p-2 text-stone-300 hover:text-white"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label={isMenuOpen ? 'Menü schließen' : 'Menü öffnen'}
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-nav-menu"
             >
               {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
@@ -140,7 +182,7 @@ const Navigation = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen, darkMo
 
       {/* Mobile Nav Overlay */}
       {isMenuOpen && (
-        <div className="lg:hidden bg-stone-800 border-t border-stone-700 absolute w-full left-0 shadow-xl max-h-[80vh] overflow-y-auto">
+        <div id="mobile-nav-menu" className="lg:hidden bg-stone-800 border-t border-stone-700 absolute w-full left-0 shadow-xl max-h-[80vh] overflow-y-auto">
           <div className="flex flex-col p-4 gap-2">
             {navItems.map((item) => {
               if (item.isDropdown) {
@@ -154,11 +196,7 @@ const Navigation = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen, darkMo
                              <a
                                 key={sub.id}
                                 href={`/${sub.id}`}
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  setActiveTab(sub.id);
-                                  setIsMenuOpen(false);
-                                }}
+                                onClick={(e) => handleMobileNavClick(e, sub.id)}
                                 className={`w-full p-3 rounded-lg text-left flex items-center gap-3 ${
                                   activeTab === sub.id 
                                     ? 'bg-orange-600 text-white' 
@@ -178,11 +216,7 @@ const Navigation = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen, darkMo
               <a
                 key={item.id}
                 href={`/${item.id === 'home' ? '' : item.id}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setActiveTab(item.id);
-                  setIsMenuOpen(false);
-                }}
+                onClick={(e) => handleMobileNavClick(e, item.id)}
                 className={`p-4 rounded-lg text-left flex items-center gap-3 ${
                   activeTab === item.id 
                     ? 'bg-orange-600 text-white' 

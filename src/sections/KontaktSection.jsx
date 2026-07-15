@@ -26,7 +26,6 @@ const KontaktSection = () => {
         setResult("Nachricht erfolgreich gesendet!");
         event.target.reset();
       } else {
-        console.log("Error", data);
         setResult(data.message);
       }
     } catch (error) {
@@ -62,7 +61,7 @@ const KontaktSection = () => {
           </div>
         </div>
 
-        <div className="bg-white dark:bg-stone-800 p-8 rounded-2xl border border-stone-200 dark:border-stone-700 shadow-sm transition-all duration-300 hover:shadow-md h-full">
+        <div className="bg-white dark:bg-stone-800 p-8 rounded-2xl border border-stone-200 dark:border-stone-700 shadow-xs transition-all duration-300 hover:shadow-md h-full">
             <h3 className="text-2xl font-bold text-orange-700 dark:text-orange-400 mb-6 flex items-center gap-2">
                 <Send size={24} /> Kontaktformular
             </h3>
@@ -70,16 +69,16 @@ const KontaktSection = () => {
                 <div className="grid md:grid-cols-2 gap-4">
                       <div className="flex flex-col gap-2">
                         <label htmlFor="name" className="font-medium text-stone-700 dark:text-stone-300">Name</label>
-                        <input id="name" type="text" name="name" required className="bg-stone-50 dark:bg-stone-900 border border-stone-300 dark:border-stone-600 rounded-lg p-3 text-stone-800 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-colors" placeholder="Dein Name"/>
+                        <input id="name" type="text" name="name" required className="bg-stone-50 dark:bg-stone-900 border border-stone-300 dark:border-stone-600 rounded-lg p-3 text-stone-800 dark:text-stone-100 focus:outline-hidden focus:ring-2 focus:ring-orange-500 transition-colors" placeholder="Dein Name"/>
                     </div>
                     <div className="flex flex-col gap-2">
                         <label htmlFor="email" className="font-medium text-stone-700 dark:text-stone-300">E-Mail</label>
-                        <input id="email" type="email" name="email" required className="bg-stone-50 dark:bg-stone-900 border border-stone-300 dark:border-stone-600 rounded-lg p-3 text-stone-800 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-colors" placeholder="deine@email.de"/>
+                        <input id="email" type="email" name="email" required className="bg-stone-50 dark:bg-stone-900 border border-stone-300 dark:border-stone-600 rounded-lg p-3 text-stone-800 dark:text-stone-100 focus:outline-hidden focus:ring-2 focus:ring-orange-500 transition-colors" placeholder="deine@email.de"/>
                     </div>
                 </div>
                   <div className="flex flex-col gap-2">
                     <label htmlFor="message" className="font-medium text-stone-700 dark:text-stone-300">Nachricht</label>
-                    <textarea id="message" name="message" required rows="4" className="bg-stone-50 dark:bg-stone-900 border border-stone-300 dark:border-stone-600 rounded-lg p-3 text-stone-800 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-colors" placeholder="Deine Nachricht an uns..."></textarea>
+                    <textarea id="message" name="message" required rows="4" className="bg-stone-50 dark:bg-stone-900 border border-stone-300 dark:border-stone-600 rounded-lg p-3 text-stone-800 dark:text-stone-100 focus:outline-hidden focus:ring-2 focus:ring-orange-500 transition-colors" placeholder="Deine Nachricht an uns..."></textarea>
                 </div>
                 <button type="submit" className="w-full md:w-auto bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 mt-4 hover:shadow-lg hover:-translate-y-0.5">
                     <Send size={20} /> Absenden
@@ -97,7 +96,7 @@ const KontaktSection = () => {
             Unsere Zunftstube befindet sich zentral in Menningen.
           </p>
 
-          <div className="rounded-lg overflow-hidden border border-stone-200 dark:border-stone-600 shadow-sm min-h-[350px] bg-stone-100 dark:bg-stone-900 flex items-center justify-center relative">
+          <div className="rounded-lg overflow-hidden border border-stone-200 dark:border-stone-600 shadow-xs min-h-[350px] bg-stone-100 dark:bg-stone-900 flex items-center justify-center relative">
               {showMap ? (
                 <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2749.2388978203894!2d9.157730476326291!3d48.00793386017798!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479a416826445e1f%3A0x458f624ad4bb8328!2sZunftstube%2C%20Fuchszunft%20Menningen%20e.V.!5e1!3m2!1sde!2sde!4v1767791185053!5m2!1sde!2sde"
@@ -121,7 +120,7 @@ const KontaktSection = () => {
                     </p>
                     <button 
                         onClick={() => setShowMap(true)}
-                        className="bg-stone-800 hover:bg-stone-700 dark:bg-stone-700 dark:hover:bg-stone-600 text-white font-medium py-2.5 px-6 rounded-lg transition-colors shadow-sm w-full sm:w-auto"
+                        className="bg-stone-800 hover:bg-stone-700 dark:bg-stone-700 dark:hover:bg-stone-600 text-white font-medium py-2.5 px-6 rounded-lg transition-colors shadow-xs w-full sm:w-auto"
                     >
                         Karte anzeigen
                     </button>

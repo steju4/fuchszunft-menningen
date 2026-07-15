@@ -1,10 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Clock, MapPin, Download, Calendar, ChevronDown, ChevronUp } from 'lucide-react';
 import { termine } from '../data/termineData';
+import { buildTermineEventsJsonLd } from '../utils/eventSchema';
 
 const AktuellesSection = () => {
   const [showAllPast, setShowAllPast] = useState(false);
   const [showAllFuture, setShowAllFuture] = useState(false);
+
+  // Event-Structured-Data (schema.org), damit Google die Termine als
+  // Rich Results (Datum, Ort) anzeigen kann.
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(buildTermineEventsJsonLd(termine));
+    document.head.appendChild(script);
+    return () => script.remove();
+  }, []);
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -169,7 +180,7 @@ END:VEVENT
       <div className="relative border-l-4 border-stone-200 dark:border-stone-700 ml-4 md:ml-8 space-y-8">
         {hiddenPastCount > 0 && !showAllPast && (
           <div className="relative pl-8 md:pl-12 group cursor-pointer" onClick={() => setShowAllPast(true)}>
-            <div className="absolute -left-[16px] -translate-y-1/2 top-1/2 w-7 h-7 rounded-full border-4 border-white dark:border-stone-900 bg-stone-200 dark:bg-stone-700 flex items-center justify-center group-hover:bg-stone-300 dark:group-hover:bg-stone-600 transition-colors">
+            <div className="absolute left-[-16px] -translate-y-1/2 top-1/2 w-7 h-7 rounded-full border-4 border-white dark:border-stone-900 bg-stone-200 dark:bg-stone-700 flex items-center justify-center group-hover:bg-stone-300 dark:group-hover:bg-stone-600 transition-colors">
               <ChevronDown size={14} className="text-stone-500 dark:text-stone-400" />
             </div>
             <div className="bg-stone-50 dark:bg-stone-800/50 p-3 rounded-xl border border-dashed border-stone-200 dark:border-stone-700 text-center text-sm font-medium text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 transition-colors">
@@ -191,16 +202,16 @@ END:VEVENT
           return (
           <div key={idx} className={`relative pl-8 md:pl-12 ${termin.isPast ? 'opacity-60 saturate-50' : ''}`}>
             {/* Dot */}
-            <div className={`absolute -left-[14px] top-0 mt-[-1px] w-6 h-6 rounded-full border-4 border-white dark:border-stone-900 ${termin.highlight && !termin.isPast ? 'bg-orange-600' : 'bg-stone-400 dark:bg-stone-600'}`}></div>
+            <div className={`absolute left-[-14px] top-0 -mt-px w-6 h-6 rounded-full border-4 border-white dark:border-stone-900 ${termin.highlight && !termin.isPast ? 'bg-orange-600' : 'bg-stone-400 dark:bg-stone-600'}`}></div>
             
-            <div className={`bg-white dark:bg-stone-800 rounded-xl border transition-all ${termin.isPast ? 'p-4 border-stone-100 dark:border-stone-700/50 shadow-none hover:bg-stone-50 dark:hover:bg-stone-800' : 'p-6 shadow-sm hover:shadow-md'} ${termin.highlight && !termin.isPast ? 'border-orange-200 dark:border-orange-800 bg-orange-50/30 dark:bg-orange-900/20' : 'border-stone-100 dark:border-stone-700'}`}>
+            <div className={`bg-white dark:bg-stone-800 rounded-xl border transition-all ${termin.isPast ? 'p-4 border-stone-100 dark:border-stone-700/50 shadow-none hover:bg-stone-50 dark:hover:bg-stone-800' : 'p-6 shadow-xs hover:shadow-md'} ${termin.highlight && !termin.isPast ? 'border-orange-200 dark:border-orange-800 bg-orange-50/30 dark:bg-orange-900/20' : 'border-stone-100 dark:border-stone-700'}`}>
               <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-2">
-                <div className="flex-grow">
+                <div className="grow">
                   <div className="flex items-baseline gap-2">
                     <span className={`font-bold ${termin.isPast ? 'text-xl' : 'text-2xl'} ${termin.highlight && !termin.isPast ? 'text-orange-600 dark:text-orange-500' : 'text-stone-700 dark:text-stone-300'}`}>
                       {termin.datum}
                     </span>
-                    <span className="text-sm font-bold bg-stone-100 dark:bg-stone-700 px-2 py-0.5 rounded text-stone-600 dark:text-stone-300">{termin.wtag}</span>
+                    <span className="text-sm font-bold bg-stone-100 dark:bg-stone-700 px-2 py-0.5 rounded-sm text-stone-600 dark:text-stone-300">{termin.wtag}</span>
                     <span className="text-lg text-stone-400 dark:text-stone-500 font-normal hidden sm:inline">{termin.jahr}</span>
                   </div>
                   <h3 className={`font-bold text-stone-800 dark:text-stone-100 mt-1 ${termin.isPast ? 'text-lg text-stone-600 dark:text-stone-300' : 'text-xl'}`}>{termin.titel}</h3>
@@ -252,7 +263,7 @@ END:VEVENT
 
         {hiddenFutureCount > 0 && !showAllFuture && (
           <div className="relative pl-8 md:pl-12 group cursor-pointer" onClick={() => setShowAllFuture(true)}>
-            <div className="absolute -left-[16px] -translate-y-1/2 top-1/2 w-7 h-7 rounded-full border-4 border-white dark:border-stone-900 bg-stone-200 dark:bg-stone-700 flex items-center justify-center group-hover:bg-stone-300 dark:group-hover:bg-stone-600 transition-colors">
+            <div className="absolute left-[-16px] -translate-y-1/2 top-1/2 w-7 h-7 rounded-full border-4 border-white dark:border-stone-900 bg-stone-200 dark:bg-stone-700 flex items-center justify-center group-hover:bg-stone-300 dark:group-hover:bg-stone-600 transition-colors">
               <ChevronDown size={14} className="text-stone-500 dark:text-stone-400" />
             </div>
             <div className="bg-stone-50 dark:bg-stone-800/50 p-3 rounded-xl border border-dashed border-stone-200 dark:border-stone-700 text-center text-sm font-medium text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 transition-colors">
@@ -263,7 +274,7 @@ END:VEVENT
         
         {hiddenPastCount > 0 && showAllPast && (
           <div className="relative pl-8 md:pl-12 group cursor-pointer" onClick={() => setShowAllPast(false)}>
-            <div className="absolute -left-[16px] -translate-y-1/2 top-1/2 w-7 h-7 rounded-full border-4 border-white dark:border-stone-900 bg-stone-200 dark:bg-stone-700 flex items-center justify-center group-hover:bg-stone-300 dark:group-hover:bg-stone-600 transition-colors">
+            <div className="absolute left-[-16px] -translate-y-1/2 top-1/2 w-7 h-7 rounded-full border-4 border-white dark:border-stone-900 bg-stone-200 dark:bg-stone-700 flex items-center justify-center group-hover:bg-stone-300 dark:group-hover:bg-stone-600 transition-colors">
               <ChevronUp size={14} className="text-stone-500 dark:text-stone-400" />
             </div>
             <div className="bg-stone-50 dark:bg-stone-800/50 p-3 rounded-xl border border-dashed border-stone-200 dark:border-stone-700 text-center text-sm font-medium text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 transition-colors">
@@ -274,7 +285,7 @@ END:VEVENT
 
         {hiddenFutureCount > 0 && showAllFuture && (
           <div className="relative pl-8 md:pl-12 group cursor-pointer" onClick={() => setShowAllFuture(false)}>
-            <div className="absolute -left-[16px] -translate-y-1/2 top-1/2 w-7 h-7 rounded-full border-4 border-white dark:border-stone-900 bg-stone-200 dark:bg-stone-700 flex items-center justify-center group-hover:bg-stone-300 dark:group-hover:bg-stone-600 transition-colors">
+            <div className="absolute left-[-16px] -translate-y-1/2 top-1/2 w-7 h-7 rounded-full border-4 border-white dark:border-stone-900 bg-stone-200 dark:bg-stone-700 flex items-center justify-center group-hover:bg-stone-300 dark:group-hover:bg-stone-600 transition-colors">
               <ChevronUp size={14} className="text-stone-500 dark:text-stone-400" />
             </div>
             <div className="bg-stone-50 dark:bg-stone-800/50 p-3 rounded-xl border border-dashed border-stone-200 dark:border-stone-700 text-center text-sm font-medium text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 transition-colors">
@@ -289,13 +300,13 @@ END:VEVENT
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button 
             onClick={exportToPDF}
-            className="text-orange-600 dark:text-orange-400 font-bold hover:underline flex items-center justify-center gap-2 transition-colors hover:text-orange-800 dark:hover:text-orange-300 bg-white dark:bg-stone-700 px-4 py-2 rounded-lg border border-orange-200 dark:border-orange-800 hover:bg-orange-50 dark:hover:bg-orange-900/30 shadow-sm"
+            className="text-orange-600 dark:text-orange-400 font-bold hover:underline flex items-center justify-center gap-2 transition-colors hover:text-orange-800 dark:hover:text-orange-300 bg-white dark:bg-stone-700 px-4 py-2 rounded-lg border border-orange-200 dark:border-orange-800 hover:bg-orange-50 dark:hover:bg-orange-900/30 shadow-xs"
           >
             <Download size={18} /> Als PDF herunterladen
           </button>
           <button 
             onClick={exportAllToCalendar}
-            className="text-green-600 dark:text-green-400 font-bold hover:underline flex items-center justify-center gap-2 transition-colors hover:text-green-800 dark:hover:text-green-300 bg-white dark:bg-stone-700 px-4 py-2 rounded-lg border border-green-200 dark:border-green-800 hover:bg-green-50 dark:hover:bg-green-900/30 shadow-sm"
+            className="text-green-600 dark:text-green-400 font-bold hover:underline flex items-center justify-center gap-2 transition-colors hover:text-green-800 dark:hover:text-green-300 bg-white dark:bg-stone-700 px-4 py-2 rounded-lg border border-green-200 dark:border-green-800 hover:bg-green-50 dark:hover:bg-green-900/30 shadow-xs"
           >
             <Calendar size={18} /> Alle in Kalender importieren
           </button>

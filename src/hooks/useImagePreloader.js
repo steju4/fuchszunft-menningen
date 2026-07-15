@@ -5,8 +5,11 @@ const useImagePreloader = (imageSources) => {
 
   useEffect(() => {
     let isMounted = true;
-    
-    // Reset state bei neuen Bildern
+
+    // Reset state bei neuen Bildern. Bewusst hier statt während des Renderns,
+    // da die Aufrufer jedes Mal ein neues Array-Literal übergeben - ein
+    // Vergleich per Referenz würde bei jedem Render zurücksetzen.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setImagesLoaded(false);
 
     // Wenn keine Bilder da sind, sind wir "fertig"

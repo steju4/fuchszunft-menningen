@@ -98,7 +98,7 @@ const NewsSection = ({ selectedArticle, setSelectedArticle }) => {
           href="https://www.instagram.com/fuchszunft_menningen/" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-full font-bold shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-all"
+          className="inline-flex items-center gap-2 bg-linear-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-full font-bold shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-all"
         >
           <Instagram size={20} />
           Folge uns auch auf Instagram für aktuelle Infos!
@@ -120,7 +120,7 @@ const NewsSection = ({ selectedArticle, setSelectedArticle }) => {
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               ) : (
-                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-stone-100 to-stone-200 group-hover:scale-105 transition-transform duration-300">
+                <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-stone-100 to-stone-200 group-hover:scale-105 transition-transform duration-300">
                   <ImageIcon className="text-stone-300 w-12 h-12" />
                 </div>
               )}
@@ -128,7 +128,7 @@ const NewsSection = ({ selectedArticle, setSelectedArticle }) => {
             
             <div className="p-6">
               <div className="flex items-center gap-2 mb-3">
-                <span className="bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 px-2 py-1 rounded text-xs font-medium">
+                <span className="bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 px-2 py-1 rounded-sm text-xs font-medium">
                   {article.category}
                 </span>
                 <span className="text-xs text-stone-500 dark:text-stone-400">{article.date}</span>

@@ -1,6 +1,24 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { termine } from '../data/termineData';
 
+// Reine Funktion außerhalb der Komponente: wird nicht bei jedem Render neu
+// erstellt und kann im Effect unten korrekt als Abhängigkeit geführt werden.
+const calculateTimeLeft = (targetDate) => {
+  const now = new Date().getTime();
+  const distance = targetDate - now;
+
+  if (distance < 0) {
+    return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+  }
+
+  return {
+    days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+    hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+    minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+    seconds: Math.floor((distance % (1000 * 60)) / 1000),
+  };
+};
+
 const Countdown = () => {
   // Helfer-Funktion zum Parsen der Termine
   const parseDate = (t) => {
@@ -40,28 +58,11 @@ const Countdown = () => {
     ? nextEvent.dateObj.getTime()
     : new Date('2026-11-11T11:11:00').getTime(); // Fallback 11.11.
 
-  // Berechnung
-  const calculateTimeLeft = () => {
-    const now = new Date().getTime();
-    const distance = targetDate - now;
-
-    if (distance < 0) {
-      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-    }
-
-    return {
-      days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-      hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-      minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-      seconds: Math.floor((distance % (1000 * 60)) / 1000),
-    };
-  };
-
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft);
+  const [timeLeft, setTimeLeft] = useState(() => calculateTimeLeft(targetDate));
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setTimeLeft(calculateTimeLeft());
+      setTimeLeft(calculateTimeLeft(targetDate));
     }, 1000);
 
     return () => clearInterval(interval);

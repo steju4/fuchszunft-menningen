@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
-import { Image as ImageIcon, Youtube } from 'lucide-react';
+import { Image as ImageIcon } from 'lucide-react';
+import YoutubeIcon from '../components/YoutubeIcon';
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import galleryData from '../data/galleryImages.json';
@@ -13,38 +14,34 @@ const GalerieSection = () => {
 
   // Daten für die Anzeige aufbereiten
   const albums = useMemo(() => {
-    const processedAlbums = [];
-    
     // Safety check bei leerem JSON oder Fehler
     if (!galleryData || Object.keys(galleryData).length === 0) {
       return [];
     }
-    
-    // Iteriere über Jahre (z.B. "2025")
-    Object.keys(galleryData).sort((a, b) => b - a).forEach(year => {
-      const yearAlbums = galleryData[year];
-      if (!yearAlbums) return;
-      
-      // Iteriere über Alben innerhalb des Jahres (z.B. "Fasnet")
-      Object.keys(yearAlbums).forEach(albumName => {
-        const images = yearAlbums[albumName];
-        
-        // Nur Alben mit Bildern anzeigen
-        if (Array.isArray(images) && images.length > 0) {
-          processedAlbums.push({
-            id: `${year}-${albumName}`,
-            year,
-            title: albumName, // z.B. "Fasnet"
-            fullTitle: `${albumName} ${year}`,
-            coverImage: images[0], // Erstes Bild als Cover
-            images: images.map(src => ({ src })), // Format für Lightbox
-            count: images.length
+
+    // Iteriere über Jahre (z.B. "2025"), neueste zuerst
+    return Object.keys(galleryData)
+      .sort((a, b) => b - a)
+      .flatMap((year) => {
+        const yearAlbums = galleryData[year];
+        if (!yearAlbums) return [];
+
+        // Nur Alben mit Bildern anzeigen (z.B. "Fasnet")
+        return Object.keys(yearAlbums)
+          .filter((albumName) => Array.isArray(yearAlbums[albumName]) && yearAlbums[albumName].length > 0)
+          .map((albumName) => {
+            const images = yearAlbums[albumName];
+            return {
+              id: `${year}-${albumName}`,
+              year,
+              title: albumName,
+              fullTitle: `${albumName} ${year}`,
+              coverImage: images[0], // Erstes Bild als Cover
+              images: images.map((src) => ({ src })), // Format für Lightbox
+              count: images.length,
+            };
           });
-        }
       });
-    });
-    
-    return processedAlbums;
   }, []);
 
   const openAlbum = (album) => {
@@ -67,7 +64,7 @@ const GalerieSection = () => {
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-full font-bold shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-all"
         >
-          <Youtube size={24} />
+          <YoutubeIcon size={24} />
           Zum YouTube Kanal "Fuxstv"
         </a>
       </div>
@@ -96,8 +93,8 @@ const GalerieSection = () => {
                      />
                      
                      {/* Overlay */}
-                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
-                          <span className="bg-orange-600 text-white text-xs font-bold px-2 py-1 rounded w-fit mb-2">
+                     <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
+                          <span className="bg-orange-600 text-white text-xs font-bold px-2 py-1 rounded-sm w-fit mb-2">
                               {album.year}
                           </span>
                           <h4 className="text-white font-bold text-xl">{album.title}</h4>
