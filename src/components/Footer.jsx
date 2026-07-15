@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Github } from 'lucide-react';
+import { Mail } from 'lucide-react';
 import Instagram from './Instagram';
 
 const Footer = ({ setActiveTab }) => {

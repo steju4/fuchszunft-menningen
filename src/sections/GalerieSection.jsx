@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
-import { Image as ImageIcon, Youtube } from 'lucide-react';
+import { Image as ImageIcon } from 'lucide-react';
+import YoutubeIcon from '../components/YoutubeIcon';
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import galleryData from '../data/galleryImages.json';
@@ -67,7 +68,7 @@ const GalerieSection = () => {
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-full font-bold shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-all"
         >
-          <Youtube size={24} />
+          <YoutubeIcon size={24} />
           Zum YouTube Kanal "Fuxstv"
         </a>
       </div>
