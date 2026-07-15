@@ -56,10 +56,19 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          'vendor-react': ['react', 'react-dom'],
-          'vendor-analytics': ['@vercel/analytics', '@vercel/speed-insights'],
-          'vendor-lucide': ['lucide-react'],
+        // Objekt-Form wird von Rolldown (Vite 8) nicht mehr unterstützt,
+        // daher als Funktion mit gleicher Chunk-Aufteilung wie zuvor.
+        manualChunks(id) {
+          if (!id.includes('node_modules')) return;
+          if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/') || id.includes('node_modules/scheduler/')) {
+            return 'vendor-react';
+          }
+          if (id.includes('node_modules/@vercel/analytics') || id.includes('node_modules/@vercel/speed-insights')) {
+            return 'vendor-analytics';
+          }
+          if (id.includes('node_modules/lucide-react')) {
+            return 'vendor-lucide';
+          }
         },
       },
     },
