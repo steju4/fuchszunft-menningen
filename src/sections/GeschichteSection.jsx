@@ -1,5 +1,6 @@
 import React from 'react';
-import { Info, Music, BookOpen, MapPin, Calendar, Users } from 'lucide-react';
+import { Info, MapPin, Users } from 'lucide-react';
+import { Music, BookOpen, Calendar } from '../components/ZunftIcons';
 import liedGif from '../assets/unnamed (1).gif';
 
 const GeschichteSection = () => (

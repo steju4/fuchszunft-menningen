@@ -12,6 +12,8 @@
   als min-[…]-Arbitrary-Variant direkt in der Klasse steht).
 */
 @theme {
+  /* Bisherige Systemschrift beibehalten, unabhängig von Tailwind-Defaults. */
+  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --breakpoint-3xl: 1350px;
   --breakpoint-4xl: 1600px;
 }
