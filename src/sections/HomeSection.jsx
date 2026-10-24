@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
-import { FileText, Users, ChevronRight, Award, Shield, Bell, MapPin } from 'lucide-react';
-import { Calendar } from '../components/ZunftIcons';
+import { FileText, Calendar, Users, ChevronRight, Award, Shield, Bell, MapPin } from 'lucide-react';
 import Countdown from '../components/Countdown';
 import { termine } from '../data/termineData';
 import heroBg from '../assets/Gesamt.webp';

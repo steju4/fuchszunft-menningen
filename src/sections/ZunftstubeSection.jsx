@@ -1,6 +1,5 @@
 import React from 'react';
-import { House } from 'lucide-react';
-import { Music } from '../components/ZunftIcons';
+import { Music, House } from 'lucide-react';
 import LoadingSpinner from '../components/LoadingSpinner';
 import useImagePreloader from '../hooks/useImagePreloader';
 import Zunftstube from '../assets/Zunftstube.webp';

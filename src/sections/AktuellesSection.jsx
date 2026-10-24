@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Clock, MapPin, Download, ChevronDown, ChevronUp } from 'lucide-react';
-import { Calendar } from '../components/ZunftIcons';
+import { Clock, MapPin, Download, Calendar, ChevronDown, ChevronUp } from 'lucide-react';
 import { termine } from '../data/termineData';
 import { buildTermineEventsJsonLd } from '../utils/eventSchema';
 

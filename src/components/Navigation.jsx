@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, Home, FileText, Users, House, Mail, Sun, Moon, Image as ImageIcon, ChevronDown } from 'lucide-react';
-import { Calendar, BookOpen } from './ZunftIcons';
+import { Menu, X, Home, FileText, Calendar, Users, BookOpen, House, Mail, Sun, Moon, Image as ImageIcon, ChevronDown } from 'lucide-react';
 import wappenImg from '../assets/FZ Wappen digital_klein.webp';
 
 const Navigation = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen, darkMode, toggleDarkMode }) => {
